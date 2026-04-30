@@ -1,0 +1,167 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Блок 1: схема, размеры БД и рост хранилища ===
+psql:sql/01_schema_storage.sql:6: NOTICE:  schema "lab4" does not exist, skipping
+DROP SCHEMA
+Time: 3.830 ms
+CREATE SCHEMA
+Time: 4.433 ms
+SET
+Time: 0.753 ms
+CREATE TABLE
+Time: 29.403 ms
+CREATE TABLE
+Time: 14.763 ms
+CREATE FUNCTION
+Time: 10.158 ms
+CREATE FUNCTION
+Time: 2.942 ms
+=== Версия PostgreSQL ===
+                                                       version                                                        
+----------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.13 (Debian 16.13-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+Time: 2.148 ms
+=== Размеры всех баз данных ===
+ database_name | size_bytes | size_pretty | is_template 
+---------------+------------+-------------+-------------
+ subd_lab4     |    7773207 | 7591 kB     | f
+ template1     |    7765015 | 7583 kB     | t
+ postgres      |    7699479 | 7519 kB     | f
+ template0     |    7537167 | 7361 kB     | t
+(4 rows)
+
+Time: 15.273 ms
+=== Таблицы текущей базы до заполнения ===
+    schema_name     |        table_name        | relation_bytes | total_bytes | total_pretty 
+--------------------+--------------------------+----------------+-------------+--------------
+ pg_catalog         | pg_proc                  |         802816 |     1245184 | 1216 kB
+ pg_catalog         | pg_rewrite               |         106496 |      745472 | 728 kB
+ pg_catalog         | pg_attribute             |         475136 |      729088 | 712 kB
+ pg_catalog         | pg_description           |         368640 |      638976 | 624 kB
+ pg_catalog         | pg_statistic             |         155648 |      294912 | 288 kB
+ pg_catalog         | pg_depend                |         106496 |      278528 | 272 kB
+ pg_catalog         | pg_collation             |         131072 |      270336 | 264 kB
+ pg_catalog         | pg_type                  |         122880 |      237568 | 232 kB
+ pg_catalog         | pg_operator              |         114688 |      237568 | 232 kB
+ pg_catalog         | pg_class                 |         114688 |      237568 | 232 kB
+ pg_catalog         | pg_amop                  |          57344 |      229376 | 224 kB
+ pg_catalog         | pg_amproc                |          40960 |      147456 | 144 kB
+ pg_catalog         | pg_constraint            |          24576 |      147456 | 144 kB
+ pg_catalog         | pg_auth_members          |           8192 |      106496 | 104 kB
+ information_schema | sql_features             |          65536 |      106496 | 104 kB
+ pg_catalog         | pg_index                 |          32768 |       98304 | 96 kB
+ pg_catalog         | pg_conversion            |          16384 |       98304 | 96 kB
+ pg_catalog         | pg_ts_config_map         |          24576 |       90112 | 88 kB
+ pg_catalog         | pg_opclass               |          24576 |       90112 | 88 kB
+ pg_catalog         | pg_tablespace            |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_extension             |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_authid                |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_opfamily              |          16384 |       81920 | 80 kB
+ pg_catalog         | pg_language              |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_cast                  |          16384 |       81920 | 80 kB
+ pg_catalog         | pg_namespace             |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_database              |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_ts_dict               |           8192 |       81920 | 80 kB
+ pg_catalog         | pg_init_privs            |          24576 |       81920 | 80 kB
+ pg_catalog         | pg_am                    |           8192 |       73728 | 72 kB
+ pg_catalog         | pg_ts_config             |           8192 |       73728 | 72 kB
+ pg_catalog         | pg_aggregate             |          16384 |       73728 | 72 kB
+ pg_catalog         | pg_range                 |           8192 |       73728 | 72 kB
+ pg_catalog         | pg_ts_template           |           8192 |       73728 | 72 kB
+ pg_catalog         | pg_ts_parser             |           8192 |       73728 | 72 kB
+ pg_catalog         | pg_shdescription         |           8192 |       65536 | 64 kB
+ information_schema | sql_parts                |           8192 |       49152 | 48 kB
+ pg_catalog         | pg_attrdef               |           8192 |       49152 | 48 kB
+ information_schema | sql_sizing               |           8192 |       49152 | 48 kB
+ information_schema | sql_implementation_info  |           8192 |       49152 | 48 kB
+ pg_catalog         | pg_statistic_ext         |              0 |       32768 | 32 kB
+ pg_catalog         | pg_trigger               |              0 |       32768 | 32 kB
+ pg_catalog         | pg_publication_rel       |              0 |       32768 | 32 kB
+ pg_catalog         | pg_subscription          |              0 |       24576 | 24 kB
+ pg_catalog         | pg_user_mapping          |              0 |       24576 | 24 kB
+ pg_catalog         | pg_event_trigger         |              0 |       24576 | 24 kB
+ pg_catalog         | pg_enum                  |              0 |       24576 | 24 kB
+ pg_catalog         | pg_foreign_data_wrapper  |              0 |       24576 | 24 kB
+ pg_catalog         | pg_foreign_server        |              0 |       24576 | 24 kB
+ pg_catalog         | pg_policy                |              0 |       24576 | 24 kB
+ pg_catalog         | pg_replication_origin    |              0 |       24576 | 24 kB
+ pg_catalog         | pg_default_acl           |              0 |       24576 | 24 kB
+ pg_catalog         | pg_parameter_acl         |              0 |       24576 | 24 kB
+ pg_catalog         | pg_sequence              |           8192 |       24576 | 24 kB
+ pg_catalog         | pg_seclabel              |              0 |       16384 | 16 kB
+ pg_catalog         | pg_db_role_setting       |              0 |       16384 | 16 kB
+ pg_catalog         | pg_foreign_table         |              0 |       16384 | 16 kB
+ pg_catalog         | pg_partitioned_table     |              0 |       16384 | 16 kB
+ pg_catalog         | pg_publication_namespace |              0 |       16384 | 16 kB
+ pg_catalog         | pg_inherits              |              0 |       16384 | 16 kB
+ pg_catalog         | pg_statistic_ext_data    |              0 |       16384 | 16 kB
+ pg_catalog         | pg_shdepend              |              0 |       16384 | 16 kB
+ pg_catalog         | pg_shseclabel            |              0 |       16384 | 16 kB
+ pg_catalog         | pg_transform             |              0 |       16384 | 16 kB
+ pg_catalog         | pg_publication           |              0 |       16384 | 16 kB
+ pg_catalog         | pg_largeobject_metadata  |              0 |        8192 | 8192 bytes
+ lab4               | storage_plain            |              0 |        8192 | 8192 bytes
+ lab4               | storage_measurements     |              0 |        8192 | 8192 bytes
+ pg_catalog         | pg_subscription_rel      |              0 |        8192 | 8192 bytes
+ pg_catalog         | pg_largeobject           |              0 |        8192 | 8192 bytes
+(70 rows)
+
+Time: 26.459 ms
+=== Замеры роста хранилища ===
+ measure_storage_plain 
+-----------------------
+ 
+(1 row)
+
+Time: 17.947 ms
+ measure_storage_plain 
+-----------------------
+ 
+(1 row)
+
+Time: 11.188 ms
+ measure_storage_plain 
+-----------------------
+ 
+(1 row)
+
+Time: 15.950 ms
+ measure_storage_plain 
+-----------------------
+ 
+(1 row)
+
+Time: 78.105 ms
+ measure_storage_plain 
+-----------------------
+ 
+(1 row)
+
+Time: 705.870 ms
+ measure_storage_plain 
+-----------------------
+ 
+(1 row)
+
+Time: 4813.255 ms (00:04.813)
+=== Итоговая таблица замеров ===
+ rows_in_table | database_bytes | database_size | relation_bytes | relation_size | total_relation_bytes | total_relation_size | indexes_bytes | toast_bytes | avg_relation_bytes_per_row | avg_total_bytes_per_row 
+---------------+----------------+---------------+----------------+---------------+----------------------+---------------------+---------------+-------------+----------------------------+-------------------------
+            10 |        7789591 | 7607 kB       |           8192 | 8192 bytes    |                16384 | 16 kB               |             0 |        8192 |                     819.20 |                 1638.40
+           100 |        7855127 | 7671 kB       |          16384 | 16 kB         |                49152 | 48 kB               |             0 |       32768 |                     163.84 |                  491.52
+          1000 |        7986199 | 7799 kB       |         106496 | 104 kB        |               139264 | 136 kB              |             0 |       32768 |                     106.50 |                  139.26
+         10000 |        8985623 | 8775 kB       |        1015808 | 992 kB        |              1048576 | 1024 kB             |             0 |       32768 |                     101.58 |                  104.86
+        100000 |       18996247 | 18 MB         |       10117120 | 9880 kB       |             10149888 | 9912 kB             |             0 |       32768 |                     101.17 |                  101.50
+       1000000 |      119143447 | 114 MB        |      101138432 | 96 MB         |            101195776 | 97 MB               |             0 |       57344 |                     101.14 |                  101.20
+(6 rows)
+
+Time: 0.922 ms
+=== Проверка фактического числа строк в последнем состоянии таблицы ===
+ rows_now 
+----------
+  1000000
+(1 row)
+
+Time: 38.419 ms

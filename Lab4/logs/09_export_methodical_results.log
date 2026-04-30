@@ -1,0 +1,9 @@
+=== Export method_page_growth_measurements.csv ===
+COPY 14
+=== Export method_partition_strict_measurements.csv ===
+COPY 6
+=== Export method_series_measurements.csv ===
+COPY 60
+=== Export method_final_table_sizes.csv ===
+COPY 8
+=== Methodical export done ===

@@ -1,0 +1,14 @@
+Pager usage is off.
+CREATE ROLE
+CREATE ROLE
+CREATE ROLE
+CREATE ROLE
+CREATE ROLE
+CREATE ROLE
+GRANT ROLE
+GRANT
+                         result                         
+--------------------------------------------------------
+ Пачка 5: роль document_employee и пользователи созданы
+(1 row)
+

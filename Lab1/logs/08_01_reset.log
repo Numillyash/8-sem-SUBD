@@ -1,0 +1,36 @@
+Pager usage is off.
+psql:sql/08_01_reset.sql:4: NOTICE:  table "document_operations" does not exist, skipping
+DROP TABLE
+psql:sql/08_01_reset.sql:5: NOTICE:  table "documents" does not exist, skipping
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DROP TABLE
+DO
+DROP ROLE
+DROP ROLE
+DROP ROLE
+psql:sql/08_01_reset.sql:42: NOTICE:  role "document_employee" does not exist, skipping
+DROP ROLE
+DROP ROLE
+DROP ROLE
+DROP ROLE
+DROP ROLE
+DROP ROLE
+DROP ROLE
+psql:sql/08_01_reset.sql:51: NOTICE:  role "Сотрудник_А" does not exist, skipping
+DROP ROLE
+psql:sql/08_01_reset.sql:52: NOTICE:  role "Сотрудник_Б" does not exist, skipping
+DROP ROLE
+psql:sql/08_01_reset.sql:53: NOTICE:  role "Сотрудник_В" does not exist, skipping
+DROP ROLE
+psql:sql/08_01_reset.sql:54: NOTICE:  role "Сотрудник_Г" does not exist, skipping
+DROP ROLE
+psql:sql/08_01_reset.sql:55: NOTICE:  role "Сотрудник_Д" does not exist, skipping
+DROP ROLE
+REVOKE
+                   result                    
+---------------------------------------------
+ Пачка 1: старая схема и старые роли удалены
+(1 row)
+

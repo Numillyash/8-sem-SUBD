@@ -1,0 +1,10 @@
+table_name,relation_bytes,indexes_bytes,total_bytes
+clean_code_index,10321920,2170880,12533760
+clean_customer_index,10248192,2482176,12771328
+clean_no_index,10248192,0,10289152
+clean_payload_func_index,10248192,4595712,14884864
+mod_expr_index,10141696,1212416,11395072
+mod_func_index,10141696,4407296,14589952
+mod_no_index,10141696,0,10182656
+mod_simple_index,10141696,2260992,12443648
+mod_unique_index,10141696,2260992,12443648

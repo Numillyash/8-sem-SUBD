@@ -1,0 +1,9 @@
+test_name,index_type,avg_elapsed_ms,min_elapsed_ms,max_elapsed_ms,stddev_elapsed_ms
+update_changed_field_by_id,customer_btree,47.910,38.461,52.885,8.187
+update_changed_field_by_id,expression_index,81.513,78.722,83.352,2.457
+update_changed_field_by_id,function_index,105.534,84.857,141.386,31.170
+update_changed_field_by_id,no_index,69.219,41.909,83.095,23.652
+update_nonindexed_amount_by_id,customer_btree,51.733,35.294,65.544,15.295
+update_nonindexed_amount_by_id,expression_index,95.011,73.496,123.444,25.682
+update_nonindexed_amount_by_id,function_index,69.368,55.739,76.371,11.804
+update_nonindexed_amount_by_id,no_index,22.633,19.428,26.585,3.637

@@ -1,0 +1,9 @@
+test_name,table_name,avg_elapsed_ms,min_elapsed_ms,max_elapsed_ms,stddev_elapsed_ms
+full_table_range,orders_partitioned,83.477,61.257,148.115,26.287
+full_table_range,orders_plain,57.747,51.395,61.440,3.247
+one_partition_range,orders_partitioned,27.121,22.087,35.832,5.004
+one_partition_range,orders_plain,53.139,43.245,63.360,6.045
+three_partitions_range,orders_partitioned,67.863,48.451,90.596,14.672
+three_partitions_range,orders_plain,81.475,68.128,95.125,10.472
+two_partitions_range,orders_partitioned,38.282,31.025,46.569,5.496
+two_partitions_range,orders_plain,54.168,43.808,67.350,7.811

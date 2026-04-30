@@ -1,0 +1,13 @@
+=== Export storage_measurements.csv ===
+COPY 6
+=== Export partition_measurements.csv ===
+COPY 8
+=== Export index_select_measurements.csv ===
+COPY 2
+=== Export insert_update_measurements.csv ===
+COPY 15
+=== Export clean_update_measurements.csv ===
+COPY 8
+=== Export table_sizes.csv ===
+COPY 9
+=== Export done ===

@@ -1,0 +1,110 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Блок 3: влияние индексов на производительность выборки ===
+SET
+Time: 1.206 ms
+psql:sql/03_index_select.sql:8: NOTICE:  table "index_select_test" does not exist, skipping
+DROP TABLE
+Time: 3.260 ms
+psql:sql/03_index_select.sql:9: NOTICE:  table "index_select_measurements" does not exist, skipping
+DROP TABLE
+Time: 0.760 ms
+CREATE TABLE
+Time: 15.913 ms
+CREATE TABLE
+Time: 15.309 ms
+INSERT 0 1000000
+Time: 3675.305 ms (00:03.675)
+ANALYZE
+Time: 149.070 ms
+CREATE FUNCTION
+Time: 6.573 ms
+=== Размер таблицы до создания индекса ===
+ relation_size | indexes_size | total_size 
+---------------+--------------+------------
+ 89 MB         | 0 bytes      | 89 MB
+(1 row)
+
+Time: 2.287 ms
+=== EXPLAIN без индекса ===
+                                                                QUERY PLAN                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=17572.60..17572.61 rows=1 width=40) (actual time=36.483..40.443 rows=1 loops=1)
+   Buffers: shared hit=11364
+   ->  Gather  (cost=17572.38..17572.59 rows=2 width=40) (actual time=36.347..40.431 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=11364
+         ->  Partial Aggregate  (cost=16572.38..16572.39 rows=1 width=40) (actual time=32.237..32.238 rows=1 loops=3)
+               Buffers: shared hit=11364
+               ->  Parallel Seq Scan on index_select_test  (cost=0.00..16572.33 rows=8 width=6) (actual time=4.776..32.193 rows=7 loops=3)
+                     Filter: (customer_id = 12345)
+                     Rows Removed by Filter: 333327
+                     Buffers: shared hit=11364
+ Planning:
+   Buffers: shared hit=32 read=5
+ Planning Time: 1.105 ms
+ Execution Time: 40.473 ms
+(16 rows)
+
+Time: 43.595 ms
+=== Замеры SELECT без индекса ===
+ measure_index_select 
+----------------------
+ 
+(1 row)
+
+Time: 614.594 ms
+=== Создание B-tree индекса по customer_id ===
+CREATE INDEX
+Time: 326.945 ms
+ANALYZE
+Time: 170.060 ms
+=== Размер таблицы после создания индекса ===
+ relation_size | indexes_size | total_size 
+---------------+--------------+------------
+ 89 MB         | 7600 kB      | 96 MB
+(1 row)
+
+Time: 0.864 ms
+=== EXPLAIN с индексом ===
+                                                                 QUERY PLAN                                                                  
+---------------------------------------------------------------------------------------------------------------------------------------------
+ Aggregate  (cost=82.42..82.43 rows=1 width=40) (actual time=0.114..0.115 rows=1 loops=1)
+   Buffers: shared hit=20 read=3
+   ->  Bitmap Heap Scan on index_select_test  (cost=4.58..82.31 rows=20 width=6) (actual time=0.069..0.104 rows=20 loops=1)
+         Recheck Cond: (customer_id = 12345)
+         Heap Blocks: exact=20
+         Buffers: shared hit=20 read=3
+         ->  Bitmap Index Scan on idx_index_select_customer_id  (cost=0.00..4.58 rows=20 width=0) (actual time=0.063..0.063 rows=20 loops=1)
+               Index Cond: (customer_id = 12345)
+               Buffers: shared read=3
+ Planning:
+   Buffers: shared hit=12 read=1
+ Planning Time: 0.205 ms
+ Execution Time: 0.165 ms
+(13 rows)
+
+Time: 1.229 ms
+=== Замеры SELECT с индексом ===
+ measure_index_select 
+----------------------
+ 
+(1 row)
+
+Time: 2.117 ms
+=== Итоговая таблица по выборке с индексом и без индекса ===
+       test_name       |       index_state       | runs | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms | result_count_min | result_count_max | result_sum_min | result_sum_max 
+-----------------------+-------------------------+------+----------------+----------------+----------------+-------------------+------------------+------------------+----------------+----------------
+ select_by_customer_id | btree_index_customer_id |   10 |          0.035 |          0.022 |          0.133 |             0.034 |               20 |               20 |        7668.80 |        7668.80
+ select_by_customer_id | without_index           |   10 |         60.909 |         45.501 |         80.036 |            11.566 |               20 |               20 |        7668.80 |        7668.80
+(2 rows)
+
+Time: 2.794 ms
+=== Проверка количества строк ===
+ rows_count 
+------------
+    1000000
+(1 row)
+
+Time: 35.371 ms

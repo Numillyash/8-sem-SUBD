@@ -1,0 +1,14 @@
+Pager usage is off.
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+CREATE POLICY
+CREATE POLICY
+CREATE POLICY
+CREATE POLICY
+                 result                 
+----------------------------------------
+ Пачка 7: RLS включен, политики созданы
+(1 row)
+

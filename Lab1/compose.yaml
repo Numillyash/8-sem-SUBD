@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: subd_lab1_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: subd_lab1
+      POSTGRES_USER: lab_admin
+      POSTGRES_PASSWORD: lab_admin_pass
+      TZ: Europe/Moscow
+    ports:
+      - "15432:5432"
+    volumes:
+      - lab1_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lab_admin -d subd_lab1"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  lab1_pgdata:

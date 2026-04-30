@@ -1,0 +1,210 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Дополнительный блок: чистая стоимость UPDATE индексируемых полей ===
+SET
+Time: 0.826 ms
+psql:sql/05_clean_update_cost.sql:8: NOTICE:  table "clean_update_measurements" does not exist, skipping
+DROP TABLE
+Time: 0.967 ms
+psql:sql/05_clean_update_cost.sql:10: NOTICE:  table "clean_no_index" does not exist, skipping
+DROP TABLE
+Time: 0.517 ms
+psql:sql/05_clean_update_cost.sql:11: NOTICE:  table "clean_customer_index" does not exist, skipping
+DROP TABLE
+Time: 0.559 ms
+psql:sql/05_clean_update_cost.sql:12: NOTICE:  table "clean_code_index" does not exist, skipping
+DROP TABLE
+Time: 0.502 ms
+psql:sql/05_clean_update_cost.sql:13: NOTICE:  table "clean_payload_func_index" does not exist, skipping
+DROP TABLE
+Time: 0.513 ms
+CREATE TABLE
+Time: 11.711 ms
+CREATE TABLE
+Time: 3.528 ms
+CREATE TABLE
+Time: 3.873 ms
+CREATE TABLE
+Time: 4.450 ms
+CREATE TABLE
+Time: 3.609 ms
+CREATE INDEX
+Time: 3.098 ms
+CREATE INDEX
+Time: 4.501 ms
+CREATE INDEX
+Time: 4.260 ms
+CREATE FUNCTION
+Time: 3.521 ms
+CREATE FUNCTION
+Time: 2.219 ms
+=== Тест 1: UPDATE неиндексируемого поля amount, одинаковый диапазон по id ===
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 610.667 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 745.687 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1100.919 ms (00:01.101)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1174.262 ms (00:01.174)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 412.955 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 489.908 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 859.715 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 874.878 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 528.879 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 745.910 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1355.045 ms (00:01.355)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1441.312 ms (00:01.441)
+=== Тест 2: UPDATE индексируемых полей, одинаковый диапазон по id ===
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 839.610 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1110.876 ms (00:01.111)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1262.958 ms (00:01.263)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1238.829 ms (00:01.239)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 606.591 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 781.572 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1129.867 ms (00:01.130)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1199.666 ms (00:01.200)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 637.873 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 805.490 ms
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1371.867 ms (00:01.372)
+ measure_clean_update 
+----------------------
+ 
+(1 row)
+
+Time: 1381.626 ms (00:01.382)
+=== Размеры таблиц после чистого теста UPDATE ===
+        table_name        | relation_bytes | indexes_bytes | total_bytes | relation_size | indexes_size | total_size 
+--------------------------+----------------+---------------+-------------+---------------+--------------+------------
+ clean_code_index         |       10321920 |       2170880 |    12525568 | 10080 kB      | 2120 kB      | 12 MB
+ clean_customer_index     |       10248192 |       2482176 |    12763136 | 10008 kB      | 2424 kB      | 12 MB
+ clean_no_index           |       10248192 |             0 |    10280960 | 10008 kB      | 0 bytes      | 10040 kB
+ clean_payload_func_index |       10248192 |       4595712 |    14876672 | 10008 kB      | 4488 kB      | 14 MB
+(4 rows)
+
+Time: 5.604 ms
+=== Итоговая таблица чистого теста UPDATE ===
+           test_name            |    index_type    | runs | affected_rows_min | affected_rows_max | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms 
+--------------------------------+------------------+------+-------------------+-------------------+----------------+----------------+----------------+-------------------
+ update_nonindexed_amount_by_id | no_index         |    3 |             10001 |             10001 |         22.633 |         19.428 |         26.585 |             3.637
+ update_nonindexed_amount_by_id | customer_btree   |    3 |             10001 |             10001 |         51.733 |         35.294 |         65.544 |            15.295
+ update_nonindexed_amount_by_id | expression_index |    3 |             10001 |             10001 |         95.011 |         73.496 |        123.444 |            25.682
+ update_nonindexed_amount_by_id | function_index   |    3 |             10001 |             10001 |         69.368 |         55.739 |         76.371 |            11.804
+ update_changed_field_by_id     | no_index         |    3 |             10001 |             10001 |         69.219 |         41.909 |         83.095 |            23.652
+ update_changed_field_by_id     | customer_btree   |    3 |             10001 |             10001 |         47.910 |         38.461 |         52.885 |             8.187
+ update_changed_field_by_id     | expression_index |    3 |             10001 |             10001 |         81.513 |         78.722 |         83.352 |             2.457
+ update_changed_field_by_id     | function_index   |    3 |             10001 |             10001 |        105.534 |         84.857 |        141.386 |            31.170
+(8 rows)
+
+Time: 2.592 ms

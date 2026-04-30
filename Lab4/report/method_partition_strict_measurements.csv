@@ -1,0 +1,7 @@
+test_name,table_name,avg_elapsed_ms,min_elapsed_ms,max_elapsed_ms,stddev_elapsed_ms
+first_and_second_sections,orders_partitioned,27.329,23.770,44.688,6.467
+first_and_second_sections,orders_plain,36.980,31.198,45.452,4.465
+first_section,orders_partitioned,22.479,17.109,35.880,6.585
+first_section,orders_plain,33.101,28.475,42.732,4.261
+second_section,orders_partitioned,20.024,16.627,27.030,4.036
+second_section,orders_plain,32.512,28.244,45.819,5.465

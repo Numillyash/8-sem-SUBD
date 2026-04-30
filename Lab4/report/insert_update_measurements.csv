@@ -1,0 +1,16 @@
+operation_name,index_type,avg_elapsed_ms,min_elapsed_ms,max_elapsed_ms,stddev_elapsed_ms
+insert_batch,expression_index,73.503,62.800,86.049,11.734
+insert_batch,function_index,84.641,77.062,99.012,12.452
+insert_batch,no_index,32.296,27.665,38.884,5.860
+insert_batch,simple_btree,60.302,45.601,71.463,13.289
+insert_batch,unique_btree,57.981,39.545,91.149,28.784
+update_indexed_field,expression_index,10.948,7.680,15.396,3.991
+update_indexed_field,function_index,11.140,8.945,12.264,1.901
+update_indexed_field,no_index,7.763,7.082,8.118,0.590
+update_indexed_field,simple_btree,0.993,0.657,1.192,0.293
+update_indexed_field,unique_btree,7.973,6.558,10.158,1.919
+update_nonindexed_amount,expression_index,11.905,10.846,13.116,1.143
+update_nonindexed_amount,function_index,7.754,7.407,8.038,0.320
+update_nonindexed_amount,no_index,8.288,5.955,10.662,2.354
+update_nonindexed_amount,simple_btree,1.021,0.890,1.137,0.124
+update_nonindexed_amount,unique_btree,13.359,10.298,17.358,3.622

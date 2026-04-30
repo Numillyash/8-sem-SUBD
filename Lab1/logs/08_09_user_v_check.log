@@ -1,0 +1,8 @@
+Pager usage is off.
+=== Текущий пользователь ===
+ current_user 
+--------------
+ Сотрудник_В
+(1 row)
+
+UPDATE 0

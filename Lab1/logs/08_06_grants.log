@@ -1,0 +1,12 @@
+Pager usage is off.
+REVOKE
+REVOKE
+GRANT
+GRANT
+GRANT
+GRANT
+           result            
+-----------------------------
+ Пачка 6: права GRANT выданы
+(1 row)
+

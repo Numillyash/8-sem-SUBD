@@ -1,0 +1,78 @@
+Pager usage is off.
+=== Версия PostgreSQL ===
+                                                       version                                                        
+----------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.13 (Debian 16.13-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+=== Текущая база и пользователь ===
+ current_database | current_user 
+------------------+--------------
+ subd_lab1        | lab_admin
+(1 row)
+
+=== Таблицы варианта 8 ===
+ table_schema |     table_name      
+--------------+---------------------
+ public       | document_operations
+ public       | documents
+(2 rows)
+
+=== Роли варианта 8 ===
+      rolname      | rolcanlogin | rolsuper 
+-------------------+-------------+----------
+ document_employee | f           | f
+ Сотрудник_А       | t           | f
+ Сотрудник_Б       | t           | f
+ Сотрудник_В       | t           | f
+ Сотрудник_Г       | t           | f
+ Сотрудник_Д       | t           | f
+(6 rows)
+
+=== Членство пользователей в роли document_employee ===
+  user_name  |   granted_role    
+-------------+-------------------
+ Сотрудник_А | document_employee
+ Сотрудник_Б | document_employee
+ Сотрудник_В | document_employee
+ Сотрудник_Г | document_employee
+ Сотрудник_Д | document_employee
+(5 rows)
+
+=== Политики RLS ===
+ schemaname |      tablename      |        policyname        | permissive |        roles        |  cmd   |                                                        qual                                                        |              with_check               
+------------+---------------------+--------------------------+------------+---------------------+--------+--------------------------------------------------------------------------------------------------------------------+---------------------------------------
+ public     | document_operations | operations_select_policy | PERMISSIVE | {document_employee} | SELECT | ((employee_name = CURRENT_USER) OR (EXISTS ( SELECT 1                                                             +| 
+            |                     |                          |            |                     |        |    FROM documents d                                                                                               +| 
+            |                     |                          |            |                     |        |   WHERE ((d.document_number = document_operations.document_number) AND (d.responsible_employee = CURRENT_USER))))) | 
+ public     | document_operations | operations_update_policy | PERMISSIVE | {document_employee} | UPDATE | (employee_name = CURRENT_USER)                                                                                     | (employee_name = CURRENT_USER)
+ public     | documents           | documents_select_policy  | PERMISSIVE | {document_employee} | SELECT | ((secrecy_level IS NULL) OR (responsible_employee = CURRENT_USER))                                                 | 
+ public     | documents           | documents_update_policy  | PERMISSIVE | {document_employee} | UPDATE | (responsible_employee = CURRENT_USER)                                                                              | (responsible_employee = CURRENT_USER)
+(4 rows)
+
+=== Табличные права ===
+      grantee      |     table_name      | privilege_type 
+-------------------+---------------------+----------------
+ document_employee | document_operations | SELECT
+ document_employee | documents           | SELECT
+(2 rows)
+
+=== Столбцовые права ===
+      grantee      |     table_name      |      column_name      | privilege_type 
+-------------------+---------------------+-----------------------+----------------
+ document_employee | document_operations | change_date           | SELECT
+ document_employee | document_operations | document_number       | SELECT
+ document_employee | document_operations | employee_name         | SELECT
+ document_employee | document_operations | operation_description | SELECT
+ document_employee | document_operations | operation_description | UPDATE
+ document_employee | documents           | document_content      | SELECT
+ document_employee | documents           | document_number       | SELECT
+ document_employee | documents           | document_type         | SELECT
+ document_employee | documents           | effective_from        | SELECT
+ document_employee | documents           | effective_until       | SELECT
+ document_employee | documents           | effective_until       | UPDATE
+ document_employee | documents           | internal_department   | SELECT
+ document_employee | documents           | responsible_employee  | SELECT
+ document_employee | documents           | secrecy_level         | SELECT
+(14 rows)
+
