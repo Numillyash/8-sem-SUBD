@@ -1,0 +1,7 @@
+check_name,actual_value,check_result
+insert_affected_rows_equal_batch,200,OK
+insert_raw_rows_expected_200,200,OK
+select_found_rows_equal_probes,96,OK
+select_raw_rows_expected_96,96,OK
+update_affected_and_trigger_rows_equal_batch,200,OK
+update_raw_rows_expected_200,200,OK

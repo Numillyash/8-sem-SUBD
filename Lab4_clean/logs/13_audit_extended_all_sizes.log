@@ -1,0 +1,47 @@
+=== EXTENDED AUDIT: raw measurement counts ===
+ operation_name | raw_rows | tested_table_sizes | min_rows | max_rows 
+----------------+----------+--------------------+----------+----------
+ insert         |      200 |                  8 |       10 | 50000000
+ select         |       96 |                  8 |       10 | 50000000
+ update         |      200 |                  8 |       10 | 50000000
+(3 rows)
+
+
+=== EXTENDED AUDIT: expected counts ===
+                  check_name                  | actual_value | check_result 
+----------------------------------------------+--------------+--------------
+ insert_affected_rows_equal_batch             |          200 | OK
+ insert_raw_rows_expected_200                 |          200 | OK
+ select_found_rows_equal_probes               |           96 | OK
+ select_raw_rows_expected_96                  |           96 | OK
+ update_affected_and_trigger_rows_equal_batch |          200 | OK
+ update_raw_rows_expected_200                 |          200 | OK
+(6 rows)
+
+
+=== EXTENDED AUDIT: heavy non-indexed SELECT seconds check ===
+ rows_base | runs | probes_min | probes_max | avg_total_elapsed_seconds | avg_elapsed_ms_per_select | check_result 
+-----------+------+------------+------------+---------------------------+---------------------------+--------------
+  25000000 |    6 |         10 |         10 |                     4.813 |                481.294617 | OK
+  50000000 |    6 |          5 |          5 |                     7.732 |               1546.384800 | OK
+(2 rows)
+
+
+=== EXTENDED AUDIT: expected report CSV files ===
+OK: report/10_extended_all_sizes_raw.csv
+OK: report/10_extended_all_sizes_aggregated.csv
+OK: report/10_extended_all_sizes_sizes.csv
+OK: report/10_extended_all_sizes_checks.csv
+OK: report/10_extended_all_sizes_heavy_seconds_check.csv
+
+=== EXTENDED AUDIT: expected chart files ===
+OK: charts/10_ext_select_avg_ms.png
+OK: charts/10_ext_select_total_seconds.png
+OK: charts/10_ext_insert_total_ms.png
+OK: charts/10_ext_insert_per_row_ms.png
+OK: charts/10_ext_update_total_ms.png
+OK: charts/10_ext_update_per_row_ms.png
+OK: charts/10_ext_final_total_sizes.png
+OK: charts/10_ext_final_index_sizes.png
+
+=== EXTENDED AUDIT DONE ===

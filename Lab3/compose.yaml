@@ -1,0 +1,16 @@
+services:
+  postgres_lab3:
+    image: postgres:16
+    container_name: subd_lab3_postgres
+    environment:
+      POSTGRES_DB: subd_lab3
+      POSTGRES_USER: lab3_admin
+      POSTGRES_PASSWORD: lab3pass
+    ports:
+      - "35432:5432"
+    volumes:
+      - lab3_pgdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  lab3_pgdata:

@@ -2,20 +2,18 @@ Pager usage is off.
 Timing is on.
 === ЛР-4. Методическое дозакрытие: страницы, секции, серии SELECT/INSERT/UPDATE ===
 SET
-Time: 0.891 ms
-psql:sql/08_methodical_completion.sql:8: NOTICE:  table "method_page_growth_test" does not exist, skipping
+Time: 6.965 ms
 DROP TABLE
-Time: 1.587 ms
-psql:sql/08_methodical_completion.sql:9: NOTICE:  table "method_page_growth_measurements" does not exist, skipping
+Time: 35.043 ms
 DROP TABLE
-Time: 0.667 ms
+Time: 30.288 ms
 CREATE TABLE
-Time: 5.800 ms
+Time: 19.760 ms
 CREATE TABLE
-Time: 5.709 ms
+Time: 33.125 ms
 === Микротест роста размера таблицы по страницам PostgreSQL ===
 DO
-Time: 143.238 ms
+Time: 383.717 ms
  rows_in_table | relation_bytes | relation_pages | total_relation_bytes | avg_relation_bytes_per_row 
 ---------------+----------------+----------------+----------------------+----------------------------
              0 |              0 |           0.00 |                 8192 |                           
@@ -34,265 +32,251 @@ Time: 143.238 ms
          10000 |         770048 |          94.00 |               802816 |                      77.00
 (14 rows)
 
-Time: 0.890 ms
-psql:sql/08_methodical_completion.sql:98: NOTICE:  table "method_partition_strict_measurements" does not exist, skipping
+Time: 1.178 ms
 DROP TABLE
-Time: 0.601 ms
+Time: 3.167 ms
 CREATE TABLE
-Time: 5.932 ms
+Time: 7.507 ms
 CREATE FUNCTION
-Time: 1.954 ms
+Time: 3.093 ms
 === EXPLAIN: первая секция, обычная таблица ===
                                                                    QUERY PLAN                                                                   
 ------------------------------------------------------------------------------------------------------------------------------------------------
- Finalize Aggregate  (cost=18870.02..18870.03 rows=1 width=32) (actual time=303.291..305.424 rows=1 loops=1)
+ Finalize Aggregate  (cost=18870.02..18870.03 rows=1 width=32) (actual time=364.537..366.874 rows=1 loops=1)
    Buffers: shared read=11364
-   ->  Gather  (cost=18869.80..18870.01 rows=2 width=32) (actual time=303.096..305.393 rows=3 loops=1)
+   ->  Gather  (cost=18869.80..18870.01 rows=2 width=32) (actual time=364.339..366.807 rows=3 loops=1)
          Workers Planned: 2
          Workers Launched: 2
          Buffers: shared read=11364
-         ->  Partial Aggregate  (cost=17869.80..17869.81 rows=1 width=32) (actual time=297.667..297.668 rows=1 loops=3)
+         ->  Partial Aggregate  (cost=17869.80..17869.81 rows=1 width=32) (actual time=356.408..356.408 rows=1 loops=3)
                Buffers: shared read=11364
-               ->  Parallel Seq Scan on orders_plain  (cost=0.00..17614.00 rows=102320 width=6) (actual time=0.192..290.578 rows=82900 loops=3)
+               ->  Parallel Seq Scan on orders_plain  (cost=0.00..17614.00 rows=102320 width=6) (actual time=0.256..347.181 rows=82900 loops=3)
                      Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-04-01'::date))
                      Rows Removed by Filter: 250433
                      Buffers: shared read=11364
  Planning:
-   Buffers: shared hit=34 dirtied=1
- Planning Time: 0.203 ms
- Execution Time: 305.500 ms
+   Buffers: shared hit=30 read=4
+ Planning Time: 2.406 ms
+ Execution Time: 367.144 ms
 (16 rows)
 
-Time: 307.146 ms
+Time: 391.644 ms
 === EXPLAIN: первая секция, секционированная таблица ===
-                                                                                   QUERY PLAN                                                                                   
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- Finalize Aggregate  (cost=6387.27..6387.28 rows=1 width=32) (actual time=82.340..85.438 rows=1 loops=1)
+                                                                                   QUERY PLAN                                                                                    
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=6387.27..6387.28 rows=1 width=32) (actual time=301.725..304.640 rows=1 loops=1)
    Buffers: shared read=2827
-   ->  Gather  (cost=6387.15..6387.26 rows=1 width=32) (actual time=82.333..85.432 rows=2 loops=1)
+   ->  Gather  (cost=6387.15..6387.26 rows=1 width=32) (actual time=301.628..304.633 rows=2 loops=1)
          Workers Planned: 1
          Workers Launched: 1
          Buffers: shared read=2827
-         ->  Partial Aggregate  (cost=5387.15..5387.16 rows=1 width=32) (actual time=80.385..80.386 rows=1 loops=2)
+         ->  Partial Aggregate  (cost=5387.15..5387.16 rows=1 width=32) (actual time=299.129..299.130 rows=1 loops=2)
                Buffers: shared read=2827
-               ->  Parallel Seq Scan on orders_partitioned_2024_q1 orders_partitioned  (cost=0.00..5021.41 rows=146294 width=6) (actual time=0.171..71.623 rows=124350 loops=2)
+               ->  Parallel Seq Scan on orders_partitioned_2024_q1 orders_partitioned  (cost=0.00..5021.41 rows=146294 width=6) (actual time=0.235..286.959 rows=124350 loops=2)
                      Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-04-01'::date))
                      Buffers: shared read=2827
  Planning:
-   Buffers: shared hit=76 read=6
- Planning Time: 1.699 ms
- Execution Time: 85.453 ms
+   Buffers: shared hit=69 read=7
+ Planning Time: 2.494 ms
+ Execution Time: 304.660 ms
 (15 rows)
 
-Time: 88.069 ms
+Time: 308.355 ms
 === EXPLAIN: вторая секция, секционированная таблица ===
-                                                                                   QUERY PLAN                                                                                   
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- Finalize Aggregate  (cost=6386.36..6386.37 rows=1 width=32) (actual time=75.678..77.986 rows=1 loops=1)
-   Buffers: shared read=2827 written=2
-   ->  Gather  (cost=6386.24..6386.35 rows=1 width=32) (actual time=75.539..77.978 rows=2 loops=1)
+                                                                                   QUERY PLAN                                                                                    
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=6386.36..6386.37 rows=1 width=32) (actual time=276.076..280.655 rows=1 loops=1)
+   Buffers: shared read=2827
+   ->  Gather  (cost=6386.24..6386.35 rows=1 width=32) (actual time=275.917..280.644 rows=2 loops=1)
          Workers Planned: 1
          Workers Launched: 1
-         Buffers: shared read=2827 written=2
-         ->  Partial Aggregate  (cost=5386.24..5386.25 rows=1 width=32) (actual time=73.353..73.353 rows=1 loops=2)
-               Buffers: shared read=2827 written=2
-               ->  Parallel Seq Scan on orders_partitioned_2024_q2 orders_partitioned  (cost=0.00..5020.64 rows=146242 width=6) (actual time=0.178..64.952 rows=124306 loops=2)
+         Buffers: shared read=2827
+         ->  Partial Aggregate  (cost=5386.24..5386.25 rows=1 width=32) (actual time=273.669..273.670 rows=1 loops=2)
+               Buffers: shared read=2827
+               ->  Parallel Seq Scan on orders_partitioned_2024_q2 orders_partitioned  (cost=0.00..5020.64 rows=146242 width=6) (actual time=0.307..262.755 rows=124306 loops=2)
                      Filter: ((order_date >= '2024-04-01'::date) AND (order_date < '2024-07-01'::date))
-                     Buffers: shared read=2827 written=2
+                     Buffers: shared read=2827
  Planning:
    Buffers: shared hit=14
- Planning Time: 0.137 ms
- Execution Time: 78.003 ms
+ Planning Time: 0.185 ms
+ Execution Time: 280.681 ms
 (15 rows)
 
-Time: 78.980 ms
+Time: 284.457 ms
 === Замеры секционирования строго по методичке ===
  measure_method_partition_strict 
 ---------------------------------
  
 (1 row)
 
-Time: 335.161 ms
+Time: 481.595 ms
  measure_method_partition_strict 
 ---------------------------------
  
 (1 row)
 
-Time: 227.021 ms
+Time: 230.425 ms
  measure_method_partition_strict 
 ---------------------------------
  
 (1 row)
 
-Time: 327.771 ms
+Time: 526.596 ms
  measure_method_partition_strict 
 ---------------------------------
  
 (1 row)
 
-Time: 202.422 ms
+Time: 250.771 ms
  measure_method_partition_strict 
 ---------------------------------
  
 (1 row)
 
-Time: 371.879 ms
+Time: 553.059 ms
  measure_method_partition_strict 
 ---------------------------------
  
 (1 row)
 
-Time: 275.574 ms
+Time: 383.036 ms
          test_name         |     table_name     | runs | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms | result_check_min | result_check_max 
 ---------------------------+--------------------+------+----------------+----------------+----------------+-------------------+------------------+------------------
- first_section             | orders_partitioned |   10 |         22.479 |         17.109 |         35.880 |             6.585 |     126831974.00 |     126831974.00
- first_section             | orders_plain       |   10 |         33.101 |         28.475 |         42.732 |             4.261 |     126831974.00 |     126831974.00
- second_section            | orders_partitioned |   10 |         20.024 |         16.627 |         27.030 |             4.036 |     126765369.20 |     126765369.20
- second_section            | orders_plain       |   10 |         32.512 |         28.244 |         45.819 |             5.465 |     126765369.20 |     126765369.20
- first_and_second_sections | orders_partitioned |   10 |         27.329 |         23.770 |         44.688 |             6.467 |     253597343.20 |     253597343.20
- first_and_second_sections | orders_plain       |   10 |         36.980 |         31.198 |         45.452 |             4.465 |     253597343.20 |     253597343.20
+ first_section             | orders_partitioned |   10 |         22.774 |         18.569 |         27.960 |             3.222 |     126831974.00 |     126831974.00
+ first_section             | orders_plain       |   10 |         47.366 |         33.144 |         86.999 |            16.528 |     126831974.00 |     126831974.00
+ second_section            | orders_partitioned |   10 |         24.823 |         20.304 |         29.301 |             2.767 |     126765369.20 |     126765369.20
+ second_section            | orders_plain       |   10 |         52.390 |         33.974 |         95.418 |            20.936 |     126765369.20 |     126765369.20
+ first_and_second_sections | orders_partitioned |   10 |         38.019 |         30.242 |         60.713 |             8.624 |     253597343.20 |     253597343.20
+ first_and_second_sections | orders_plain       |   10 |         55.050 |         44.362 |         84.160 |            11.420 |     253597343.20 |     253597343.20
 (6 rows)
 
-Time: 2.721 ms
-psql:sql/08_methodical_completion.sql:237: NOTICE:  table "method_series_measurements" does not exist, skipping
+Time: 2.055 ms
 DROP TABLE
-Time: 0.685 ms
-psql:sql/08_methodical_completion.sql:239: NOTICE:  table "method_select_no_index" does not exist, skipping
+Time: 3.396 ms
 DROP TABLE
-Time: 0.567 ms
-psql:sql/08_methodical_completion.sql:240: NOTICE:  table "method_select_id_index" does not exist, skipping
+Time: 3.862 ms
 DROP TABLE
-Time: 0.515 ms
-psql:sql/08_methodical_completion.sql:242: NOTICE:  table "method_mod_no_index" does not exist, skipping
+Time: 3.031 ms
 DROP TABLE
-Time: 0.556 ms
-psql:sql/08_methodical_completion.sql:243: NOTICE:  table "method_mod_simple_index" does not exist, skipping
+Time: 3.119 ms
 DROP TABLE
-Time: 0.512 ms
-psql:sql/08_methodical_completion.sql:244: NOTICE:  table "method_mod_unique_index" does not exist, skipping
+Time: 3.120 ms
 DROP TABLE
-Time: 0.533 ms
-psql:sql/08_methodical_completion.sql:245: NOTICE:  table "method_mod_expr_index" does not exist, skipping
-DROP TABLE
-Time: 0.520 ms
-psql:sql/08_methodical_completion.sql:246: NOTICE:  table "method_mod_func_index" does not exist, skipping
-DROP TABLE
-Time: 0.587 ms
-CREATE TABLE
-Time: 6.790 ms
-CREATE TABLE
-Time: 4.201 ms
-CREATE TABLE
-Time: 3.552 ms
-CREATE INDEX
-Time: 3.648 ms
-CREATE TABLE
-Time: 7.667 ms
-CREATE TABLE
-Time: 4.616 ms
-CREATE TABLE
-Time: 3.641 ms
-CREATE TABLE
-Time: 3.776 ms
-CREATE TABLE
 Time: 3.346 ms
+DROP TABLE
+Time: 2.326 ms
+DROP TABLE
+Time: 11.775 ms
+CREATE TABLE
+Time: 8.018 ms
+CREATE TABLE
+Time: 4.653 ms
+CREATE TABLE
+Time: 4.169 ms
 CREATE INDEX
-Time: 3.176 ms
+Time: 3.454 ms
+CREATE TABLE
+Time: 4.076 ms
+CREATE TABLE
+Time: 4.535 ms
+CREATE TABLE
+Time: 3.692 ms
+CREATE TABLE
+Time: 4.218 ms
+CREATE TABLE
+Time: 4.107 ms
 CREATE INDEX
-Time: 3.406 ms
+Time: 3.262 ms
 CREATE INDEX
-Time: 4.501 ms
+Time: 3.658 ms
 CREATE INDEX
-Time: 4.137 ms
+Time: 5.160 ms
+CREATE INDEX
+Time: 3.581 ms
 CREATE FUNCTION
-Time: 1.890 ms
+Time: 1.375 ms
 CREATE FUNCTION
-Time: 1.420 ms
+Time: 1.593 ms
 CREATE FUNCTION
-Time: 1.386 ms
+Time: 2.544 ms
 CREATE FUNCTION
-Time: 1.541 ms
+Time: 1.527 ms
 CREATE FUNCTION
-Time: 1.305 ms
+Time: 1.913 ms
 === Серии SELECT/INSERT/UPDATE по размерам таблиц ===
-psql:sql/08_methodical_completion.sql:577: NOTICE:  Running size 10000
-psql:sql/08_methodical_completion.sql:577: NOTICE:  Running size 50000
-psql:sql/08_methodical_completion.sql:577: NOTICE:  Running size 100000
-psql:sql/08_methodical_completion.sql:577: NOTICE:  Running size 500000
-psql:sql/08_methodical_completion.sql:577: NOTICE:  Running size 1000000
 DO
-Time: 89020.412 ms (01:29.020)
+Time: 97933.107 ms (01:37.933)
 === Итоговая таблица серии SELECT/INSERT/UPDATE ===
     operation_name     |    index_type    | rows_before | runs | affected_rows_min | affected_rows_max | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms 
 -----------------------+------------------+-------------+------+-------------------+-------------------+----------------+----------------+----------------+-------------------
- select_one_random_row | without_index    |       10000 |    5 |                 1 |                 1 |          0.416 |          0.357 |          0.564 |             0.084
- select_one_random_row | btree_id_index   |       10000 |    5 |                 1 |                 1 |          0.055 |          0.023 |          0.151 |             0.054
- select_one_random_row | without_index    |       50000 |    5 |                 1 |                 1 |          1.896 |          1.766 |          2.314 |             0.237
- select_one_random_row | btree_id_index   |       50000 |    5 |                 1 |                 1 |          0.061 |          0.026 |          0.183 |             0.069
- select_one_random_row | without_index    |      100000 |    5 |                 1 |                 1 |          3.799 |          3.679 |          3.951 |             0.102
- select_one_random_row | btree_id_index   |      100000 |    5 |                 1 |                 1 |          0.058 |          0.028 |          0.163 |             0.059
- select_one_random_row | without_index    |      500000 |    5 |                 1 |                 1 |         24.514 |         21.234 |         28.619 |             2.889
- select_one_random_row | btree_id_index   |      500000 |    5 |                 1 |                 1 |          0.065 |          0.028 |          0.161 |             0.056
- select_one_random_row | without_index    |     1000000 |    5 |                 1 |                 1 |         30.291 |         22.200 |         38.803 |             6.313
- select_one_random_row | btree_id_index   |     1000000 |    5 |                 1 |                 1 |          0.074 |          0.032 |          0.186 |             0.065
- insert_one_random_row | no_index         |       10000 |    5 |                 1 |                 1 |          0.128 |          0.018 |          0.555 |             0.239
- insert_one_random_row | simple_btree     |       10000 |    5 |                 1 |                 1 |          0.071 |          0.028 |          0.227 |             0.087
- insert_one_random_row | unique_btree     |       10000 |    5 |                 1 |                 1 |          0.047 |          0.018 |          0.143 |             0.054
- insert_one_random_row | expression_index |       10000 |    5 |                 1 |                 1 |          0.053 |          0.024 |          0.152 |             0.055
- insert_one_random_row | function_index   |       10000 |    5 |                 1 |                 1 |          0.051 |          0.022 |          0.146 |             0.053
- insert_one_random_row | no_index         |       50000 |    5 |                 1 |                 1 |          0.044 |          0.016 |          0.134 |             0.051
- insert_one_random_row | simple_btree     |       50000 |    5 |                 1 |                 1 |          0.059 |          0.022 |          0.141 |             0.048
- insert_one_random_row | unique_btree     |       50000 |    5 |                 1 |                 1 |          0.052 |          0.019 |          0.166 |             0.064
- insert_one_random_row | expression_index |       50000 |    5 |                 1 |                 1 |          0.070 |          0.023 |          0.209 |             0.079
- insert_one_random_row | function_index   |       50000 |    5 |                 1 |                 1 |          0.052 |          0.023 |          0.154 |             0.057
- insert_one_random_row | no_index         |      100000 |    5 |                 1 |                 1 |          0.045 |          0.017 |          0.138 |             0.052
- insert_one_random_row | simple_btree     |      100000 |    5 |                 1 |                 1 |          0.046 |          0.019 |          0.140 |             0.053
- insert_one_random_row | unique_btree     |      100000 |    5 |                 1 |                 1 |          0.049 |          0.022 |          0.133 |             0.047
- insert_one_random_row | expression_index |      100000 |    5 |                 1 |                 1 |          0.052 |          0.024 |          0.150 |             0.055
- insert_one_random_row | function_index   |      100000 |    5 |                 1 |                 1 |          0.052 |          0.022 |          0.153 |             0.057
- insert_one_random_row | no_index         |      500000 |    5 |                 1 |                 1 |          0.080 |          0.021 |          0.174 |             0.063
- insert_one_random_row | simple_btree     |      500000 |    5 |                 1 |                 1 |          0.067 |          0.027 |          0.187 |             0.068
- insert_one_random_row | unique_btree     |      500000 |    5 |                 1 |                 1 |          0.048 |          0.018 |          0.150 |             0.057
- insert_one_random_row | expression_index |      500000 |    5 |                 1 |                 1 |          0.093 |          0.040 |          0.234 |             0.080
- insert_one_random_row | function_index   |      500000 |    5 |                 1 |                 1 |          0.055 |          0.025 |          0.157 |             0.057
- insert_one_random_row | no_index         |     1000000 |    5 |                 1 |                 1 |          0.070 |          0.033 |          0.198 |             0.072
- insert_one_random_row | simple_btree     |     1000000 |    5 |                 1 |                 1 |          0.053 |          0.018 |          0.173 |             0.067
- insert_one_random_row | unique_btree     |     1000000 |    5 |                 1 |                 1 |          0.054 |          0.018 |          0.166 |             0.063
- insert_one_random_row | expression_index |     1000000 |    5 |                 1 |                 1 |          0.055 |          0.024 |          0.157 |             0.057
- insert_one_random_row | function_index   |     1000000 |    5 |                 1 |                 1 |          0.053 |          0.025 |          0.151 |             0.055
- update_one_random_row | no_index         |       10000 |    5 |                 1 |                 1 |          0.546 |          0.375 |          1.047 |             0.287
- update_one_random_row | simple_btree     |       10000 |    5 |                 1 |                 1 |          0.463 |          0.376 |          0.780 |             0.177
- update_one_random_row | unique_btree     |       10000 |    5 |                 1 |                 1 |          0.070 |          0.032 |          0.195 |             0.070
- update_one_random_row | expression_index |       10000 |    5 |                 1 |                 1 |          0.581 |          0.421 |          0.777 |             0.147
- update_one_random_row | function_index   |       10000 |    5 |                 1 |                 1 |          0.871 |          0.648 |          1.030 |             0.174
- update_one_random_row | no_index         |       50000 |    5 |                 1 |                 1 |          1.975 |          1.777 |          2.230 |             0.223
- update_one_random_row | simple_btree     |       50000 |    5 |                 1 |                 1 |          2.692 |          2.393 |          3.528 |             0.476
- update_one_random_row | unique_btree     |       50000 |    5 |                 1 |                 1 |          0.067 |          0.033 |          0.178 |             0.063
- update_one_random_row | expression_index |       50000 |    5 |                 1 |                 1 |          2.087 |          1.855 |          2.520 |             0.272
- update_one_random_row | function_index   |       50000 |    5 |                 1 |                 1 |          2.404 |          2.189 |          2.719 |             0.233
- update_one_random_row | no_index         |      100000 |    5 |                 1 |                 1 |          3.893 |          3.694 |          4.032 |             0.137
- update_one_random_row | simple_btree     |      100000 |    5 |                 1 |                 1 |          4.164 |          3.867 |          5.023 |             0.492
- update_one_random_row | unique_btree     |      100000 |    5 |                 1 |                 1 |          0.081 |          0.037 |          0.188 |             0.063
- update_one_random_row | expression_index |      100000 |    5 |                 1 |                 1 |          4.078 |          3.863 |          4.397 |             0.265
- update_one_random_row | function_index   |      100000 |    5 |                 1 |                 1 |          7.673 |          4.862 |          9.845 |             2.533
- update_one_random_row | no_index         |      500000 |    5 |                 1 |                 1 |         30.844 |         22.610 |         45.120 |             9.567
- update_one_random_row | simple_btree     |      500000 |    5 |                 1 |                 1 |         21.802 |         21.187 |         22.866 |             0.695
- update_one_random_row | unique_btree     |      500000 |    5 |                 1 |                 1 |          0.065 |          0.034 |          0.172 |             0.060
- update_one_random_row | expression_index |      500000 |    5 |                 1 |                 1 |         23.865 |         22.519 |         27.750 |             2.184
- update_one_random_row | function_index   |      500000 |    5 |                 1 |                 1 |         25.709 |         21.220 |         31.650 |             4.842
- update_one_random_row | no_index         |     1000000 |    5 |                 1 |                 1 |         56.577 |         45.789 |         72.471 |            10.598
- update_one_random_row | simple_btree     |     1000000 |    5 |                 1 |                 1 |         49.130 |         46.366 |         58.374 |             5.187
- update_one_random_row | unique_btree     |     1000000 |    5 |                 1 |                 1 |          0.068 |          0.035 |          0.186 |             0.066
- update_one_random_row | expression_index |     1000000 |    5 |                 1 |                 1 |         43.163 |         42.310 |         44.189 |             0.785
- update_one_random_row | function_index   |     1000000 |    5 |                 1 |                 1 |         45.616 |         43.097 |         50.385 |             3.010
+ select_one_random_row | without_index    |       10000 |    5 |                 1 |                 1 |          0.431 |          0.361 |          0.627 |             0.115
+ select_one_random_row | btree_id_index   |       10000 |    5 |                 1 |                 1 |          0.060 |          0.024 |          0.180 |             0.068
+ select_one_random_row | without_index    |       50000 |    5 |                 1 |                 1 |          4.477 |          2.251 |          8.550 |             2.385
+ select_one_random_row | btree_id_index   |       50000 |    5 |                 1 |                 1 |          0.058 |          0.025 |          0.169 |             0.063
+ select_one_random_row | without_index    |      100000 |    5 |                 1 |                 1 |          6.444 |          5.309 |          8.733 |             1.370
+ select_one_random_row | btree_id_index   |      100000 |    5 |                 1 |                 1 |          0.088 |          0.047 |          0.234 |             0.082
+ select_one_random_row | without_index    |      500000 |    5 |                 1 |                 1 |         17.673 |         14.914 |         24.673 |             4.033
+ select_one_random_row | btree_id_index   |      500000 |    5 |                 1 |                 1 |          0.056 |          0.026 |          0.152 |             0.054
+ select_one_random_row | without_index    |     1000000 |    5 |                 1 |                 1 |         27.998 |         25.088 |         30.523 |             2.014
+ select_one_random_row | btree_id_index   |     1000000 |    5 |                 1 |                 1 |          0.070 |          0.027 |          0.211 |             0.079
+ insert_one_random_row | no_index         |       10000 |    5 |                 1 |                 1 |          0.139 |          0.018 |          0.609 |             0.263
+ insert_one_random_row | simple_btree     |       10000 |    5 |                 1 |                 1 |          0.048 |          0.019 |          0.143 |             0.053
+ insert_one_random_row | unique_btree     |       10000 |    5 |                 1 |                 1 |          0.048 |          0.019 |          0.145 |             0.055
+ insert_one_random_row | expression_index |       10000 |    5 |                 1 |                 1 |          0.063 |          0.025 |          0.156 |             0.054
+ insert_one_random_row | function_index   |       10000 |    5 |                 1 |                 1 |          0.052 |          0.023 |          0.146 |             0.053
+ insert_one_random_row | no_index         |       50000 |    5 |                 1 |                 1 |          0.047 |          0.018 |          0.141 |             0.053
+ insert_one_random_row | simple_btree     |       50000 |    5 |                 1 |                 1 |          0.052 |          0.020 |          0.158 |             0.060
+ insert_one_random_row | unique_btree     |       50000 |    5 |                 1 |                 1 |          0.045 |          0.019 |          0.140 |             0.053
+ insert_one_random_row | expression_index |       50000 |    5 |                 1 |                 1 |          0.057 |          0.024 |          0.149 |             0.052
+ insert_one_random_row | function_index   |       50000 |    5 |                 1 |                 1 |          0.051 |          0.024 |          0.144 |             0.052
+ insert_one_random_row | no_index         |      100000 |    5 |                 1 |                 1 |          0.059 |          0.020 |          0.144 |             0.050
+ insert_one_random_row | simple_btree     |      100000 |    5 |                 1 |                 1 |          0.056 |          0.021 |          0.170 |             0.064
+ insert_one_random_row | unique_btree     |      100000 |    5 |                 1 |                 1 |          0.046 |          0.018 |          0.144 |             0.055
+ insert_one_random_row | expression_index |      100000 |    5 |                 1 |                 1 |          0.062 |          0.024 |          0.180 |             0.067
+ insert_one_random_row | function_index   |      100000 |    5 |                 1 |                 1 |          0.055 |          0.024 |          0.157 |             0.057
+ insert_one_random_row | no_index         |      500000 |    5 |                 1 |                 1 |          0.041 |          0.016 |          0.129 |             0.049
+ insert_one_random_row | simple_btree     |      500000 |    5 |                 1 |                 1 |          0.049 |          0.019 |          0.148 |             0.056
+ insert_one_random_row | unique_btree     |      500000 |    5 |                 1 |                 1 |          0.076 |          0.020 |          0.244 |             0.096
+ insert_one_random_row | expression_index |      500000 |    5 |                 1 |                 1 |          0.061 |          0.025 |          0.177 |             0.065
+ insert_one_random_row | function_index   |      500000 |    5 |                 1 |                 1 |          0.060 |          0.025 |          0.170 |             0.062
+ insert_one_random_row | no_index         |     1000000 |    5 |                 1 |                 1 |          0.044 |          0.017 |          0.142 |             0.055
+ insert_one_random_row | simple_btree     |     1000000 |    5 |                 1 |                 1 |          0.058 |          0.020 |          0.167 |             0.062
+ insert_one_random_row | unique_btree     |     1000000 |    5 |                 1 |                 1 |          0.055 |          0.018 |          0.169 |             0.065
+ insert_one_random_row | expression_index |     1000000 |    5 |                 1 |                 1 |          0.089 |          0.030 |          0.232 |             0.082
+ insert_one_random_row | function_index   |     1000000 |    5 |                 1 |                 1 |          0.057 |          0.025 |          0.159 |             0.058
+ update_one_random_row | no_index         |       10000 |    5 |                 1 |                 1 |          0.682 |          0.458 |          1.476 |             0.444
+ update_one_random_row | simple_btree     |       10000 |    5 |                 1 |                 1 |          1.007 |          0.771 |          1.328 |             0.256
+ update_one_random_row | unique_btree     |       10000 |    5 |                 1 |                 1 |          0.072 |          0.033 |          0.208 |             0.076
+ update_one_random_row | expression_index |       10000 |    5 |                 1 |                 1 |          0.500 |          0.436 |          0.661 |             0.093
+ update_one_random_row | function_index   |       10000 |    5 |                 1 |                 1 |          0.585 |          0.486 |          0.643 |             0.069
+ update_one_random_row | no_index         |       50000 |    5 |                 1 |                 1 |          2.626 |          1.973 |          4.354 |             0.986
+ update_one_random_row | simple_btree     |       50000 |    5 |                 1 |                 1 |          2.353 |          2.173 |          2.714 |             0.240
+ update_one_random_row | unique_btree     |       50000 |    5 |                 1 |                 1 |          0.075 |          0.033 |          0.207 |             0.074
+ update_one_random_row | expression_index |       50000 |    5 |                 1 |                 1 |          4.950 |          4.336 |          5.607 |             0.550
+ update_one_random_row | function_index   |       50000 |    5 |                 1 |                 1 |          2.245 |          2.012 |          2.645 |             0.273
+ update_one_random_row | no_index         |      100000 |    5 |                 1 |                 1 |          4.524 |          4.240 |          5.078 |             0.325
+ update_one_random_row | simple_btree     |      100000 |    5 |                 1 |                 1 |          8.809 |          4.739 |         19.857 |             6.251
+ update_one_random_row | unique_btree     |      100000 |    5 |                 1 |                 1 |          0.068 |          0.032 |          0.182 |             0.064
+ update_one_random_row | expression_index |      100000 |    5 |                 1 |                 1 |          5.844 |          4.535 |          6.903 |             0.886
+ update_one_random_row | function_index   |      100000 |    5 |                 1 |                 1 |          4.629 |          4.346 |          4.866 |             0.227
+ update_one_random_row | no_index         |      500000 |    5 |                 1 |                 1 |         25.375 |         21.315 |         36.552 |             6.340
+ update_one_random_row | simple_btree     |      500000 |    5 |                 1 |                 1 |         28.024 |         23.483 |         33.821 |             4.308
+ update_one_random_row | unique_btree     |      500000 |    5 |                 1 |                 1 |          0.075 |          0.034 |          0.212 |             0.077
+ update_one_random_row | expression_index |      500000 |    5 |                 1 |                 1 |         22.032 |         21.438 |         22.770 |             0.562
+ update_one_random_row | function_index   |      500000 |    5 |                 1 |                 1 |         24.151 |         23.361 |         24.966 |             0.596
+ update_one_random_row | no_index         |     1000000 |    5 |                 1 |                 1 |         48.097 |         45.546 |         54.538 |             3.697
+ update_one_random_row | simple_btree     |     1000000 |    5 |                 1 |                 1 |         51.998 |         45.174 |         67.632 |             9.995
+ update_one_random_row | unique_btree     |     1000000 |    5 |                 1 |                 1 |          0.072 |          0.036 |          0.183 |             0.062
+ update_one_random_row | expression_index |     1000000 |    5 |                 1 |                 1 |         56.746 |         45.754 |         74.021 |            10.744
+ update_one_random_row | function_index   |     1000000 |    5 |                 1 |                 1 |         61.068 |         46.360 |         72.194 |            10.257
 (60 rows)
 
-Time: 4.681 ms
+Time: 6.417 ms
 === Размеры финальных методических таблиц ===
        table_name        | relation_bytes | indexes_bytes | total_bytes | relation_size | indexes_size | total_size 
 -------------------------+----------------+---------------+-------------+---------------+--------------+------------
  method_mod_expr_index   |       93093888 |       8962048 |   102105088 | 89 MB         | 8752 kB      | 97 MB
- method_mod_func_index   |       93093888 |      39804928 |   132947968 | 89 MB         | 38 MB        | 127 MB
+ method_mod_func_index   |       93093888 |      39215104 |   132358144 | 89 MB         | 37 MB        | 126 MB
  method_mod_no_index     |       93093888 |             0 |    93143040 | 89 MB         | 0 bytes      | 89 MB
  method_mod_simple_index |       93093888 |      10117120 |   103260160 | 89 MB         | 9880 kB      | 98 MB
  method_mod_unique_index |       93093888 |      22487040 |   115630080 | 89 MB         | 21 MB        | 110 MB
@@ -301,4 +285,4 @@ Time: 4.681 ms
  method_select_no_index  |       76562432 |             0 |    76611584 | 73 MB         | 0 bytes      | 73 MB
 (8 rows)
 
-Time: 6.834 ms
+Time: 9.619 ms

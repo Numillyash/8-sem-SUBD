@@ -1,0 +1,221 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Шаг 3: секционирование данных ===
+SET
+Time: 0.804 ms
+DROP TABLE
+Time: 5.975 ms
+DROP TABLE
+Time: 2.247 ms
+DROP TABLE
+Time: 3.253 ms
+CREATE TABLE
+Time: 6.443 ms
+CREATE TABLE
+Time: 1.743 ms
+CREATE TABLE
+Time: 4.570 ms
+CREATE TABLE
+Time: 4.617 ms
+CREATE TABLE
+Time: 3.923 ms
+CREATE TABLE
+Time: 4.076 ms
+CREATE TABLE
+Time: 7.486 ms
+=== 3.1. Заполнение обычной таблицы 1 000 000 строк ===
+INSERT 0 1000000
+Time: 3589.949 ms (00:03.590)
+=== 3.2. Заполнение секционированной таблицы теми же данными ===
+INSERT 0 1000000
+Time: 2632.122 ms (00:02.632)
+ANALYZE
+Time: 256.176 ms
+ANALYZE
+Time: 1000.374 ms (00:01.000)
+=== 3.3. Проверка количества строк ===
+     table_name     | rows_count 
+--------------------+------------
+ orders_partitioned |    1000000
+ orders_plain       |    1000000
+(2 rows)
+
+Time: 183.885 ms
+=== 3.4. Проверка распределения строк по секциям ===
+ section | rows_count 
+---------+------------
+ q1      |     248700
+ q2      |     248612
+ q3      |     251344
+ q4      |     251344
+(4 rows)
+
+Time: 52.786 ms
+=== 3.5. Размеры обычной таблицы, родителя и секций ===
+        object_name        | relation_bytes | relation_size | total_bytes | total_size 
+---------------------------+----------------+---------------+-------------+------------
+ orders_partitioned_parent |              0 | 0 bytes       |           0 | 0 bytes
+ orders_plain              |       93093888 | 89 MB         |    93143040 | 89 MB
+(2 rows)
+
+Time: 3.693 ms
+       partition_name       | relation_bytes | relation_size | total_bytes | total_size 
+----------------------------+----------------+---------------+-------------+------------
+ orders_partitioned_2024_q1 |       23158784 | 22 MB         |    23191552 | 22 MB
+ orders_partitioned_2024_q2 |       23158784 | 22 MB         |    23191552 | 22 MB
+ orders_partitioned_2024_q3 |       23404544 | 22 MB         |    23437312 | 22 MB
+ orders_partitioned_2024_q4 |       23404544 | 22 MB         |    23437312 | 22 MB
+(4 rows)
+
+Time: 6.094 ms
+CREATE FUNCTION
+Time: 6.442 ms
+=== 3.6. EXPLAIN: первая секция, обычная таблица ===
+                                                                  QUERY PLAN                                                                   
+-----------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=18873.15..18873.16 rows=1 width=32) (actual time=67.819..75.426 rows=1 loops=1)
+   Buffers: shared hit=4738 read=6626 written=96
+   ->  Gather  (cost=18872.93..18873.14 rows=2 width=32) (actual time=67.601..75.409 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=4738 read=6626 written=96
+         ->  Partial Aggregate  (cost=17872.93..17872.94 rows=1 width=32) (actual time=61.588..61.589 rows=1 loops=3)
+               Buffers: shared hit=4738 read=6626 written=96
+               ->  Parallel Seq Scan on orders_plain  (cost=0.00..17614.00 rows=103572 width=6) (actual time=0.085..50.567 rows=82900 loops=3)
+                     Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-04-01'::date))
+                     Rows Removed by Filter: 250433
+                     Buffers: shared hit=4738 read=6626 written=96
+ Planning:
+   Buffers: shared hit=23 read=4 written=4
+ Planning Time: 0.456 ms
+ Execution Time: 75.514 ms
+(16 rows)
+
+Time: 77.892 ms
+=== 3.7. EXPLAIN: первая секция, секционированная таблица ===
+                                                                                   QUERY PLAN                                                                                   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=6387.27..6387.28 rows=1 width=32) (actual time=40.344..44.282 rows=1 loops=1)
+   Buffers: shared hit=2827
+   ->  Gather  (cost=6387.15..6387.26 rows=1 width=32) (actual time=40.152..44.271 rows=2 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=2827
+         ->  Partial Aggregate  (cost=5387.15..5387.16 rows=1 width=32) (actual time=37.322..37.323 rows=1 loops=2)
+               Buffers: shared hit=2827
+               ->  Parallel Seq Scan on orders_partitioned_2024_q1 orders_partitioned  (cost=0.00..5021.41 rows=146294 width=6) (actual time=0.011..24.060 rows=124350 loops=2)
+                     Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-04-01'::date))
+                     Buffers: shared hit=2827
+ Planning:
+   Buffers: shared hit=23
+ Planning Time: 0.304 ms
+ Execution Time: 44.308 ms
+(15 rows)
+
+Time: 45.738 ms
+=== 3.8. EXPLAIN: вторая секция, секционированная таблица ===
+                                                                                   QUERY PLAN                                                                                   
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=6386.36..6386.37 rows=1 width=32) (actual time=39.070..44.549 rows=1 loops=1)
+   Buffers: shared hit=2827
+   ->  Gather  (cost=6386.24..6386.35 rows=1 width=32) (actual time=38.796..44.531 rows=2 loops=1)
+         Workers Planned: 1
+         Workers Launched: 1
+         Buffers: shared hit=2827
+         ->  Partial Aggregate  (cost=5386.24..5386.25 rows=1 width=32) (actual time=35.901..35.903 rows=1 loops=2)
+               Buffers: shared hit=2827
+               ->  Parallel Seq Scan on orders_partitioned_2024_q2 orders_partitioned  (cost=0.00..5020.64 rows=146242 width=6) (actual time=0.010..22.924 rows=124306 loops=2)
+                     Filter: ((order_date >= '2024-04-01'::date) AND (order_date < '2024-07-01'::date))
+                     Buffers: shared hit=2827
+ Planning:
+   Buffers: shared hit=6
+ Planning Time: 0.213 ms
+ Execution Time: 44.582 ms
+(15 rows)
+
+Time: 45.978 ms
+=== 3.9. EXPLAIN: первая и вторая секции, секционированная таблица ===
+                                                                                       QUERY PLAN                                                                                       
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Finalize Aggregate  (cost=12596.37..12596.38 rows=1 width=32) (actual time=69.779..74.471 rows=1 loops=1)
+   Buffers: shared hit=5654
+   ->  Gather  (cost=12596.15..12596.36 rows=2 width=32) (actual time=69.521..74.455 rows=3 loops=1)
+         Workers Planned: 2
+         Workers Launched: 2
+         Buffers: shared hit=5654
+         ->  Partial Aggregate  (cost=11596.15..11596.16 rows=1 width=32) (actual time=65.417..65.419 rows=1 loops=3)
+               Buffers: shared hit=5654
+               ->  Parallel Append  (cost=0.00..11078.11 rows=207213 width=6) (actual time=0.010..46.533 rows=165771 loops=3)
+                     Buffers: shared hit=5654
+                     ->  Parallel Seq Scan on orders_partitioned_2024_q1 orders_partitioned_1  (cost=0.00..5021.41 rows=146294 width=6) (actual time=0.008..16.854 rows=82900 loops=3)
+                           Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-07-01'::date))
+                           Buffers: shared hit=2827
+                     ->  Parallel Seq Scan on orders_partitioned_2024_q2 orders_partitioned_2  (cost=0.00..5020.64 rows=146242 width=6) (actual time=0.010..25.583 rows=124306 loops=2)
+                           Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-07-01'::date))
+                           Buffers: shared hit=2827
+ Planning Time: 0.155 ms
+ Execution Time: 74.509 ms
+(18 rows)
+
+Time: 76.256 ms
+=== 3.10. Замеры: первая секция ===
+ measure_partition_query 
+-------------------------
+ 
+(1 row)
+
+Time: 564.858 ms
+ measure_partition_query 
+-------------------------
+ 
+(1 row)
+
+Time: 395.018 ms
+=== 3.11. Замеры: вторая секция ===
+ measure_partition_query 
+-------------------------
+ 
+(1 row)
+
+Time: 542.252 ms
+ measure_partition_query 
+-------------------------
+ 
+(1 row)
+
+Time: 368.274 ms
+=== 3.12. Замеры: первая и вторая секции ===
+ measure_partition_query 
+-------------------------
+ 
+(1 row)
+
+Time: 591.168 ms
+ measure_partition_query 
+-------------------------
+ 
+(1 row)
+
+Time: 468.723 ms
+=== 3.13. Итоговая таблица секционирования ===
+         test_name         |     table_name     | runs | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms | result_check_min | result_check_max 
+---------------------------+--------------------+------+----------------+----------------+----------------+-------------------+------------------+------------------
+ first_section             | orders_partitioned |   10 |         39.036 |         32.315 |         49.278 |             4.755 |     126841038.00 |     126841038.00
+ first_section             | orders_plain       |   10 |         55.905 |         48.346 |         64.885 |             5.254 |     126841038.00 |     126841038.00
+ second_section            | orders_partitioned |   10 |         36.459 |         28.178 |         49.184 |             6.667 |     126796340.40 |     126796340.40
+ second_section            | orders_plain       |   10 |         53.650 |         46.893 |         65.284 |             5.342 |     126796340.40 |     126796340.40
+ first_and_second_sections | orders_partitioned |   10 |         46.563 |         33.804 |         64.277 |             8.142 |     253637378.40 |     253637378.40
+ first_and_second_sections | orders_plain       |   10 |         58.798 |         52.364 |         70.003 |             4.965 |     253637378.40 |     253637378.40
+(6 rows)
+
+Time: 1.604 ms
+=== 3.14. Проверка равенства результатов plain и partitioned ===
+         test_name         | plain_result | partitioned_result | diff | result_check 
+---------------------------+--------------+--------------------+------+--------------
+ first_section             | 126841038.00 |       126841038.00 | 0.00 | OK
+ second_section            | 126796340.40 |       126796340.40 | 0.00 | OK
+ first_and_second_sections | 253637378.40 |       253637378.40 | 0.00 | OK
+(3 rows)
+
+Time: 1.422 ms
+=== Шаг 3 SQL завершен ===

@@ -1,0 +1,7 @@
+object_name,relation_bytes,total_bytes
+orders_partitioned,0,0
+orders_partitioned_2024_q1,23158784,23199744
+orders_partitioned_2024_q2,23158784,23191552
+orders_partitioned_2024_q3,23404544,23437312
+orders_partitioned_2024_q4,23404544,23437312
+orders_plain,93093888,93151232

@@ -1,0 +1,116 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Дополнительный тяжелый SELECT: 10-50 млн строк, не кластеризованные данные ===
+SET
+Time: 0.757 ms
+psql:sql/06_heavy_select_nonclustered.sql:9: NOTICE:  table "heavy_select_measurements" does not exist, skipping
+DROP TABLE
+Time: 0.784 ms
+psql:sql/06_heavy_select_nonclustered.sql:10: NOTICE:  table "heavy_select_no_index" does not exist, skipping
+DROP TABLE
+Time: 0.565 ms
+psql:sql/06_heavy_select_nonclustered.sql:11: NOTICE:  table "heavy_select_btree" does not exist, skipping
+DROP TABLE
+Time: 0.577 ms
+psql:sql/06_heavy_select_nonclustered.sql:13: NOTICE:  function lab4.heavy_lookup_key(pg_catalog.int8,pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.801 ms
+psql:sql/06_heavy_select_nonclustered.sql:14: NOTICE:  function lab4.fill_heavy_select_tables(pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.565 ms
+psql:sql/06_heavy_select_nonclustered.sql:15: NOTICE:  function lab4.measure_heavy_select_table(text,text,pg_catalog.int8,pg_catalog.int4,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.634 ms
+CREATE TABLE
+Time: 8.770 ms
+CREATE TABLE
+Time: 3.817 ms
+CREATE TABLE
+Time: 4.452 ms
+CREATE FUNCTION
+Time: 1.876 ms
+CREATE FUNCTION
+Time: 1.985 ms
+CREATE FUNCTION
+Time: 1.588 ms
+=== Запуск тяжелых серий SELECT ===
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Running heavy SELECT size 10000000, probes 20
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  index "idx_heavy_select_btree_lookup" does not exist, skipping
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Filling heavy_select_no_index with 10000000 rows
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Copying data to heavy_select_btree
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Creating B-tree index for 10000000 rows
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Running heavy SELECT size 25000000, probes 10
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Filling heavy_select_no_index with 25000000 rows
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Copying data to heavy_select_btree
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Creating B-tree index for 25000000 rows
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Running heavy SELECT size 50000000, probes 5
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Filling heavy_select_no_index with 50000000 rows
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Copying data to heavy_select_btree
+psql:sql/06_heavy_select_nonclustered.sql:195: NOTICE:  Creating B-tree index for 50000000 rows
+DO
+Time: 443704.695 ms (07:23.705)
+=== Итоговая таблица тяжелого SELECT ===
+        index_state         | rows_before | runs | probes_min | probes_max | found_rows_min | found_rows_max | avg_total_elapsed_ms | avg_total_elapsed_seconds | min_total_elapsed_seconds | max_total_elapsed_seconds | avg_elapsed_ms_per_select 
+----------------------------+-------------+------+------------+------------+----------------+----------------+----------------------+---------------------------+---------------------------+---------------------------+---------------------------
+ without_index_nonclustered |    10000000 |    3 |         20 |         20 |             20 |             20 |             4749.266 |                     4.749 |                     4.659 |                     4.805 |                237.463318
+ btree_index_nonclustered   |    10000000 |    3 |         20 |         20 |             20 |             20 |                0.926 |                     0.001 |                     0.001 |                     0.001 |                  0.046301
+ without_index_nonclustered |    25000000 |    3 |         10 |         10 |             10 |             10 |             5642.133 |                     5.642 |                     5.556 |                     5.808 |                564.213330
+ btree_index_nonclustered   |    25000000 |    3 |         10 |         10 |             10 |             10 |                0.391 |                     0.000 |                     0.000 |                     0.001 |                  0.039128
+ without_index_nonclustered |    50000000 |    3 |          5 |          5 |              5 |              5 |             6002.540 |                     6.002 |                     5.168 |                     7.571 |               1200.508056
+ btree_index_nonclustered   |    50000000 |    3 |          5 |          5 |              5 |              5 |                0.499 |                     0.000 |                     0.000 |                     0.001 |                  0.099788
+(6 rows)
+
+Time: 2.446 ms
+=== Проверка секундной задержки для простой выборки без индекса ===
+ rows_before | runs | probes_min | probes_max | avg_total_elapsed_seconds |                 check_result                 
+-------------+------+------------+------------+---------------------------+----------------------------------------------
+    10000000 |    3 |         20 |         20 |                     4.749 | OK: average series time is at least 1 second
+    25000000 |    3 |         10 |         10 |                     5.642 | OK: average series time is at least 1 second
+    50000000 |    3 |          5 |          5 |                     6.002 | OK: average series time is at least 1 second
+(3 rows)
+
+Time: 1.217 ms
+=== Размеры тяжелых таблиц после финального размера ===
+      table_name       | relation_bytes | relation_size | indexes_bytes | indexes_size | total_bytes | total_size 
+-----------------------+----------------+---------------+---------------+--------------+-------------+------------
+ heavy_select_btree    |     5851430912 | 5580 MB       |    1123115008 | 1071 MB      |  6976012288 | 6653 MB
+ heavy_select_no_index |     5851430912 | 5580 MB       |             0 | 0 bytes      |  5852897280 | 5582 MB
+(2 rows)
+
+Time: 2.593 ms
+=== EXPLAIN: тяжелая выборка без индекса ===
+                                                                QUERY PLAN                                                                
+------------------------------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..975702.87 rows=1 width=65) (actual time=3057.273..3065.622 rows=1 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   Buffers: shared hit=1504 read=712782 dirtied=714286 written=712686
+   ->  Parallel Seq Scan on heavy_select_no_index  (cost=0.00..974702.77 rows=1 width=65) (actual time=2877.071..3037.156 rows=0 loops=3)
+         Filter: (lookup_key = 7777777)
+         Rows Removed by Filter: 16666666
+         Buffers: shared hit=1504 read=712782 dirtied=714286 written=712686
+ Planning:
+   Buffers: shared hit=17 dirtied=3
+ Planning Time: 0.084 ms
+ JIT:
+   Functions: 12
+   Options: Inlining true, Optimization true, Expressions true, Deforming true
+   Timing: Generation 0.577 ms, Inlining 118.224 ms, Optimization 16.740 ms, Emission 14.219 ms, Total 149.759 ms
+ Execution Time: 3065.836 ms
+(16 rows)
+
+Time: 3066.876 ms (00:03.067)
+=== EXPLAIN: тяжелая выборка с B-tree индексом ===
+                                                                    QUERY PLAN                                                                     
+---------------------------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using idx_heavy_select_btree_lookup on heavy_select_btree  (cost=0.56..8.58 rows=1 width=65) (actual time=0.099..0.100 rows=1 loops=1)
+   Index Cond: (lookup_key = 7777777)
+   Buffers: shared hit=5 read=3 dirtied=1
+ Planning:
+   Buffers: shared hit=13
+ Planning Time: 0.166 ms
+ Execution Time: 0.113 ms
+(7 rows)
+
+Time: 1.210 ms
+=== Тяжелый SELECT завершен ===

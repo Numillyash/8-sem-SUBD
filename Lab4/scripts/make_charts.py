@@ -5,6 +5,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 
 BASE = Path("/mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4")
 REPORT = BASE / "report"
@@ -12,34 +13,57 @@ CHARTS = BASE / "charts"
 CHARTS.mkdir(parents=True, exist_ok=True)
 
 
+def fmt_int(x, _):
+    try:
+        return f"{int(x):,}".replace(",", " ")
+    except Exception:
+        return str(x)
+
+
+def fmt_float(x, _):
+    if abs(x) >= 1000:
+        return f"{int(x):,}".replace(",", " ")
+    return f"{x:g}"
+
+
+def apply_axis_format(ax):
+    ax.xaxis.set_major_formatter(FuncFormatter(fmt_int))
+    ax.yaxis.set_major_formatter(FuncFormatter(fmt_float))
+    ax.xaxis.get_offset_text().set_visible(False)
+    ax.yaxis.get_offset_text().set_visible(False)
+
+
 def save_bar(df, x, y, title, xlabel, ylabel, filename, rotation=25):
     labels = df[x].astype(str).to_numpy()
     values = df[y].to_numpy()
 
-    plt.figure(figsize=(11, 6))
-    plt.bar(labels, values)
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.xticks(rotation=rotation, ha="right")
-    plt.tight_layout()
-    plt.savefig(CHARTS / filename, dpi=200)
-    plt.close()
+    fig, ax = plt.subplots(figsize=(11, 6))
+    ax.bar(labels, values)
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.tick_params(axis="x", rotation=rotation)
+    for label in ax.get_xticklabels():
+        label.set_horizontalalignment("right")
+    ax.yaxis.set_major_formatter(FuncFormatter(fmt_float))
+    fig.tight_layout()
+    fig.savefig(CHARTS / filename, dpi=200)
+    plt.close(fig)
 
 
 def save_line(df, x, y, title, xlabel, ylabel, filename):
     x_values = df[x].to_numpy()
     y_values = df[y].to_numpy()
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(x_values, y_values, marker="o")
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.xscale("log")
-    plt.tight_layout()
-    plt.savefig(CHARTS / filename, dpi=200)
-    plt.close()
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.plot(x_values, y_values, marker="o")
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    apply_axis_format(ax)
+    fig.tight_layout()
+    fig.savefig(CHARTS / filename, dpi=200)
+    plt.close(fig)
 
 
 storage = pd.read_csv(REPORT / "storage_measurements.csv")

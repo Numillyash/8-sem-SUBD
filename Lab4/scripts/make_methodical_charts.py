@@ -5,6 +5,7 @@ import matplotlib
 matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FuncFormatter
 
 BASE = Path("/mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4")
 REPORT = BASE / "report"
@@ -12,39 +13,60 @@ CHARTS = BASE / "charts"
 CHARTS.mkdir(parents=True, exist_ok=True)
 
 
-def save_line(df, x, y, group, title, xlabel, ylabel, filename, logx=False):
-    plt.figure(figsize=(11, 6))
+def fmt_int(x, _):
+    try:
+        return f"{int(x):,}".replace(",", " ")
+    except Exception:
+        return str(x)
+
+
+def fmt_float(x, _):
+    if abs(x) >= 1000:
+        return f"{int(x):,}".replace(",", " ")
+    return f"{x:g}"
+
+
+def apply_axis_format(ax):
+    ax.xaxis.set_major_formatter(FuncFormatter(fmt_int))
+    ax.yaxis.set_major_formatter(FuncFormatter(fmt_float))
+    ax.xaxis.get_offset_text().set_visible(False)
+    ax.yaxis.get_offset_text().set_visible(False)
+
+
+def save_line(df, x, y, group, title, xlabel, ylabel, filename):
+    fig, ax = plt.subplots(figsize=(11, 6))
 
     if group is None:
-        plt.plot(df[x].to_numpy(), df[y].to_numpy(), marker="o")
+        part = df.sort_values(x)
+        ax.plot(part[x].to_numpy(), part[y].to_numpy(), marker="o")
     else:
         for name, part in df.groupby(group):
             part = part.sort_values(x)
-            plt.plot(part[x].to_numpy(), part[y].to_numpy(), marker="o", label=str(name))
-        plt.legend()
+            ax.plot(part[x].to_numpy(), part[y].to_numpy(), marker="o", label=str(name))
+        ax.legend()
 
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-
-    if logx:
-        plt.xscale("log")
-
-    plt.tight_layout()
-    plt.savefig(CHARTS / filename, dpi=200)
-    plt.close()
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    apply_axis_format(ax)
+    fig.tight_layout()
+    fig.savefig(CHARTS / filename, dpi=200)
+    plt.close(fig)
 
 
 def save_bar(df, x, y, title, xlabel, ylabel, filename, rotation=35):
-    plt.figure(figsize=(11, 6))
-    plt.bar(df[x].astype(str).to_numpy(), df[y].to_numpy())
-    plt.title(title)
-    plt.xlabel(xlabel)
-    plt.ylabel(ylabel)
-    plt.xticks(rotation=rotation, ha="right")
-    plt.tight_layout()
-    plt.savefig(CHARTS / filename, dpi=200)
-    plt.close()
+    fig, ax = plt.subplots(figsize=(11, 6))
+    ax.bar(df[x].astype(str).to_numpy(), df[y].to_numpy())
+    ax.set_title(title)
+    ax.set_xlabel(xlabel)
+    ax.set_ylabel(ylabel)
+    ax.tick_params(axis="x", rotation=rotation)
+    for label in ax.get_xticklabels():
+        label.set_horizontalalignment("right")
+    ax.yaxis.set_major_formatter(FuncFormatter(fmt_float))
+    fig.tight_layout()
+    fig.savefig(CHARTS / filename, dpi=200)
+    plt.close(fig)
 
 
 page_growth = pd.read_csv(REPORT / "method_page_growth_measurements.csv")
@@ -61,7 +83,6 @@ save_line(
     "Количество строк",
     "Размер relation, байт",
     "07_page_growth_relation.png",
-    logx=False,
 )
 
 partition_strict["label"] = partition_strict["test_name"] + "\n" + partition_strict["table_name"]
@@ -86,7 +107,6 @@ save_line(
     "Количество строк в таблице",
     "Среднее время, мс",
     "09_select_series.png",
-    logx=True,
 )
 
 insert_series = series[series["operation_name"] == "insert_one_random_row"].copy()
@@ -99,7 +119,6 @@ save_line(
     "Количество строк в таблице",
     "Среднее время, мс",
     "10_insert_series.png",
-    logx=True,
 )
 
 update_series = series[series["operation_name"] == "update_one_random_row"].copy()
@@ -112,7 +131,6 @@ save_line(
     "Количество строк в таблице",
     "Среднее время, мс",
     "11_update_series.png",
-    logx=True,
 )
 
 save_bar(

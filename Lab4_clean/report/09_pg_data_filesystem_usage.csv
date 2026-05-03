@@ -1,0 +1,2 @@
+filesystem,size,used,available,use_percent,mountpoint
+/dev/sdf,1007G,40G,916G,5%,/var/lib/postgresql/data

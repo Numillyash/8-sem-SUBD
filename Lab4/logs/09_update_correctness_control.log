@@ -1,0 +1,9 @@
+    index_type    | tested_table_sizes | total_update_runs | affected_rows_min | affected_rows_max |               check_result                
+------------------+--------------------+-------------------+-------------------+-------------------+-------------------------------------------
+ no_index         |                  5 |                25 |                 1 |                 1 | OK: every UPDATE affected exactly one row
+ simple_btree     |                  5 |                25 |                 1 |                 1 | OK: every UPDATE affected exactly one row
+ unique_btree     |                  5 |                25 |                 1 |                 1 | OK: every UPDATE affected exactly one row
+ expression_index |                  5 |                25 |                 1 |                 1 | OK: every UPDATE affected exactly one row
+ function_index   |                  5 |                25 |                 1 |                 1 | OK: every UPDATE affected exactly one row
+(5 rows)
+

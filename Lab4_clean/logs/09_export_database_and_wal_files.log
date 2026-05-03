@@ -1,0 +1,13 @@
+=== Export database size ===
+COPY 1
+=== Export relation sizes ===
+COPY 31
+=== Export filesystem usage inside PostgreSQL container ===
+=== Export pg_wal files ===
+=== Export pg_wal summary ===
+exported:
+  report/09_database_size_after_heavy.csv
+  report/09_relation_sizes_after_heavy.csv
+  report/09_pg_data_filesystem_usage.csv
+  report/09_pg_wal_files.csv
+  report/09_pg_wal_summary.csv

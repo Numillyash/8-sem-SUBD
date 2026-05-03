@@ -1,0 +1,111 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Шаг 5: влияние индексов на INSERT ===
+SET
+Time: 0.628 ms
+DROP TABLE
+Time: 3.612 ms
+DROP TABLE
+Time: 57.092 ms
+DROP TABLE
+Time: 1047.711 ms (00:01.048)
+DROP TABLE
+Time: 1046.565 ms (00:01.047)
+DROP TABLE
+Time: 1045.247 ms (00:01.045)
+DROP TABLE
+Time: 1063.217 ms (00:01.063)
+DROP FUNCTION
+Time: 1.645 ms
+DROP FUNCTION
+Time: 1.304 ms
+DROP FUNCTION
+Time: 1.129 ms
+CREATE TABLE
+Time: 7.359 ms
+CREATE FUNCTION
+Time: 2.489 ms
+CREATE TABLE
+Time: 3.717 ms
+CREATE TABLE
+Time: 3.544 ms
+CREATE TABLE
+Time: 3.106 ms
+CREATE TABLE
+Time: 3.349 ms
+CREATE TABLE
+Time: 3.629 ms
+CREATE INDEX
+Time: 3.212 ms
+CREATE INDEX
+Time: 3.017 ms
+CREATE INDEX
+Time: 3.290 ms
+CREATE INDEX
+Time: 3.522 ms
+CREATE FUNCTION
+Time: 2.071 ms
+CREATE FUNCTION
+Time: 1.532 ms
+=== 5.1. Запуск серий INSERT по размерам таблицы ===
+psql:sql/04_insert_indexes.sql:194: NOTICE:  Running INSERT size 10000
+psql:sql/04_insert_indexes.sql:194: NOTICE:  Running INSERT size 50000
+psql:sql/04_insert_indexes.sql:194: NOTICE:  Running INSERT size 100000
+psql:sql/04_insert_indexes.sql:194: NOTICE:  Running INSERT size 500000
+psql:sql/04_insert_indexes.sql:194: NOTICE:  Running INSERT size 1000000
+DO
+Time: 51758.780 ms (00:51.759)
+=== 5.2. Итоговая таблица INSERT ===
+    index_type    | rows_base | runs | batch_size_min | batch_size_max | inserted_rows_min | inserted_rows_max | avg_total_elapsed_ms | min_total_elapsed_ms | max_total_elapsed_ms | stddev_total_elapsed_ms | avg_elapsed_ms_per_row 
+------------------+-----------+------+----------------+----------------+-------------------+-------------------+----------------------+----------------------+----------------------+-------------------------+------------------------
+ no_index         |     10000 |    5 |           1000 |           1000 |              1000 |              1000 |                2.569 |                2.292 |                2.978 |                   0.254 |               0.002569
+ simple_btree     |     10000 |    5 |           1000 |           1000 |              1000 |              1000 |                3.675 |                3.291 |                4.697 |                   0.587 |               0.003675
+ unique_btree     |     10000 |    5 |           1000 |           1000 |              1000 |              1000 |                4.093 |                3.272 |                4.991 |                   0.818 |               0.004093
+ expression_index |     10000 |    5 |           1000 |           1000 |              1000 |              1000 |                9.073 |                5.047 |               16.431 |                   4.544 |               0.009073
+ function_index   |     10000 |    5 |           1000 |           1000 |              1000 |              1000 |                7.805 |                6.021 |               10.748 |                   1.810 |               0.007805
+ no_index         |     50000 |    5 |           1000 |           1000 |              1000 |              1000 |                2.450 |                2.390 |                2.498 |                   0.044 |               0.002450
+ simple_btree     |     50000 |    5 |           1000 |           1000 |              1000 |              1000 |                4.937 |                3.398 |               10.565 |                   3.148 |               0.004937
+ unique_btree     |     50000 |    5 |           1000 |           1000 |              1000 |              1000 |                4.527 |                3.214 |                6.727 |                   1.681 |               0.004527
+ expression_index |     50000 |    5 |           1000 |           1000 |              1000 |              1000 |                5.924 |                5.459 |                6.527 |                   0.439 |               0.005924
+ function_index   |     50000 |    5 |           1000 |           1000 |              1000 |              1000 |               10.722 |                6.554 |               23.977 |                   7.453 |               0.010722
+ no_index         |    100000 |    5 |           1000 |           1000 |              1000 |              1000 |                3.428 |                2.440 |                4.874 |                   1.299 |               0.003428
+ simple_btree     |    100000 |    5 |           1000 |           1000 |              1000 |              1000 |                5.282 |                3.988 |                7.406 |                   1.379 |               0.005282
+ unique_btree     |    100000 |    5 |           1000 |           1000 |              1000 |              1000 |                3.402 |                3.259 |                3.635 |                   0.142 |               0.003402
+ expression_index |    100000 |    5 |           1000 |           1000 |              1000 |              1000 |                5.988 |                5.411 |                7.970 |                   1.111 |               0.005988
+ function_index   |    100000 |    5 |           1000 |           1000 |              1000 |              1000 |                7.089 |                6.264 |                8.340 |                   0.763 |               0.007089
+ no_index         |    500000 |    5 |           1000 |           1000 |              1000 |              1000 |                2.638 |                2.410 |                2.997 |                   0.220 |               0.002638
+ simple_btree     |    500000 |    5 |           1000 |           1000 |              1000 |              1000 |                4.780 |                4.256 |                5.965 |                   0.686 |               0.004780
+ unique_btree     |    500000 |    5 |           1000 |           1000 |              1000 |              1000 |                3.385 |                3.062 |                3.867 |                   0.348 |               0.003385
+ expression_index |    500000 |    5 |           1000 |           1000 |              1000 |              1000 |                7.836 |                6.281 |               10.552 |                   1.600 |               0.007836
+ function_index   |    500000 |    5 |           1000 |           1000 |              1000 |              1000 |                7.460 |                7.255 |                7.819 |                   0.216 |               0.007460
+ no_index         |   1000000 |    5 |           1000 |           1000 |              1000 |              1000 |                2.796 |                2.648 |                3.341 |                   0.305 |               0.002796
+ simple_btree     |   1000000 |    5 |           1000 |           1000 |              1000 |              1000 |                5.582 |                4.626 |                7.539 |                   1.258 |               0.005582
+ unique_btree     |   1000000 |    5 |           1000 |           1000 |              1000 |              1000 |                3.244 |                3.113 |                3.314 |                   0.088 |               0.003244
+ expression_index |   1000000 |    5 |           1000 |           1000 |              1000 |              1000 |                7.872 |                6.070 |               10.115 |                   1.680 |               0.007872
+ function_index   |   1000000 |    5 |           1000 |           1000 |              1000 |              1000 |                9.363 |                7.685 |               12.177 |                   1.675 |               0.009363
+(25 rows)
+
+Time: 1.919 ms
+=== 5.3. Проверка корректности INSERT ===
+    index_type    | tested_table_sizes | total_runs | batch_size_min | batch_size_max | inserted_rows_min | inserted_rows_max |                 check_result                  
+------------------+--------------------+------------+----------------+----------------+-------------------+-------------------+-----------------------------------------------
+ expression_index |                  5 |         25 |           1000 |           1000 |              1000 |              1000 | OK: every INSERT batch inserted expected rows
+ function_index   |                  5 |         25 |           1000 |           1000 |              1000 |              1000 | OK: every INSERT batch inserted expected rows
+ no_index         |                  5 |         25 |           1000 |           1000 |              1000 |              1000 | OK: every INSERT batch inserted expected rows
+ simple_btree     |                  5 |         25 |           1000 |           1000 |              1000 |              1000 | OK: every INSERT batch inserted expected rows
+ unique_btree     |                  5 |         25 |           1000 |           1000 |              1000 |              1000 | OK: every INSERT batch inserted expected rows
+(5 rows)
+
+Time: 0.950 ms
+=== 5.4. Размеры таблиц INSERT после финального размера ===
+       table_name        | relation_bytes | relation_size | indexes_bytes | indexes_size | total_bytes | total_size 
+-------------------------+----------------+---------------+---------------+--------------+-------------+------------
+ insert_expression_index |      141934592 | 135 MB        |      11288576 | 11 MB        |   153288704 | 146 MB
+ insert_function_index   |      141934592 | 135 MB        |      76726272 | 73 MB        |   218726400 | 209 MB
+ insert_no_index         |      141934592 | 135 MB        |             0 | 0 bytes      |   142000128 | 135 MB
+ insert_simple_btree     |      141934592 | 135 MB        |       9650176 | 9424 kB      |   151650304 | 145 MB
+ insert_unique_btree     |      141934592 | 135 MB        |      22593536 | 22 MB        |   164593664 | 157 MB
+(5 rows)
+
+Time: 2.304 ms
+=== Шаг 5 SQL завершен ===

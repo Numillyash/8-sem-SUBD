@@ -1,0 +1,2 @@
+relation_name,pg_relation_bytes,pg_total_relation_bytes,relation_filepath,stat_bytes,du_bytes,check_result
+lab4.user_log_storage,148946944,149020672,base/16384/16469,148946944,148946944,OK

@@ -1,0 +1,95 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Шаг 4: влияние B-tree индекса на SELECT ===
+SET
+Time: 1.026 ms
+DROP TABLE
+Time: 10.193 ms
+DROP TABLE
+Time: 34.295 ms
+DROP TABLE
+Time: 59.164 ms
+CREATE TABLE
+Time: 10.210 ms
+CREATE TABLE
+Time: 9.964 ms
+CREATE INDEX
+Time: 8.084 ms
+CREATE TABLE
+Time: 17.164 ms
+CREATE FUNCTION
+Time: 3.673 ms
+CREATE FUNCTION
+Time: 3.089 ms
+=== 4.1. Запуск серий SELECT по размерам таблицы ===
+psql:sql/03_select_index.sql:151: NOTICE:  Running SELECT size 10000
+psql:sql/03_select_index.sql:151: NOTICE:  Running SELECT size 50000
+psql:sql/03_select_index.sql:151: NOTICE:  Running SELECT size 100000
+psql:sql/03_select_index.sql:151: NOTICE:  Running SELECT size 500000
+psql:sql/03_select_index.sql:151: NOTICE:  Running SELECT size 1000000
+DO
+Time: 76878.343 ms (01:16.878)
+=== 4.2. EXPLAIN без индекса, 1 000 000 строк ===
+                                                          QUERY PLAN                                                           
+-------------------------------------------------------------------------------------------------------------------------------
+ Gather  (cost=1000.00..16518.43 rows=1 width=33) (actual time=43.096..56.247 rows=1 loops=1)
+   Workers Planned: 2
+   Workers Launched: 2
+   Buffers: shared hit=3116 read=7194 dirtied=7924 written=7098
+   ->  Parallel Seq Scan on select_no_index  (cost=0.00..15518.33 rows=1 width=33) (actual time=46.352..49.619 rows=0 loops=3)
+         Filter: (lookup_key = 777777)
+         Rows Removed by Filter: 333333
+         Buffers: shared hit=3116 read=7194 dirtied=7924 written=7098
+ Planning:
+   Buffers: shared hit=15 read=5
+ Planning Time: 0.192 ms
+ Execution Time: 56.264 ms
+(12 rows)
+
+Time: 57.825 ms
+=== 4.3. EXPLAIN с B-tree индексом, 1 000 000 строк ===
+                                                                   QUERY PLAN                                                                    
+-------------------------------------------------------------------------------------------------------------------------------------------------
+ Index Scan using idx_select_btree_lookup_key on select_btree_index  (cost=0.42..8.44 rows=1 width=33) (actual time=0.016..0.017 rows=1 loops=1)
+   Index Cond: (lookup_key = 777777)
+   Buffers: shared hit=7
+ Planning:
+   Buffers: shared hit=25
+ Planning Time: 0.154 ms
+ Execution Time: 0.026 ms
+(7 rows)
+
+Time: 1.006 ms
+=== 4.4. Итоговая таблица SELECT ===
+  index_state  | rows_before | runs | probes_min | probes_max | found_rows_min | found_rows_max | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms 
+---------------+-------------+------+------------+------------+----------------+----------------+----------------+----------------+----------------+-------------------
+ without_index |       10000 |    5 |        200 |        200 |            200 |            200 |       0.739340 |       0.572786 |       1.069630 |          0.216256
+ btree_index   |       10000 |    5 |        200 |        200 |            200 |            200 |       0.059606 |       0.028290 |       0.076620 |          0.019942
+ without_index |       50000 |    5 |        200 |        200 |            200 |            200 |       3.185438 |       3.087545 |       3.456439 |          0.155872
+ btree_index   |       50000 |    5 |        200 |        200 |            200 |            200 |       0.024326 |       0.020735 |       0.026680 |          0.002318
+ without_index |      100000 |    5 |        200 |        200 |            200 |            200 |       6.075253 |       5.474335 |       6.722635 |          0.490723
+ btree_index   |      100000 |    5 |        200 |        200 |            200 |            200 |       0.031584 |       0.018545 |       0.061875 |          0.017998
+ without_index |      500000 |    5 |        200 |        200 |            200 |            200 |      23.528276 |      19.449070 |      27.763440 |          3.081153
+ btree_index   |      500000 |    5 |        200 |        200 |            200 |            200 |       0.029726 |       0.026985 |       0.032804 |          0.002383
+ without_index |     1000000 |    5 |        200 |        200 |            200 |            200 |      32.169530 |      25.409861 |      38.349359 |          5.669718
+ btree_index   |     1000000 |    5 |        200 |        200 |            200 |            200 |       0.028609 |       0.024340 |       0.039585 |          0.006430
+(10 rows)
+
+Time: 2.645 ms
+=== 4.5. Проверка корректности SELECT ===
+  index_state  | tested_table_sizes | total_runs | probes_min | probes_max | found_rows_min | found_rows_max |                 check_result                 
+---------------+--------------------+------------+------------+------------+----------------+----------------+----------------------------------------------
+ btree_index   |                  5 |         25 |        200 |        200 |            200 |            200 | OK: every SELECT probe found exactly one row
+ without_index |                  5 |         25 |        200 |        200 |            200 |            200 | OK: every SELECT probe found exactly one row
+(2 rows)
+
+Time: 1.170 ms
+=== 4.6. Размеры таблиц SELECT ===
+     table_name     | relation_bytes | relation_size | indexes_bytes | indexes_size | total_bytes | total_size 
+--------------------+----------------+---------------+---------------+--------------+-------------+------------
+ select_btree_index |       84459520 | 81 MB         |      22487040 | 21 MB        |   106995712 | 102 MB
+ select_no_index    |       84459520 | 81 MB         |             0 | 0 bytes      |    84508672 | 81 MB
+(2 rows)
+
+Time: 2.302 ms
+=== Шаг 4 SQL завершен ===

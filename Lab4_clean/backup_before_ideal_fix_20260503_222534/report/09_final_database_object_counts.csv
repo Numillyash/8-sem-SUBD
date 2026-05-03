@@ -1,0 +1,12 @@
+object_name,rows_count
+lab4.heavy_select_btree,50000000
+lab4.heavy_select_measurements,18
+lab4.heavy_select_no_index,50000000
+lab4.insert_measurements,125
+lab4.orders_partitioned,1000000
+lab4.orders_plain,1000000
+lab4.partition_measurements,60
+lab4.select_measurements,50
+lab4.update_measurements,125
+lab4.update_trigger_audit,127000
+lab4.user_log_storage,1000000

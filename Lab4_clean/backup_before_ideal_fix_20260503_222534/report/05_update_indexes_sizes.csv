@@ -1,0 +1,6 @@
+table_name,relation_bytes,indexes_bytes,total_bytes
+update_expression_index,158359552,34226176,192651264
+update_function_index,158474240,99590144,258129920
+update_no_extra_index,158474240,22618112,181157888
+update_simple_btree,158359552,32251904,190676992
+update_unique_btree,158359552,45195264,203620352

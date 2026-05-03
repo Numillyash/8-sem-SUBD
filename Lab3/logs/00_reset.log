@@ -1,0 +1,8 @@
+Pager usage is off.
+DROP TABLE
+DROP TABLE
+                        result                        
+------------------------------------------------------
+ ЛР3: таблицы documents и document_operations удалены
+(1 row)
+

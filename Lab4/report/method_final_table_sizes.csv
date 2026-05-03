@@ -1,9 +1,9 @@
 table_name,relation_bytes,indexes_bytes,total_bytes
-method_mod_expr_index,93093888,8962048,102113280
-method_mod_func_index,93093888,39804928,132956160
-method_mod_no_index,93093888,0,93151232
-method_mod_simple_index,93093888,10117120,103268352
-method_mod_unique_index,93093888,22487040,115638272
+method_mod_expr_index,93093888,8962048,102105088
+method_mod_func_index,93093888,39215104,132358144
+method_mod_no_index,93093888,0,93143040
+method_mod_simple_index,93093888,10117120,103260160
+method_mod_unique_index,93093888,22487040,115630080
 method_page_growth_test,770048,0,811008
-method_select_id_index,76562432,22487040,99106816
-method_select_no_index,76562432,0,76619776
+method_select_id_index,76562432,22487040,99098624
+method_select_no_index,76562432,0,76611584

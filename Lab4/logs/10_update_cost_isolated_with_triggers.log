@@ -1,0 +1,169 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Исправленный эксперимент UPDATE: одинаковый поиск, разные индексы, контроль триггеров ===
+SET
+Time: 8.172 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:8: NOTICE:  table "update_cost_measurements" does not exist, skipping
+DROP TABLE
+Time: 3.976 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:9: NOTICE:  table "update_cost_trigger_audit" does not exist, skipping
+DROP TABLE
+Time: 0.638 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:11: NOTICE:  table "update_cost_lookup_only" does not exist, skipping
+DROP TABLE
+Time: 0.604 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:12: NOTICE:  table "update_cost_simple_btree" does not exist, skipping
+DROP TABLE
+Time: 0.605 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:13: NOTICE:  table "update_cost_unique_btree" does not exist, skipping
+DROP TABLE
+Time: 0.618 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:14: NOTICE:  table "update_cost_expression_index" does not exist, skipping
+DROP TABLE
+Time: 0.546 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:15: NOTICE:  table "update_cost_function_index" does not exist, skipping
+DROP TABLE
+Time: 0.627 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:17: NOTICE:  function lab4.update_cost_trigger_fn() does not exist, skipping
+DROP FUNCTION
+Time: 1.899 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:18: NOTICE:  function lab4.update_cost_function_key(pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 1.755 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:19: NOTICE:  function lab4.fill_update_cost_table(text,pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 1.057 ms
+psql:sql/10_update_cost_isolated_with_triggers.sql:20: NOTICE:  function lab4.measure_update_cost_table(text,text,pg_catalog.int8,pg_catalog.int8,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.772 ms
+CREATE TABLE
+Time: 53.700 ms
+CREATE TABLE
+Time: 7.679 ms
+CREATE FUNCTION
+Time: 7.953 ms
+CREATE FUNCTION
+Time: 10.386 ms
+CREATE TABLE
+Time: 4.760 ms
+CREATE TABLE
+Time: 4.604 ms
+CREATE TABLE
+Time: 5.585 ms
+CREATE TABLE
+Time: 4.263 ms
+CREATE TABLE
+Time: 4.165 ms
+CREATE INDEX
+Time: 4.005 ms
+CREATE INDEX
+Time: 4.325 ms
+CREATE INDEX
+Time: 4.349 ms
+CREATE INDEX
+Time: 4.410 ms
+CREATE INDEX
+Time: 3.606 ms
+CREATE INDEX
+Time: 4.098 ms
+CREATE INDEX
+Time: 3.917 ms
+CREATE INDEX
+Time: 4.038 ms
+CREATE INDEX
+Time: 5.138 ms
+CREATE TRIGGER
+Time: 4.307 ms
+CREATE TRIGGER
+Time: 1.314 ms
+CREATE TRIGGER
+Time: 1.188 ms
+CREATE TRIGGER
+Time: 1.149 ms
+CREATE TRIGGER
+Time: 1.224 ms
+CREATE FUNCTION
+Time: 1.748 ms
+CREATE FUNCTION
+Time: 2.502 ms
+=== Запуск исправленного эксперимента UPDATE ===
+psql:sql/10_update_cost_isolated_with_triggers.sql:276: NOTICE:  Running isolated UPDATE size 10000
+psql:sql/10_update_cost_isolated_with_triggers.sql:276: NOTICE:  Running isolated UPDATE size 50000
+psql:sql/10_update_cost_isolated_with_triggers.sql:276: NOTICE:  Running isolated UPDATE size 100000
+psql:sql/10_update_cost_isolated_with_triggers.sql:276: NOTICE:  Running isolated UPDATE size 500000
+psql:sql/10_update_cost_isolated_with_triggers.sql:276: NOTICE:  Running isolated UPDATE size 1000000
+DO
+Time: 41589.457 ms (00:41.589)
+=== Итоговая таблица исправленного UPDATE ===
+    index_type    | rows_before | batch_size | runs | affected_rows_min | affected_rows_max | trigger_rows_min | trigger_rows_max | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms 
+------------------+-------------+------------+------+-------------------+-------------------+------------------+------------------+----------------+----------------+----------------+-------------------
+ lookup_only      |       10000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         21.436 |         15.241 |         29.381 |             5.076
+ simple_btree     |       10000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         21.697 |         14.609 |         30.448 |             7.184
+ unique_btree     |       10000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         13.786 |         13.162 |         15.302 |             0.883
+ expression_index |       10000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         17.021 |         15.333 |         21.172 |             2.399
+ function_index   |       10000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         30.561 |         23.202 |         51.546 |            11.864
+ lookup_only      |       50000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         14.317 |         11.446 |         18.663 |             2.859
+ simple_btree     |       50000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         13.813 |         12.391 |         17.859 |             2.278
+ unique_btree     |       50000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         13.198 |         12.784 |         13.595 |             0.314
+ expression_index |       50000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         13.856 |         11.389 |         20.909 |             3.995
+ function_index   |       50000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         16.385 |         15.420 |         17.379 |             0.849
+ lookup_only      |      100000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         10.834 |         10.026 |         11.595 |             0.598
+ simple_btree     |      100000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         16.013 |         12.272 |         23.328 |             4.775
+ unique_btree     |      100000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         17.171 |         11.962 |         20.424 |             3.567
+ expression_index |      100000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         15.087 |         12.122 |         24.248 |             5.136
+ function_index   |      100000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         16.526 |         14.643 |         18.458 |             1.384
+ lookup_only      |      500000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         10.741 |          8.992 |         17.257 |             3.643
+ simple_btree     |      500000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |          9.723 |          9.437 |          9.933 |             0.179
+ unique_btree     |      500000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |          9.903 |          8.450 |         14.471 |             2.561
+ expression_index |      500000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         11.335 |          9.642 |         16.635 |             2.975
+ function_index   |      500000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         19.515 |         14.054 |         34.707 |             8.686
+ lookup_only      |     1000000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |          9.132 |          8.225 |         10.890 |             1.031
+ simple_btree     |     1000000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         13.936 |         11.163 |         18.567 |             3.593
+ unique_btree     |     1000000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |          9.093 |          8.724 |          9.331 |             0.232
+ expression_index |     1000000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         11.135 |          9.510 |         15.127 |             2.397
+ function_index   |     1000000 |       1000 |    5 |              1000 |              1000 |             1000 |             1000 |         14.102 |         12.893 |         16.770 |             1.576
+(25 rows)
+
+Time: 12.700 ms
+=== Контроль срабатывания триггеров ===
+    index_type    | tested_table_sizes | total_runs | affected_rows_min | affected_rows_max | trigger_rows_min | trigger_rows_max |                           check_result                           
+------------------+--------------------+------------+-------------------+-------------------+------------------+------------------+------------------------------------------------------------------
+ lookup_only      |                  5 |         25 |              1000 |              1000 |             1000 |             1000 | OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+ simple_btree     |                  5 |         25 |              1000 |              1000 |             1000 |             1000 | OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+ unique_btree     |                  5 |         25 |              1000 |              1000 |             1000 |             1000 | OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+ expression_index |                  5 |         25 |              1000 |              1000 |             1000 |             1000 | OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+ function_index   |                  5 |         25 |              1000 |              1000 |             1000 |             1000 | OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+(5 rows)
+
+Time: 3.712 ms
+=== EXPLAIN контроль: поиск через одинаковый lookup_id ===
+                                                                                QUERY PLAN                                                                                
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on update_cost_lookup_only  (cost=0.42..52.45 rows=0 width=0) (actual time=4.045..4.046 rows=0 loops=1)
+   Buffers: shared hit=6919 read=21 dirtied=35 written=49
+   ->  Index Scan using idx_update_cost_lookup_only_lookup on update_cost_lookup_only  (cost=0.42..52.45 rows=1068 width=14) (actual time=0.043..0.416 rows=1000 loops=1)
+         Index Cond: ((lookup_id >= 1000) AND (lookup_id <= 1999))
+         Buffers: shared hit=9 read=15 dirtied=13 written=15
+ Planning:
+   Buffers: shared hit=30 read=13 dirtied=9 written=13
+ Planning Time: 0.277 ms
+ Trigger trg_update_cost_lookup_only: time=5.916 calls=1000
+ Execution Time: 10.017 ms
+(10 rows)
+
+Time: 15.313 ms
+                                                                               QUERY PLAN                                                                                
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Update on update_cost_function_index  (cost=0.42..49.41 rows=0 width=0) (actual time=7.784..7.785 rows=0 loops=1)
+   Buffers: shared hit=10024 read=25 dirtied=48 written=71
+   ->  Index Scan using idx_update_cost_function_lookup on update_cost_function_index  (cost=0.42..49.41 rows=977 width=14) (actual time=0.025..0.304 rows=1000 loops=1)
+         Index Cond: ((lookup_id >= 1000) AND (lookup_id <= 1999))
+         Buffers: shared hit=8 read=13 dirtied=12 written=13
+ Planning:
+   Buffers: shared hit=46 read=2 dirtied=2 written=2
+ Planning Time: 0.223 ms
+ Trigger trg_update_cost_function_index: time=5.643 calls=1000
+ Execution Time: 13.477 ms
+(10 rows)
+
+Time: 16.242 ms

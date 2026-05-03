@@ -1,0 +1,16 @@
+services:
+  postgres-lab4-clean:
+    image: postgres:16
+    container_name: subd_lab4_clean_pg
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: subd_lab4_clean
+      POSTGRES_USER: lab4user
+      POSTGRES_PASSWORD: lab4pass
+    ports:
+      - "15435:5432"
+    volumes:
+      - subd_lab4_clean_data:/var/lib/postgresql/data
+
+volumes:
+  subd_lab4_clean_data:

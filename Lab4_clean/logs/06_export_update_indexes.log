@@ -1,0 +1,7 @@
+COPY 25
+COPY 5
+COPY 5
+exported:
+  report/05_update_indexes_measurements.csv
+  report/05_update_trigger_control.csv
+  report/05_update_indexes_sizes.csv

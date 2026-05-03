@@ -1,0 +1,7 @@
+index_state,rows_before,runs,probes_min,probes_max,found_rows_min,found_rows_max,avg_total_elapsed_ms,avg_total_elapsed_seconds,min_total_elapsed_seconds,max_total_elapsed_seconds,stddev_total_elapsed_seconds,avg_elapsed_ms_per_select
+btree_index_nonclustered,10000000,3,20,20,20,20,0.926,0.001,0.001,0.001,0.000,0.046301
+without_index_nonclustered,10000000,3,20,20,20,20,4749.266,4.749,4.659,4.805,0.079,237.463318
+btree_index_nonclustered,25000000,3,10,10,10,10,0.391,0.000,0.000,0.001,0.001,0.039128
+without_index_nonclustered,25000000,3,10,10,10,10,5642.133,5.642,5.556,5.808,0.144,564.213330
+btree_index_nonclustered,50000000,3,5,5,5,5,0.499,0.000,0.000,0.001,0.001,0.099788
+without_index_nonclustered,50000000,3,5,5,5,5,6002.540,6.002,5.168,7.571,1.359,1200.508056

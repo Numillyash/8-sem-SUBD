@@ -1,0 +1,7 @@
+test_name,table_name,sql_text,runs,avg_elapsed_ms,min_elapsed_ms,max_elapsed_ms,stddev_elapsed_ms,result_check_min,result_check_max
+first_and_second_sections,orders_partitioned,SELECT sum(amount) FROM lab4.orders_partitioned WHERE order_date >= date '2024-01-01' AND order_date < date '2024-07-01',10,46.563,33.804,64.277,8.142,253637378.40,253637378.40
+first_and_second_sections,orders_plain,SELECT sum(amount) FROM lab4.orders_plain WHERE order_date >= date '2024-01-01' AND order_date < date '2024-07-01',10,58.798,52.364,70.003,4.965,253637378.40,253637378.40
+first_section,orders_partitioned,SELECT sum(amount) FROM lab4.orders_partitioned WHERE order_date >= date '2024-01-01' AND order_date < date '2024-04-01',10,39.036,32.315,49.278,4.755,126841038.00,126841038.00
+first_section,orders_plain,SELECT sum(amount) FROM lab4.orders_plain WHERE order_date >= date '2024-01-01' AND order_date < date '2024-04-01',10,55.905,48.346,64.885,5.254,126841038.00,126841038.00
+second_section,orders_partitioned,SELECT sum(amount) FROM lab4.orders_partitioned WHERE order_date >= date '2024-04-01' AND order_date < date '2024-07-01',10,36.459,28.178,49.184,6.667,126796340.40,126796340.40
+second_section,orders_plain,SELECT sum(amount) FROM lab4.orders_plain WHERE order_date >= date '2024-04-01' AND order_date < date '2024-07-01',10,53.650,46.893,65.284,5.342,126796340.40,126796340.40

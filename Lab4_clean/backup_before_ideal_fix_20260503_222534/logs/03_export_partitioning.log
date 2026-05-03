@@ -1,0 +1,5 @@
+COPY 6
+COPY 6
+exported:
+  report/02_partitioning_measurements.csv
+  report/02_partitioning_sizes.csv

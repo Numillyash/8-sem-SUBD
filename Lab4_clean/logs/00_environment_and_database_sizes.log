@@ -1,0 +1,54 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Шаг 1: проверка окружения и размеров баз данных ===
+                                                   postgres_version                                                   
+----------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 16.13 (Debian 16.13-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+(1 row)
+
+Time: 2.919 ms
+ current_database | current_user 
+------------------+--------------
+ subd_lab4_clean  | lab4user
+(1 row)
+
+Time: 0.978 ms
+         server_version          
+---------------------------------
+ 16.13 (Debian 16.13-1.pgdg13+1)
+(1 row)
+
+Time: 0.771 ms
+ block_size 
+------------
+ 8192
+(1 row)
+
+Time: 0.694 ms
+      data_directory      
+--------------------------
+ /var/lib/postgresql/data
+(1 row)
+
+Time: 0.590 ms
+=== Размеры баз данных на сервере ===
+  database_name  | database_bytes | database_size | is_template 
+-----------------+----------------+---------------+-------------
+ subd_lab4_clean |        7699479 | 7519 kB       | f
+ postgres        |        7537167 | 7361 kB       | f
+ template1       |        7537167 | 7361 kB       | t
+ template0       |        7537167 | 7361 kB       | t
+(4 rows)
+
+Time: 8.111 ms
+=== Контроль важных настроек PostgreSQL ===
+      name       |             setting             | unit 
+-----------------+---------------------------------+------
+ block_size      | 8192                            | 
+ data_directory  | /var/lib/postgresql/data        | 
+ max_connections | 100                             | 
+ server_version  | 16.13 (Debian 16.13-1.pgdg13+1) | 
+ shared_buffers  | 16384                           | 8kB
+(5 rows)
+
+Time: 3.730 ms

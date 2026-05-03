@@ -1,0 +1,3 @@
+rows_base,runs,probes_min,probes_max,avg_total_elapsed_seconds,avg_elapsed_ms_per_select,check_result
+25000000,6,10,10,4.812946,481.294617,OK
+50000000,6,5,5,7.731924,1546.384800,OK

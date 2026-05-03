@@ -1,0 +1,3 @@
+table_name,relation_bytes,indexes_bytes,total_bytes
+select_btree_index,84459520,22487040,106995712
+select_no_index,84459520,0,84508672

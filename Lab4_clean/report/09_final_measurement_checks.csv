@@ -1,0 +1,6 @@
+check_name,actual_value,check_result
+partition_measurements_expected_60,60,OK
+select_measurements_expected_50,50,OK
+insert_measurements_expected_150,150,OK
+update_measurements_expected_125,125,OK
+heavy_select_measurements_expected_18,18,OK

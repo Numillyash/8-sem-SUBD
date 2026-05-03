@@ -1,0 +1,20 @@
+=== Row counts ===
+orders_plain=1000000
+orders_partitioned=1000000
+=== Measurement groups ===
+first_and_second_sections | orders_partitioned | runs=10 | avg_ms=46.563
+first_and_second_sections | orders_plain | runs=10 | avg_ms=58.798
+first_section | orders_partitioned | runs=10 | avg_ms=39.036
+first_section | orders_plain | runs=10 | avg_ms=55.905
+second_section | orders_partitioned | runs=10 | avg_ms=36.459
+second_section | orders_plain | runs=10 | avg_ms=53.650
+=== Result equality check ===
+first_and_second_sections | diff=0.00 | OK
+first_section | diff=0.00 | OK
+second_section | diff=0.00 | OK
+=== Expected files ===
+-rwxrwxrwx 1 root root  99K May  3 19:51 charts/02_partitioning.png
+-rwxrwxrwx 1 root root  11K May  3 19:50 logs/02_partitioning.log
+-rwxrwxrwx 1 root root  101 May  3 19:50 logs/03_export_partitioning.log
+-rwxrwxrwx 1 root root 1.4K May  3 19:50 report/02_partitioning_measurements.csv
+-rwxrwxrwx 1 root root  273 May  3 19:50 report/02_partitioning_sizes.csv

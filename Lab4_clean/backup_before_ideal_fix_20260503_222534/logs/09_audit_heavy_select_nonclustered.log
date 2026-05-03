@@ -1,0 +1,24 @@
+=== Row counts after heavy SELECT ===
+heavy_select_no_index=50000000
+heavy_select_btree=50000000
+=== Measurement groups ===
+btree_index_nonclustered | rows=10000000 | runs=3 | probes=20..20 | found=20..20 | avg_total_sec=0.001 | avg_one_select_ms=0.046301
+without_index_nonclustered | rows=10000000 | runs=3 | probes=20..20 | found=20..20 | avg_total_sec=4.749 | avg_one_select_ms=237.463318
+btree_index_nonclustered | rows=25000000 | runs=3 | probes=10..10 | found=10..10 | avg_total_sec=0.000 | avg_one_select_ms=0.039128
+without_index_nonclustered | rows=25000000 | runs=3 | probes=10..10 | found=10..10 | avg_total_sec=5.642 | avg_one_select_ms=564.213330
+btree_index_nonclustered | rows=50000000 | runs=3 | probes=5..5 | found=5..5 | avg_total_sec=0.000 | avg_one_select_ms=0.099788
+without_index_nonclustered | rows=50000000 | runs=3 | probes=5..5 | found=5..5 | avg_total_sec=6.002 | avg_one_select_ms=1200.508056
+=== Seconds check for non-indexed nonclustered SELECT ===
+10000000 rows | avg_total_sec=4.749 | OK
+25000000 rows | avg_total_sec=5.642 | OK
+50000000 rows | avg_total_sec=6.002 | OK
+=== Correctness check ===
+btree_index_nonclustered | sizes=3 | total_runs=9 | found_min=5 | probes_min=5 | OK
+without_index_nonclustered | sizes=3 | total_runs=9 | found_min=5 | probes_min=5 | OK
+=== Expected files ===
+-rwxrwxrwx 1 root root 103K May  3 21:22 charts/08_heavy_select_avg_ms.png
+-rwxrwxrwx 1 root root  86K May  3 21:22 charts/08_heavy_select_total_seconds.png
+-rwxrwxrwx 1 root root 7.9K May  3 21:20 logs/07_heavy_select_nonclustered.log
+-rwxrwxrwx 1 root root  127 May  3 21:22 logs/08_export_heavy_select_nonclustered.log
+-rwxrwxrwx 1 root root  771 May  3 21:22 report/08_heavy_select_nonclustered_measurements.csv
+-rwxrwxrwx 1 root root  150 May  3 21:22 report/08_heavy_select_nonclustered_sizes.csv

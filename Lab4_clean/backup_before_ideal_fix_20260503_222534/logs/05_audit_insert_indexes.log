@@ -1,0 +1,45 @@
+=== Row counts after final INSERT series ===
+insert_no_index=1005000
+insert_unique_btree=1005000
+insert_function_index=1005000
+insert_simple_btree=1005000
+insert_expression_index=1005000
+=== Measurement groups ===
+expression_index | rows_base=10000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=9.073 | avg_per_row_ms=0.009073
+function_index | rows_base=10000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=7.805 | avg_per_row_ms=0.007805
+no_index | rows_base=10000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=2.569 | avg_per_row_ms=0.002569
+simple_btree | rows_base=10000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=3.675 | avg_per_row_ms=0.003675
+unique_btree | rows_base=10000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=4.093 | avg_per_row_ms=0.004093
+expression_index | rows_base=50000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=5.924 | avg_per_row_ms=0.005924
+function_index | rows_base=50000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=10.722 | avg_per_row_ms=0.010722
+no_index | rows_base=50000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=2.450 | avg_per_row_ms=0.002450
+simple_btree | rows_base=50000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=4.937 | avg_per_row_ms=0.004937
+unique_btree | rows_base=50000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=4.527 | avg_per_row_ms=0.004527
+expression_index | rows_base=100000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=5.988 | avg_per_row_ms=0.005988
+function_index | rows_base=100000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=7.089 | avg_per_row_ms=0.007089
+no_index | rows_base=100000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=3.428 | avg_per_row_ms=0.003428
+simple_btree | rows_base=100000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=5.282 | avg_per_row_ms=0.005282
+unique_btree | rows_base=100000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=3.402 | avg_per_row_ms=0.003402
+expression_index | rows_base=500000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=7.836 | avg_per_row_ms=0.007836
+function_index | rows_base=500000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=7.460 | avg_per_row_ms=0.007460
+no_index | rows_base=500000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=2.638 | avg_per_row_ms=0.002638
+simple_btree | rows_base=500000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=4.780 | avg_per_row_ms=0.004780
+unique_btree | rows_base=500000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=3.385 | avg_per_row_ms=0.003385
+expression_index | rows_base=1000000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=7.872 | avg_per_row_ms=0.007872
+function_index | rows_base=1000000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=9.363 | avg_per_row_ms=0.009363
+no_index | rows_base=1000000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=2.796 | avg_per_row_ms=0.002796
+simple_btree | rows_base=1000000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=5.582 | avg_per_row_ms=0.005582
+unique_btree | rows_base=1000000 | runs=5 | batch=1000..1000 | inserted=1000..1000 | avg_total_ms=3.244 | avg_per_row_ms=0.003244
+=== Correctness check ===
+expression_index | sizes=5 | total_runs=25 | batch=1000..1000 | inserted=1000..1000 | OK
+function_index | sizes=5 | total_runs=25 | batch=1000..1000 | inserted=1000..1000 | OK
+no_index | sizes=5 | total_runs=25 | batch=1000..1000 | inserted=1000..1000 | OK
+simple_btree | sizes=5 | total_runs=25 | batch=1000..1000 | inserted=1000..1000 | OK
+unique_btree | sizes=5 | total_runs=25 | batch=1000..1000 | inserted=1000..1000 | OK
+=== Expected files ===
+-rwxrwxrwx 1 root root 158K May  3 20:59 charts/04_insert_indexes_per_row.png
+-rwxrwxrwx 1 root root 156K May  3 20:59 charts/04_insert_indexes.png
+-rwxrwxrwx 1 root root 9.7K May  3 20:59 logs/04_insert_indexes.log
+-rwxrwxrwx 1 root root  106 May  3 20:59 logs/05_export_insert_indexes.log
+-rwxrwxrwx 1 root root 2.1K May  3 20:59 report/04_insert_indexes_measurements.csv
+-rwxrwxrwx 1 root root  291 May  3 20:59 report/04_insert_indexes_sizes.csv

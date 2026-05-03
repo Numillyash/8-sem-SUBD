@@ -1,0 +1,5 @@
+COPY 25
+COPY 5
+exported:
+  report/04_insert_indexes_measurements.csv
+  report/04_insert_indexes_sizes.csv

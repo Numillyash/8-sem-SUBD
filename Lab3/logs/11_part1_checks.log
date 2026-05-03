@@ -1,0 +1,30 @@
+Pager usage is off.
+Проверка количества данных
+     table_name      | rows_count 
+---------------------+------------
+ documents           |         10
+ document_operations |         13
+(2 rows)
+
+Проверка документов по степени секретности
+ secrecy_level | documents_count 
+---------------+-----------------
+ ДСП           |               2
+ несекретный   |               5
+ секретно      |               3
+(3 rows)
+
+Проверка количества операций по документам
+ document_number | operations_count | distinct_operation_types 
+-----------------+------------------+--------------------------
+ DOC-001         |                2 |                        2
+ DOC-002         |                2 |                        2
+ DOC-003         |                1 |                        1
+ DOC-004         |                1 |                        1
+ DOC-005         |                1 |                        1
+ DOC-006         |                1 |                        1
+ DOC-007         |                1 |                        1
+ DOC-008         |                1 |                        1
+ DOC-009         |                3 |                        3
+(9 rows)
+

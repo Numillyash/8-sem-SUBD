@@ -1,0 +1,6 @@
+index_type,tested_table_sizes,total_runs,affected_rows_min,affected_rows_max,trigger_rows_min,trigger_rows_max,check_result
+expression_index,5,25,1000,1000,1000,1000,OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+function_index,5,25,1000,1000,1000,1000,OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+lookup_only,5,25,1000,1000,1000,1000,OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+simple_btree,5,25,1000,1000,1000,1000,OK: every UPDATE affected 1000 rows and trigger fired 1000 times
+unique_btree,5,25,1000,1000,1000,1000,OK: every UPDATE affected 1000 rows and trigger fired 1000 times

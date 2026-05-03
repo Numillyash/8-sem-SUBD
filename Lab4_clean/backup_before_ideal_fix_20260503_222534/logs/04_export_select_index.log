@@ -1,0 +1,5 @@
+COPY 10
+COPY 2
+exported:
+  report/03_select_index_measurements.csv
+  report/03_select_index_sizes.csv

@@ -1,0 +1,23 @@
+=== Row counts ===
+select_no_index=1000000
+select_btree_index=1000000
+=== Measurement groups ===
+btree_index | rows=10000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=0.059606
+without_index | rows=10000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=0.739340
+btree_index | rows=50000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=0.024326
+without_index | rows=50000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=3.185438
+btree_index | rows=100000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=0.031584
+without_index | rows=100000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=6.075253
+btree_index | rows=500000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=0.029726
+without_index | rows=500000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=23.528276
+btree_index | rows=1000000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=0.028609
+without_index | rows=1000000 | runs=5 | probes=200..200 | found=200..200 | avg_ms=32.169530
+=== Correctness check ===
+btree_index | sizes=5 | total_runs=25 | probes=200..200 | found=200..200 | OK
+without_index | sizes=5 | total_runs=25 | probes=200..200 | found=200..200 | OK
+=== Expected files ===
+-rwxrwxrwx 1 root root 100K May  3 20:50 charts/03_select_index.png
+-rwxrwxrwx 1 root root 5.7K May  3 20:33 logs/03_select_index.log
+-rwxrwxrwx 1 root root  102 May  3 20:50 logs/04_export_select_index.log
+-rwxrwxrwx 1 root root  888 May  3 20:50 report/03_select_index_measurements.csv
+-rwxrwxrwx 1 root root  135 May  3 20:50 report/03_select_index_sizes.csv

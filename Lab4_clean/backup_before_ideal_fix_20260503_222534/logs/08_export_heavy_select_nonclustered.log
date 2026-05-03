@@ -1,0 +1,5 @@
+COPY 6
+COPY 2
+exported:
+  report/08_heavy_select_nonclustered_measurements.csv
+  report/08_heavy_select_nonclustered_sizes.csv

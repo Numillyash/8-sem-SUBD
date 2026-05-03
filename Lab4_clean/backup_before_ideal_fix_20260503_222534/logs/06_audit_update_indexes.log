@@ -1,0 +1,46 @@
+=== Row counts after final UPDATE series ===
+update_expression_index=1000000
+update_unique_btree=1000000
+update_no_extra_index=1000000
+update_function_index=1000000
+update_simple_btree=1000000
+=== Measurement groups ===
+expression_index | rows_base=10000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=14.017 | avg_per_row_ms=0.014017
+function_index | rows_base=10000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=17.252 | avg_per_row_ms=0.017252
+no_extra_index | rows_base=10000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=10.802 | avg_per_row_ms=0.010802
+simple_btree | rows_base=10000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=13.767 | avg_per_row_ms=0.013767
+unique_btree | rows_base=10000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=12.238 | avg_per_row_ms=0.012238
+expression_index | rows_base=50000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=16.963 | avg_per_row_ms=0.016963
+function_index | rows_base=50000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=17.709 | avg_per_row_ms=0.017709
+no_extra_index | rows_base=50000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=12.635 | avg_per_row_ms=0.012635
+simple_btree | rows_base=50000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=14.861 | avg_per_row_ms=0.014861
+unique_btree | rows_base=50000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=14.806 | avg_per_row_ms=0.014806
+expression_index | rows_base=100000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=16.394 | avg_per_row_ms=0.016394
+function_index | rows_base=100000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=22.606 | avg_per_row_ms=0.022606
+no_extra_index | rows_base=100000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=13.966 | avg_per_row_ms=0.013966
+simple_btree | rows_base=100000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=18.710 | avg_per_row_ms=0.018710
+unique_btree | rows_base=100000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=14.424 | avg_per_row_ms=0.014424
+expression_index | rows_base=500000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=17.943 | avg_per_row_ms=0.017943
+function_index | rows_base=500000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=24.092 | avg_per_row_ms=0.024092
+no_extra_index | rows_base=500000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=14.671 | avg_per_row_ms=0.014671
+simple_btree | rows_base=500000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=17.612 | avg_per_row_ms=0.017612
+unique_btree | rows_base=500000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=20.850 | avg_per_row_ms=0.020850
+expression_index | rows_base=1000000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=21.641 | avg_per_row_ms=0.021641
+function_index | rows_base=1000000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=29.248 | avg_per_row_ms=0.029248
+no_extra_index | rows_base=1000000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=20.581 | avg_per_row_ms=0.020581
+simple_btree | rows_base=1000000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=21.209 | avg_per_row_ms=0.021209
+unique_btree | rows_base=1000000 | runs=5 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | avg_total_ms=21.045 | avg_per_row_ms=0.021045
+=== Correctness check ===
+expression_index | sizes=5 | total_runs=25 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | OK
+function_index | sizes=5 | total_runs=25 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | OK
+no_extra_index | sizes=5 | total_runs=25 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | OK
+simple_btree | sizes=5 | total_runs=25 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | OK
+unique_btree | sizes=5 | total_runs=25 | batch=1000..1000 | affected=1000..1000 | trigger=1000..1000 | OK
+=== Expected files ===
+-rwxrwxrwx 1 root root 190K May  3 21:05 charts/05_update_indexes_per_row.png
+-rwxrwxrwx 1 root root 178K May  3 21:05 charts/05_update_indexes.png
+-rwxrwxrwx 1 root root  15K May  3 21:04 logs/05_update_indexes.log
+-rwxrwxrwx 1 root root  152 May  3 21:05 logs/06_export_update_indexes.log
+-rwxrwxrwx 1 root root 2.5K May  3 21:05 report/05_update_indexes_measurements.csv
+-rwxrwxrwx 1 root root  305 May  3 21:05 report/05_update_indexes_sizes.csv
+-rwxrwxrwx 1 root root  757 May  3 21:05 report/05_update_trigger_control.csv
