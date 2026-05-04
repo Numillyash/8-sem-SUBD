@@ -1,0 +1,56 @@
+saved:
+  /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/report/14_report_dependency_summary.csv
+  /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/report/14_report_dependency_summary.txt
+
+Кратко по формулам, которые можно использовать в отчете:
+operation_name                 index_type                       metric           recommended_model teacher_model_name    teacher_r2 statistical_model_name
+        insert           expression_index         avg_total_elapsed_ms       logarithmic or linear        logarithmic  8.378891e-01            logarithmic
+        insert             function_index         avg_total_elapsed_ms       logarithmic or linear        logarithmic  7.169309e-01            logarithmic
+        insert                   no_index         avg_total_elapsed_ms constant / weak logarithmic           constant  0.000000e+00            logarithmic
+        insert               simple_btree         avg_total_elapsed_ms       logarithmic or linear        logarithmic  6.670685e-01                 linear
+        insert               unique_btree         avg_total_elapsed_ms       logarithmic or linear        logarithmic  6.884560e-01            logarithmic
+        select   btree_index_nonclustered avg_elapsed_ms_per_operation logarithmic / near-constant        logarithmic  4.796630e-01                 linear
+        select without_index_nonclustered avg_elapsed_ms_per_operation                      linear             linear  9.620040e-01                 linear
+        select   btree_index_nonclustered         avg_total_elapsed_ms logarithmic / near-constant        logarithmic  4.796630e-01                 linear
+        select without_index_nonclustered         avg_total_elapsed_ms                      linear             linear  9.620040e-01                 linear
+   size_insert           expression_index                indexes_bytes                      linear             linear  9.098633e-01                 linear
+   size_insert             function_index                indexes_bytes                      linear             linear  9.997214e-01                 linear
+   size_insert                   no_index                indexes_bytes                    constant           constant  1.000000e+00               constant
+   size_insert               simple_btree                indexes_bytes                      linear             linear  9.996729e-01                 linear
+   size_insert               unique_btree                indexes_bytes                      linear             linear  9.999987e-01                 linear
+   size_insert           expression_index               relation_bytes                      linear             linear  9.999968e-01                 linear
+   size_insert             function_index               relation_bytes                      linear             linear  9.999968e-01                 linear
+   size_insert                   no_index               relation_bytes                      linear             linear  9.999968e-01                 linear
+   size_insert               simple_btree               relation_bytes                      linear             linear  9.999968e-01                 linear
+   size_insert               unique_btree               relation_bytes                      linear             linear  9.999968e-01                 linear
+   size_insert           expression_index                  total_bytes                      linear             linear  9.977498e-01                 linear
+   size_insert             function_index                  total_bytes                      linear             linear  9.999968e-01                 linear
+   size_insert                   no_index                  total_bytes                      linear             linear  9.999972e-01                 linear
+   size_insert               simple_btree                  total_bytes                      linear             linear  9.999966e-01                 linear
+   size_insert               unique_btree                  total_bytes                      linear             linear  9.999985e-01                 linear
+   size_select   btree_index_nonclustered                indexes_bytes                      linear             linear  9.999987e-01                 linear
+   size_select without_index_nonclustered                indexes_bytes                    constant           constant  1.000000e+00               constant
+   size_select   btree_index_nonclustered               relation_bytes                      linear             linear  9.999999e-01                 linear
+   size_select without_index_nonclustered               relation_bytes                      linear             linear  9.999999e-01                 linear
+   size_select   btree_index_nonclustered                  total_bytes                      linear             linear  9.999995e-01                 linear
+   size_select without_index_nonclustered                  total_bytes                      linear             linear  9.999995e-01                 linear
+   size_update           expression_index                indexes_bytes                      linear             linear  9.998179e-01                 linear
+   size_update             function_index                indexes_bytes                      linear             linear  9.994556e-01                 linear
+   size_update             no_extra_index                indexes_bytes                      linear           constant -2.220446e-16                 linear
+   size_update               simple_btree                indexes_bytes                      linear             linear  9.994556e-01                 linear
+   size_update               unique_btree                indexes_bytes                      linear             linear  9.999987e-01                 linear
+   size_update           expression_index               relation_bytes                      linear             linear  1.000000e+00                 linear
+   size_update             function_index               relation_bytes                      linear             linear  1.000000e+00                 linear
+   size_update             no_extra_index               relation_bytes                      linear             linear  1.000000e+00                 linear
+   size_update               simple_btree               relation_bytes                      linear             linear  1.000000e+00                 linear
+   size_update               unique_btree               relation_bytes                      linear             linear  1.000000e+00                 linear
+   size_update           expression_index                  total_bytes                      linear             linear  9.999872e-01                 linear
+   size_update             function_index                  total_bytes                      linear             linear  9.999627e-01                 linear
+   size_update             no_extra_index                  total_bytes                      linear             linear  9.999997e-01                 linear
+   size_update               simple_btree                  total_bytes                      linear             linear  9.999627e-01                 linear
+   size_update               unique_btree                  total_bytes                      linear             linear  9.999996e-01                 linear
+        update           expression_index         avg_total_elapsed_ms       logarithmic or linear        logarithmic  4.298082e-01            logarithmic
+        update             function_index         avg_total_elapsed_ms       logarithmic or linear        logarithmic  5.689866e-01            logarithmic
+        update             no_extra_index         avg_total_elapsed_ms constant / weak logarithmic           constant -2.220446e-16            logarithmic
+        update               simple_btree         avg_total_elapsed_ms       logarithmic or linear        logarithmic  7.441998e-01            logarithmic
+        update               unique_btree         avg_total_elapsed_ms       logarithmic or linear        logarithmic  4.872062e-01            logarithmic

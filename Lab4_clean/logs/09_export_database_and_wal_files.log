@@ -1,7 +1,7 @@
 === Export database size ===
 COPY 1
 === Export relation sizes ===
-COPY 31
+COPY 34
 === Export filesystem usage inside PostgreSQL container ===
 === Export pg_wal files ===
 === Export pg_wal summary ===

@@ -1,0 +1,80 @@
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_select_avg_total_elapsed_ms.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_select_avg_total_elapsed_ms_logx.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_select_avg_elapsed_ms_per_operation.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_select_avg_elapsed_ms_per_operation_logx.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_insert_avg_total_elapsed_ms.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_insert_avg_total_elapsed_ms_logx.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_insert_avg_elapsed_ms_per_operation.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_insert_avg_elapsed_ms_per_operation_logx.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_update_avg_total_elapsed_ms.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_update_avg_total_elapsed_ms_logx.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_update_avg_elapsed_ms_per_operation.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/13_teacher_update_avg_elapsed_ms_per_operation_logx.png
+saved:
+  /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/report/13_teacher_expected_fits_all_models.csv
+  /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/report/13_teacher_expected_fits_selected.csv
+  /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/report/13_teacher_expected_formulas.txt
+  charts/13_teacher_*.png
+
+Выбранные teacher-модели:
+operation_name                 index_type                       metric teacher_model_name                          teacher_formula    teacher_r2  teacher_mape_percent statistical_model_name models_match
+        insert           expression_index avg_elapsed_ms_per_operation        logarithmic      y = 0.00474497 + 4.018874e-04·ln(N)  1.464396e-01             33.784928                 linear           NO
+        insert             function_index avg_elapsed_ms_per_operation        logarithmic     y = 0.00680641 + -2.967561e-04·ln(N)  1.831331e-01             30.760866               constant           NO
+        insert                   no_index avg_elapsed_ms_per_operation           constant                           y = 0.00258363 -2.220446e-16             49.882249            logarithmic           NO
+        insert               simple_btree avg_elapsed_ms_per_operation        logarithmic      y = 0.00407433 + 7.535571e-05·ln(N)  7.966028e-03             44.757834            exponential           NO
+        insert               unique_btree avg_elapsed_ms_per_operation        logarithmic     y = 0.00840063 + -4.257417e-04·ln(N)  3.264341e-01             26.184708            logarithmic          YES
+        insert           expression_index         avg_total_elapsed_ms        logarithmic             y = -5.28059 + 1.33953·ln(N)  8.378891e-01             26.662613            logarithmic          YES
+        insert             function_index         avg_total_elapsed_ms        logarithmic           y = -0.755798 + 0.415821·ln(N)  7.169309e-01             38.531498            logarithmic          YES
+        insert                   no_index         avg_total_elapsed_ms           constant                              y = 1.40692  0.000000e+00             57.849658            logarithmic           NO
+        insert               simple_btree         avg_total_elapsed_ms        logarithmic            y = -3.05156 + 0.745256·ln(N)  6.670685e-01             38.001981                 linear           NO
+        insert               unique_btree         avg_total_elapsed_ms        logarithmic           y = -0.271684 + 0.390386·ln(N)  6.884560e-01             35.841838            logarithmic          YES
+        select   btree_index_nonclustered avg_elapsed_ms_per_operation        logarithmic       y = -0.00121876 + 0.00622445·ln(N)  4.796630e-01             34.062391                 linear           NO
+        select without_index_nonclustered avg_elapsed_ms_per_operation             linear           y = 0.326265 + 38.8974·(N/1e6)  9.620040e-01            336.884033                 linear          YES
+        select   btree_index_nonclustered         avg_total_elapsed_ms        logarithmic            y = -0.243752 + 1.24489·ln(N)  4.796630e-01             34.062390                 linear           NO
+        select without_index_nonclustered         avg_total_elapsed_ms             linear             y = 65.253 + 7779.48·(N/1e6)  9.620040e-01            336.884029                 linear          YES
+   size_insert           expression_index                indexes_bytes             linear  y = 3.449349e+05 + 1.485575e+07·(N/1e6)  9.098633e-01            634.797500                 linear          YES
+   size_insert             function_index                indexes_bytes             linear  y = 2.478752e+04 + 7.318190e+06·(N/1e6)  9.997214e-01             22.554657                 linear          YES
+   size_insert                   no_index                indexes_bytes           constant                                   y = -0  1.000000e+00                   NaN               constant          YES
+   size_insert               simple_btree                indexes_bytes             linear  y = 2.435983e+04 + 7.298054e+06·(N/1e6)  9.996729e-01             22.372198                 linear          YES
+   size_insert               unique_btree                indexes_bytes             linear  y = 1.713057e+04 + 2.248216e+07·(N/1e6)  9.999987e-01              6.883762                 linear          YES
+   size_insert           expression_index               relation_bytes             linear y = -1.687866e+04 + 8.291568e+07·(N/1e6)  9.999968e-01             47.554938                 linear          YES
+   size_insert             function_index               relation_bytes             linear y = -1.687866e+04 + 8.291568e+07·(N/1e6)  9.999968e-01             47.554938                 linear          YES
+   size_insert                   no_index               relation_bytes             linear y = -1.687866e+04 + 8.291568e+07·(N/1e6)  9.999968e-01             47.554938                 linear          YES
+   size_insert               simple_btree               relation_bytes             linear y = -1.687866e+04 + 8.291568e+07·(N/1e6)  9.999968e-01             47.554938                 linear          YES
+   size_insert               unique_btree               relation_bytes             linear y = -1.687866e+04 + 8.291568e+07·(N/1e6)  9.999968e-01             47.554938                 linear          YES
+   size_insert           expression_index                  total_bytes             linear  y = 3.556768e+05 + 9.779891e+07·(N/1e6)  9.977498e-01            235.312157                 linear          YES
+   size_insert             function_index                  total_bytes             linear  y = 3.552938e+04 + 9.026135e+07·(N/1e6)  9.999968e-01             10.855134                 linear          YES
+   size_insert                   no_index                  total_bytes             linear  y = 1.074186e+04 + 8.294316e+07·(N/1e6)  9.999972e-01             10.102660                 linear          YES
+   size_insert               simple_btree                  total_bytes             linear  y = 3.510168e+04 + 9.024122e+07·(N/1e6)  9.999966e-01             10.768500                 linear          YES
+   size_insert               unique_btree                  total_bytes             linear  y = 2.787243e+04 + 1.054253e+08·(N/1e6)  9.999985e-01              7.164967                 linear          YES
+   size_select   btree_index_nonclustered                indexes_bytes             linear  y = 1.713057e+04 + 2.248216e+07·(N/1e6)  9.999987e-01              6.883762                 linear          YES
+   size_select without_index_nonclustered                indexes_bytes           constant                                   y = -0  1.000000e+00                   NaN               constant          YES
+   size_select   btree_index_nonclustered               relation_bytes             linear      y = -1038.07 + 6.819421e+07·(N/1e6)  9.999999e-01              8.538860                 linear          YES
+   size_select without_index_nonclustered               relation_bytes             linear      y = -1038.07 + 6.819421e+07·(N/1e6)  9.999999e-01              8.538860                 linear          YES
+   size_select   btree_index_nonclustered                  total_bytes             linear  y = 4.393272e+04 + 9.070951e+07·(N/1e6)  9.999995e-01              9.657115                 linear          YES
+   size_select without_index_nonclustered                  total_bytes             linear  y = 2.658245e+04 + 6.822170e+07·(N/1e6)  9.999995e-01             16.205680                 linear          YES
+   size_update           expression_index                indexes_bytes             linear  y = 9.307695e+04 + 2.933033e+07·(N/1e6)  9.998179e-01             57.965220                 linear          YES
+   size_update             function_index                indexes_bytes             linear  y = 1.245044e+05 + 2.960034e+07·(N/1e6)  9.994556e-01             89.241497                 linear          YES
+   size_update             no_extra_index                indexes_bytes           constant                         y = 1.650373e+06 -2.220446e-16           3312.763400                 linear           NO
+   size_update               simple_btree                indexes_bytes             linear  y = 1.245044e+05 + 2.960034e+07·(N/1e6)  9.994556e-01             89.241497                 linear          YES
+   size_update               unique_btree                indexes_bytes             linear  y = 3.426114e+04 + 4.496432e+07·(N/1e6)  9.999987e-01              6.883762                 linear          YES
+   size_update           expression_index               relation_bytes             linear       y = 4586.01 + 8.445048e+07·(N/1e6)  1.000000e+00              3.114805                 linear          YES
+   size_update             function_index               relation_bytes             linear       y = 4586.01 + 8.445048e+07·(N/1e6)  1.000000e+00              3.114805                 linear          YES
+   size_update             no_extra_index               relation_bytes             linear       y = 4586.01 + 8.445048e+07·(N/1e6)  1.000000e+00              3.114805                 linear          YES
+   size_update               simple_btree               relation_bytes             linear       y = 4586.01 + 8.445048e+07·(N/1e6)  1.000000e+00              3.114805                 linear          YES
+   size_update               unique_btree               relation_bytes             linear       y = 4586.01 + 8.445048e+07·(N/1e6)  1.000000e+00              3.114805                 linear          YES
+   size_update           expression_index                  total_bytes             linear  y = 1.276776e+05 + 1.138014e+08·(N/1e6)  9.999872e-01             28.882740                 linear          YES
+   size_update             function_index                  total_bytes             linear  y = 1.591051e+05 + 1.140714e+08·(N/1e6)  9.999627e-01             43.134983                 linear          YES
+   size_update             no_extra_index                  total_bytes             linear  y = 5.173124e+04 + 1.069532e+08·(N/1e6)  9.999997e-01              7.574950                 linear          YES
+   size_update               simple_btree                  total_bytes             linear  y = 1.591051e+05 + 1.140714e+08·(N/1e6)  9.999627e-01             43.134983                 linear          YES
+   size_update               unique_btree                  total_bytes             linear  y = 6.886181e+04 + 1.294354e+08·(N/1e6)  9.999996e-01              6.189946                 linear          YES
+        update           expression_index avg_elapsed_ms_per_operation        logarithmic      y = 0.0186202 + -1.966168e-04·ln(N)  2.181274e-02             16.531146               constant           NO
+        update             function_index avg_elapsed_ms_per_operation        logarithmic      y = 0.0209972 + -3.189732e-04·ln(N)  5.504894e-02             18.182455               constant           NO
+        update             no_extra_index avg_elapsed_ms_per_operation           constant                             y = 0.014864  1.110223e-16             14.774754               constant          YES
+        update               simple_btree avg_elapsed_ms_per_operation        logarithmic      y = 0.0206837 + -4.190007e-04·ln(N)  8.982713e-02             17.145708               constant           NO
+        update               unique_btree avg_elapsed_ms_per_operation        logarithmic        y = 0.01845 + -2.443709e-04·ln(N)  6.010645e-02             15.651197               constant           NO
+        update           expression_index         avg_total_elapsed_ms        logarithmic             y = -0.45133 + 1.55808·ln(N)  4.298082e-01             95.506203            logarithmic          YES
+        update             function_index         avg_total_elapsed_ms        logarithmic              y = -1.44567 + 1.7519·ln(N)  5.689866e-01             83.610965            logarithmic          YES
+        update             no_extra_index         avg_total_elapsed_ms           constant                               y = 11.048 -2.220446e-16            169.808401            logarithmic           NO
+        update               simple_btree         avg_total_elapsed_ms        logarithmic             y = -3.28813 + 1.82282·ln(N)  7.441998e-01             47.334094            logarithmic          YES
+        update               unique_btree         avg_total_elapsed_ms        logarithmic            y = -0.538934 + 1.51364·ln(N)  4.872062e-01             92.433458            logarithmic          YES

@@ -1,0 +1,606 @@
+Подбор ожидаемых зависимостей для отчета ЛР-4
+Точки с rows_base < 50 исключены из fit.
+Проверяемые модели: constant, logarithmic, linear, exponential.
+teacher_model выбирается по теоретическому приоритету для операции.
+statistical_model выбирается по AICc среди этих моделей.
+
+[insert | expression_index | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.00474497 + 4.018874e-04·ln(N)
+teacher R2: 0.146440, RMSE: 0.002793, MAPE: 33.785%
+statistical model: linear
+statistical formula: y = 0.00713089 + 0.0142751·(N/1e6)
+statistical R2: 0.441076, RMSE: 0.002260, MAPE: 24.553%
+models match: NO
+
+[insert | function_index | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.00680641 + -2.967561e-04·ln(N)
+teacher R2: 0.183133, RMSE: 0.001804, MAPE: 30.761%
+statistical model: constant
+statistical formula: y = 0.00427888
+statistical R2: 0.000000, RMSE: 0.001996, MAPE: 29.760%
+models match: NO
+
+[insert | no_index | avg_elapsed_ms_per_operation]
+expected priority: constant > logarithmic > linear > exponential
+teacher model: constant
+teacher formula: y = 0.00258363
+teacher R2: -0.000000, RMSE: 0.001919, MAPE: 49.882%
+statistical model: logarithmic
+statistical formula: y = 0.00645195 + -4.541780e-04·ln(N)
+statistical R2: 0.463983, RMSE: 0.001405, MAPE: 39.841%
+models match: NO
+
+[insert | simple_btree | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.00407433 + 7.535571e-05·ln(N)
+teacher R2: 0.007966, RMSE: 0.002421, MAPE: 44.758%
+statistical model: exponential
+statistical formula: y = 0.00366597·exp(1.98193·(N/1e6))
+statistical R2: 0.520947, RMSE: 0.001682, MAPE: 24.557%
+models match: NO
+
+[insert | unique_btree | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.00840063 + -4.257417e-04·ln(N)
+teacher R2: 0.326434, RMSE: 0.001760, MAPE: 26.185%
+statistical model: logarithmic
+statistical formula: y = 0.00840063 + -4.257417e-04·ln(N)
+statistical R2: 0.326434, RMSE: 0.001760, MAPE: 26.185%
+models match: YES
+
+[insert | expression_index | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -5.28059 + 1.33953·ln(N)
+teacher R2: 0.837889, RMSE: 1.696037, MAPE: 26.663%
+statistical model: logarithmic
+statistical formula: y = -5.28059 + 1.33953·ln(N)
+statistical R2: 0.837889, RMSE: 1.696037, MAPE: 26.663%
+models match: YES
+
+[insert | function_index | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -0.755798 + 0.415821·ln(N)
+teacher R2: 0.716931, RMSE: 0.752116, MAPE: 38.531%
+statistical model: logarithmic
+statistical formula: y = -0.755798 + 0.415821·ln(N)
+statistical R2: 0.716931, RMSE: 0.752116, MAPE: 38.531%
+models match: YES
+
+[insert | no_index | avg_total_elapsed_ms]
+expected priority: constant > logarithmic > linear > exponential
+teacher model: constant
+teacher formula: y = 1.40692
+teacher R2: 0.000000, RMSE: 0.563640, MAPE: 57.850%
+statistical model: logarithmic
+statistical formula: y = 0.444484 + 0.113·ln(N)
+statistical R2: 0.333036, RMSE: 0.460312, MAPE: 37.584%
+models match: NO
+
+[insert | simple_btree | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -3.05156 + 0.745256·ln(N)
+teacher R2: 0.667068, RMSE: 1.515543, MAPE: 38.002%
+statistical model: linear
+statistical formula: y = 2.03399 + 17.371·(N/1e6)
+statistical R2: 0.865187, RMSE: 0.964398, MAPE: 68.338%
+models match: NO
+
+[insert | unique_btree | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -0.271684 + 0.390386·ln(N)
+teacher R2: 0.688456, RMSE: 0.755938, MAPE: 35.842%
+statistical model: logarithmic
+statistical formula: y = -0.271684 + 0.390386·ln(N)
+statistical R2: 0.688456, RMSE: 0.755938, MAPE: 35.842%
+models match: YES
+
+[select | btree_index_nonclustered | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > constant > linear > exponential
+teacher model: logarithmic
+teacher formula: y = -0.00121876 + 0.00622445·ln(N)
+teacher R2: 0.479663, RMSE: 0.018661, MAPE: 34.062%
+statistical model: linear
+statistical formula: y = 0.0412997 + 0.144486·(N/1e6)
+statistical R2: 0.617006, RMSE: 0.016010, MAPE: 27.460%
+models match: NO
+
+[select | without_index_nonclustered | avg_elapsed_ms_per_operation]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 0.326265 + 38.8974·(N/1e6)
+teacher R2: 0.962004, RMSE: 1.087234, MAPE: 336.884%
+statistical model: linear
+statistical formula: y = 0.326265 + 38.8974·(N/1e6)
+statistical R2: 0.962004, RMSE: 1.087234, MAPE: 336.884%
+models match: YES
+
+[select | btree_index_nonclustered | avg_total_elapsed_ms]
+expected priority: logarithmic > constant > linear > exponential
+teacher model: logarithmic
+teacher formula: y = -0.243752 + 1.24489·ln(N)
+teacher R2: 0.479663, RMSE: 3.732296, MAPE: 34.062%
+statistical model: linear
+statistical formula: y = 8.25995 + 28.8972·(N/1e6)
+statistical R2: 0.617006, RMSE: 3.202063, MAPE: 27.460%
+models match: NO
+
+[select | without_index_nonclustered | avg_total_elapsed_ms]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 65.253 + 7779.48·(N/1e6)
+teacher R2: 0.962004, RMSE: 217.446816, MAPE: 336.884%
+statistical model: linear
+statistical formula: y = 65.253 + 7779.48·(N/1e6)
+statistical R2: 0.962004, RMSE: 217.446816, MAPE: 336.884%
+models match: YES
+
+[size_insert | expression_index | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 3.449349e+05 + 1.485575e+07·(N/1e6)
+teacher R2: 0.909863, RMSE: 657626.232604, MAPE: 634.798%
+statistical model: linear
+statistical formula: y = 3.449349e+05 + 1.485575e+07·(N/1e6)
+statistical R2: 0.909863, RMSE: 657626.232604, MAPE: 634.798%
+models match: YES
+
+[size_insert | function_index | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 2.478752e+04 + 7.318190e+06·(N/1e6)
+teacher R2: 0.999721, RMSE: 17183.025263, MAPE: 22.555%
+statistical model: linear
+statistical formula: y = 2.478752e+04 + 7.318190e+06·(N/1e6)
+statistical R2: 0.999721, RMSE: 17183.025263, MAPE: 22.555%
+models match: YES
+
+[size_insert | no_index | indexes_bytes]
+expected priority: constant > linear > logarithmic > exponential
+teacher model: constant
+teacher formula: y = -0
+teacher R2: 1.000000, RMSE: 0.000000, MAPE: nan%
+statistical model: constant
+statistical formula: y = -0
+statistical R2: 1.000000, RMSE: 0.000000, MAPE: nan%
+models match: YES
+
+[size_insert | simple_btree | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 2.435983e+04 + 7.298054e+06·(N/1e6)
+teacher R2: 0.999673, RMSE: 18565.865895, MAPE: 22.372%
+statistical model: linear
+statistical formula: y = 2.435983e+04 + 7.298054e+06·(N/1e6)
+statistical R2: 0.999673, RMSE: 18565.865895, MAPE: 22.372%
+models match: YES
+
+[size_insert | unique_btree | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+teacher R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+statistical model: linear
+statistical formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+statistical R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+models match: YES
+
+[size_insert | expression_index | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+statistical model: linear
+statistical formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+models match: YES
+
+[size_insert | function_index | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+statistical model: linear
+statistical formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+models match: YES
+
+[size_insert | no_index | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+statistical model: linear
+statistical formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+models match: YES
+
+[size_insert | simple_btree | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+statistical model: linear
+statistical formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+models match: YES
+
+[size_insert | unique_btree | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+statistical model: linear
+statistical formula: y = -1.687866e+04 + 8.291568e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 20949.045541, MAPE: 47.555%
+models match: YES
+
+[size_insert | expression_index | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 3.556768e+05 + 9.779891e+07·(N/1e6)
+teacher R2: 0.997750, RMSE: 653210.735123, MAPE: 235.312%
+statistical model: linear
+statistical formula: y = 3.556768e+05 + 9.779891e+07·(N/1e6)
+statistical R2: 0.997750, RMSE: 653210.735123, MAPE: 235.312%
+models match: YES
+
+[size_insert | function_index | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 3.552938e+04 + 9.026135e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 22573.622955, MAPE: 10.855%
+statistical model: linear
+statistical formula: y = 3.552938e+04 + 9.026135e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 22573.622955, MAPE: 10.855%
+models match: YES
+
+[size_insert | no_index | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.074186e+04 + 8.294316e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 19565.948034, MAPE: 10.103%
+statistical model: linear
+statistical formula: y = 1.074186e+04 + 8.294316e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 19565.948034, MAPE: 10.103%
+models match: YES
+
+[size_insert | simple_btree | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 3.510168e+04 + 9.024122e+07·(N/1e6)
+teacher R2: 0.999997, RMSE: 23445.270386, MAPE: 10.768%
+statistical model: linear
+statistical formula: y = 3.510168e+04 + 9.024122e+07·(N/1e6)
+statistical R2: 0.999997, RMSE: 23445.270386, MAPE: 10.768%
+models match: YES
+
+[size_insert | unique_btree | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 2.787243e+04 + 1.054253e+08·(N/1e6)
+teacher R2: 0.999999, RMSE: 18023.876949, MAPE: 7.165%
+statistical model: linear
+statistical formula: y = 2.787243e+04 + 1.054253e+08·(N/1e6)
+statistical R2: 0.999999, RMSE: 18023.876949, MAPE: 7.165%
+models match: YES
+
+[size_select | btree_index_nonclustered | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+teacher R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+statistical model: linear
+statistical formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+statistical R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+models match: YES
+
+[size_select | without_index_nonclustered | indexes_bytes]
+expected priority: constant > linear > logarithmic > exponential
+teacher model: constant
+teacher formula: y = -0
+teacher R2: 1.000000, RMSE: 0.000000, MAPE: nan%
+statistical model: constant
+statistical formula: y = -0
+statistical R2: 1.000000, RMSE: 0.000000, MAPE: nan%
+models match: YES
+
+[size_select | btree_index_nonclustered | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1038.07 + 6.819421e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 3086.311104, MAPE: 8.539%
+statistical model: linear
+statistical formula: y = -1038.07 + 6.819421e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 3086.311104, MAPE: 8.539%
+models match: YES
+
+[size_select | without_index_nonclustered | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = -1038.07 + 6.819421e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 3086.311104, MAPE: 8.539%
+statistical model: linear
+statistical formula: y = -1038.07 + 6.819421e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 3086.311104, MAPE: 8.539%
+models match: YES
+
+[size_select | btree_index_nonclustered | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 4.393272e+04 + 9.070951e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 8991.530500, MAPE: 9.657%
+statistical model: linear
+statistical formula: y = 4.393272e+04 + 9.070951e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 8991.530500, MAPE: 9.657%
+models match: YES
+
+[size_select | without_index_nonclustered | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 2.658245e+04 + 6.822170e+07·(N/1e6)
+teacher R2: 0.999999, RMSE: 7099.317347, MAPE: 16.206%
+statistical model: linear
+statistical formula: y = 2.658245e+04 + 6.822170e+07·(N/1e6)
+statistical R2: 0.999999, RMSE: 7099.317347, MAPE: 16.206%
+models match: YES
+
+[size_update | expression_index | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 9.307695e+04 + 2.933033e+07·(N/1e6)
+teacher R2: 0.999818, RMSE: 55673.997864, MAPE: 57.965%
+statistical model: linear
+statistical formula: y = 9.307695e+04 + 2.933033e+07·(N/1e6)
+statistical R2: 0.999818, RMSE: 55673.997864, MAPE: 57.965%
+models match: YES
+
+[size_update | function_index | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.245044e+05 + 2.960034e+07·(N/1e6)
+teacher R2: 0.999456, RMSE: 97161.199217, MAPE: 89.241%
+statistical model: linear
+statistical formula: y = 1.245044e+05 + 2.960034e+07·(N/1e6)
+statistical R2: 0.999456, RMSE: 97161.199217, MAPE: 89.241%
+models match: YES
+
+[size_update | no_extra_index | indexes_bytes]
+expected priority: constant > linear > logarithmic > exponential
+teacher model: constant
+teacher formula: y = 1.650373e+06
+teacher R2: -0.000000, RMSE: 3161988.930493, MAPE: 3312.763%
+statistical model: linear
+statistical formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+statistical R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+models match: NO
+
+[size_update | simple_btree | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.245044e+05 + 2.960034e+07·(N/1e6)
+teacher R2: 0.999456, RMSE: 97161.199217, MAPE: 89.241%
+statistical model: linear
+statistical formula: y = 1.245044e+05 + 2.960034e+07·(N/1e6)
+statistical R2: 0.999456, RMSE: 97161.199217, MAPE: 89.241%
+models match: YES
+
+[size_update | unique_btree | indexes_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 3.426114e+04 + 4.496432e+07·(N/1e6)
+teacher R2: 0.999999, RMSE: 7278.370623, MAPE: 6.884%
+statistical model: linear
+statistical formula: y = 3.426114e+04 + 4.496432e+07·(N/1e6)
+statistical R2: 0.999999, RMSE: 7278.370623, MAPE: 6.884%
+models match: YES
+
+[size_update | expression_index | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+statistical model: linear
+statistical formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+models match: YES
+
+[size_update | function_index | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+statistical model: linear
+statistical formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+models match: YES
+
+[size_update | no_extra_index | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+statistical model: linear
+statistical formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+models match: YES
+
+[size_update | simple_btree | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+statistical model: linear
+statistical formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+models match: YES
+
+[size_update | unique_btree | relation_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+teacher R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+statistical model: linear
+statistical formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+statistical R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+models match: YES
+
+[size_update | expression_index | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.276776e+05 + 1.138014e+08·(N/1e6)
+teacher R2: 0.999987, RMSE: 57373.329859, MAPE: 28.883%
+statistical model: linear
+statistical formula: y = 1.276776e+05 + 1.138014e+08·(N/1e6)
+statistical R2: 0.999987, RMSE: 57373.329859, MAPE: 28.883%
+models match: YES
+
+[size_update | function_index | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.591051e+05 + 1.140714e+08·(N/1e6)
+teacher R2: 0.999963, RMSE: 98044.332635, MAPE: 43.135%
+statistical model: linear
+statistical formula: y = 1.591051e+05 + 1.140714e+08·(N/1e6)
+statistical R2: 0.999963, RMSE: 98044.332635, MAPE: 43.135%
+models match: YES
+
+[size_update | no_extra_index | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 5.173124e+04 + 1.069532e+08·(N/1e6)
+teacher R2: 1.000000, RMSE: 8483.398705, MAPE: 7.575%
+statistical model: linear
+statistical formula: y = 5.173124e+04 + 1.069532e+08·(N/1e6)
+statistical R2: 1.000000, RMSE: 8483.398705, MAPE: 7.575%
+models match: YES
+
+[size_update | simple_btree | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 1.591051e+05 + 1.140714e+08·(N/1e6)
+teacher R2: 0.999963, RMSE: 98044.332635, MAPE: 43.135%
+statistical model: linear
+statistical formula: y = 1.591051e+05 + 1.140714e+08·(N/1e6)
+statistical R2: 0.999963, RMSE: 98044.332635, MAPE: 43.135%
+models match: YES
+
+[size_update | unique_btree | total_bytes]
+expected priority: linear > logarithmic > constant > exponential
+teacher model: linear
+teacher formula: y = 6.886181e+04 + 1.294354e+08·(N/1e6)
+teacher R2: 1.000000, RMSE: 11047.215511, MAPE: 6.190%
+statistical model: linear
+statistical formula: y = 6.886181e+04 + 1.294354e+08·(N/1e6)
+statistical R2: 1.000000, RMSE: 11047.215511, MAPE: 6.190%
+models match: YES
+
+[update | expression_index | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.0186202 + -1.966168e-04·ln(N)
+teacher R2: 0.021813, RMSE: 0.003790, MAPE: 16.531%
+statistical model: constant
+statistical formula: y = 0.0169456
+statistical R2: 0.000000, RMSE: 0.003832, MAPE: 16.836%
+models match: NO
+
+[update | function_index | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.0209972 + -3.189732e-04·ln(N)
+teacher R2: 0.055049, RMSE: 0.003804, MAPE: 18.182%
+statistical model: constant
+statistical formula: y = 0.0182804
+statistical R2: 0.000000, RMSE: 0.003913, MAPE: 17.716%
+models match: NO
+
+[update | no_extra_index | avg_elapsed_ms_per_operation]
+expected priority: constant > logarithmic > linear > exponential
+teacher model: constant
+teacher formula: y = 0.014864
+teacher R2: 0.000000, RMSE: 0.002830, MAPE: 14.775%
+statistical model: constant
+statistical formula: y = 0.014864
+statistical R2: 0.000000, RMSE: 0.002830, MAPE: 14.775%
+models match: YES
+
+[update | simple_btree | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.0206837 + -4.190007e-04·ln(N)
+teacher R2: 0.089827, RMSE: 0.003839, MAPE: 17.146%
+statistical model: constant
+statistical formula: y = 0.017115
+statistical R2: -0.000000, RMSE: 0.004024, MAPE: 16.078%
+models match: NO
+
+[update | unique_btree | avg_elapsed_ms_per_operation]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = 0.01845 + -2.443709e-04·ln(N)
+teacher R2: 0.060106, RMSE: 0.002782, MAPE: 15.651%
+statistical model: constant
+statistical formula: y = 0.0163687
+statistical R2: 0.000000, RMSE: 0.002869, MAPE: 15.700%
+models match: NO
+
+[update | expression_index | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -0.45133 + 1.55808·ln(N)
+teacher R2: 0.429808, RMSE: 5.165765, MAPE: 95.506%
+statistical model: logarithmic
+statistical formula: y = -0.45133 + 1.55808·ln(N)
+statistical R2: 0.429808, RMSE: 5.165765, MAPE: 95.506%
+models match: YES
+
+[update | function_index | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -1.44567 + 1.7519·ln(N)
+teacher R2: 0.568987, RMSE: 4.389084, MAPE: 83.611%
+statistical model: logarithmic
+statistical formula: y = -1.44567 + 1.7519·ln(N)
+statistical R2: 0.568987, RMSE: 4.389084, MAPE: 83.611%
+models match: YES
+
+[update | no_extra_index | avg_total_elapsed_ms]
+expected priority: constant > logarithmic > linear > exponential
+teacher model: constant
+teacher formula: y = 11.048
+teacher R2: -0.000000, RMSE: 5.921729, MAPE: 169.808%
+statistical model: logarithmic
+statistical formula: y = -1.09909 + 1.42619·ln(N)
+statistical R2: 0.480617, RMSE: 4.267686, MAPE: 72.986%
+models match: NO
+
+[update | simple_btree | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -3.28813 + 1.82282·ln(N)
+teacher R2: 0.744200, RMSE: 3.076234, MAPE: 47.334%
+statistical model: logarithmic
+statistical formula: y = -3.28813 + 1.82282·ln(N)
+statistical R2: 0.744200, RMSE: 3.076234, MAPE: 47.334%
+models match: YES
+
+[update | unique_btree | avg_total_elapsed_ms]
+expected priority: logarithmic > linear > constant > exponential
+teacher model: logarithmic
+teacher formula: y = -0.538934 + 1.51364·ln(N)
+teacher R2: 0.487206, RMSE: 4.469997, MAPE: 92.433%
+statistical model: logarithmic
+statistical formula: y = -0.538934 + 1.51364·ln(N)
+statistical R2: 0.487206, RMSE: 4.469997, MAPE: 92.433%
+models match: YES
+

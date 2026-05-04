@@ -1,0 +1,104 @@
+Автоматически подобранные эмпирические зависимости
+N — количество строк в таблице. Значения являются аппроксимациями по экспериментальным точкам, а не теоретическим доказательством сложности.
+
+[insert]
+  Метрика: avg_elapsed_ms_per_operation
+    expression_index: y = 0.010508; модель=constant; R^2=0.00000; RMSE=0.0113933; MAPE=80.195%
+    function_index: y = 0.006341; модель=constant; R^2=0.00000; RMSE=0.00690949; MAPE=80.966%
+    no_index: y = 0.003792; модель=constant; R^2=0.00000; RMSE=0.00533937; MAPE=131.741%
+    simple_btree: y = 0.006638; модель=constant; R^2=-0.00000; RMSE=0.00730784; MAPE=107.375%
+    unique_btree: y = 0.006812; модель=constant; R^2=0.00000; RMSE=0.00577403; MAPE=65.977%
+
+  Метрика: avg_total_elapsed_ms
+    expression_index: y = -0.699281 + 0.53624·ln(N); модель=logarithmic; R^2=0.90557; RMSE=0.915019; MAPE=40.768%
+    function_index: y = -0.176372 + 0.289647·ln(N); модель=logarithmic; R^2=0.81288; RMSE=0.73432; MAPE=50.843%
+    no_index: y = 0.108134 + 0.106048·ln(N); модель=logarithmic; R^2=0.75431; RMSE=0.319807; MAPE=38.664%
+    simple_btree: y = -0.53963 + 0.297624·ln(N) + 0.045148·(N/1e6); модель=log_plus_linear; R^2=0.94672; RMSE=0.524449; MAPE=28.896%
+    unique_btree: y = 0.062001 + 0.309222·ln(N); модель=logarithmic; R^2=0.74210; RMSE=0.96324; MAPE=61.015%
+
+
+[select]
+  Метрика: avg_elapsed_ms_per_operation
+    btree_index_nonclustered: y = 0.030835 + 0.0014·(N/1e6); модель=linear; R^2=0.89574; RMSE=0.00827512; MAPE=20.601%
+    without_index_nonclustered: y = 3.331949 + 7.465425·(N/1e6) + 0.467809·(N/1e6)^2; модель=quadratic; R^2=0.99989; RMSE=5.28871; MAPE=5354.347%
+
+  Метрика: avg_total_elapsed_ms
+    btree_index_nonclustered: y = 6.308857 + -0.888261·sqrt(N/1e6); модель=sqrt; R^2=0.59708; RMSE=1.88204; MAPE=57.174%
+    without_index_nonclustered: y = 630.636223 + 991.034681·sqrt(N/1e6); модель=sqrt; R^2=0.79732; RMSE=1288.76; MAPE=5149.913%
+
+
+[size_insert]
+  Метрика: indexes_bytes
+    expression_index: y = -9.653249e+05 + 2.283302e+05·ln(N) + 7.253335e+06·(N/1e6); модель=log_plus_linear; R^2=0.99997; RMSE=738550; MAPE=583.378%
+    function_index: y = 7.791353e+04 + 6.967709e+06·(N/1e6) + -703.418748·(N/1e6)^2; модель=quadratic; R^2=1.00000; RMSE=107640; MAPE=113.026%
+    no_index: y = -0; модель=constant; R^2=1.00000; RMSE=0; MAPE=nan%
+    simple_btree: y = 7.913528e+04 + 6.967730e+06·(N/1e6) + -704.436137·(N/1e6)^2; модель=quadratic; R^2=1.00000; RMSE=113559; MAPE=115.600%
+    unique_btree: y = 1.795914e+04 + 2.246190e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=3688.27; MAPE=4.636%
+
+  Метрика: relation_bytes
+    expression_index: y = -7.149146e+03 + 8.288932e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=20160; MAPE=34.702%
+    function_index: y = -7.149146e+03 + 8.288932e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=20160; MAPE=34.702%
+    no_index: y = -7.149146e+03 + 8.288932e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=20160; MAPE=34.702%
+    simple_btree: y = -7.149146e+03 + 8.288932e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=20160; MAPE=34.702%
+    unique_btree: y = -7.149146e+03 + 8.288932e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=20160; MAPE=34.702%
+
+  Метрика: total_bytes
+    expression_index: y = -9.613956e+05 + 2.298672e+05·ln(N) + 9.016285e+07·(N/1e6); модель=log_plus_linear; R^2=1.00000; RMSE=745902; MAPE=258.259%
+    function_index: y = 9.343044e+04 + 8.987863e+07·(N/1e6) + -726.428219·(N/1e6)^2; модель=quadratic; R^2=1.00000; RMSE=114790; MAPE=53.397%
+    no_index: y = 1.663206e+04 + 8.290986e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=18738.8; MAPE=9.681%
+    simple_btree: y = 9.465219e+04 + 8.987865e+07·(N/1e6) + -727.445608·(N/1e6)^2; модель=quadratic; R^2=1.00000; RMSE=120517; MAPE=54.459%
+    unique_btree: y = 3.459120e+04 + 1.053718e+08·(N/1e6); модель=linear; R^2=1.00000; RMSE=18672; MAPE=7.563%
+
+
+[size_select]
+  Метрика: indexes_bytes
+    btree_index_nonclustered: y = 1.795914e+04 + 2.246190e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=3688.27; MAPE=4.636%
+    without_index_nonclustered: y = -0; модель=constant; R^2=1.00000; RMSE=0; MAPE=nan%
+
+  Метрика: relation_bytes
+    btree_index_nonclustered: y = 2.070461e+03 + 6.818688e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=3180.47; MAPE=10.344%
+    without_index_nonclustered: y = 2.070461e+03 + 6.818688e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=3180.47; MAPE=10.344%
+
+  Метрика: total_bytes
+    btree_index_nonclustered: y = 2.020196e+04 + 3.220903e+03·ln(N) + 9.066505e+07·(N/1e6); модель=log_plus_linear; R^2=1.00000; RMSE=5047.92; MAPE=6.522%
+    without_index_nonclustered: y = 9.282225e+03 + 2.082040e+03·ln(N) + 6.820333e+07·(N/1e6); модель=log_plus_linear; R^2=1.00000; RMSE=4631.16; MAPE=9.204%
+
+
+[size_update]
+  Метрика: indexes_bytes
+    expression_index: y = 6.034490e+04 + 2.941317e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=62625.2; MAPE=26.812%
+    function_index: y = 8.784132e+04 + 2.941211e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=97796.7; MAPE=52.229%
+    no_extra_index: y = 1.795914e+04 + 2.246190e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=3688.27; MAPE=4.636%
+    simple_btree: y = 8.784132e+04 + 2.941211e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=97796.7; MAPE=52.229%
+    unique_btree: y = 3.591829e+04 + 4.492381e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=7376.54; MAPE=4.636%
+
+  Метрика: relation_bytes
+    expression_index: y = 5.821727e+03 + 8.445250e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=2342.32; MAPE=3.997%
+    function_index: y = 5.821727e+03 + 8.445250e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=2342.32; MAPE=3.997%
+    no_extra_index: y = 5.821727e+03 + 8.445250e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=2342.32; MAPE=3.997%
+    simple_btree: y = 5.821727e+03 + 8.445250e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=2342.32; MAPE=3.997%
+    unique_btree: y = 5.821727e+03 + 8.445250e+07·(N/1e6); модель=linear; R^2=1.00000; RMSE=2342.32; MAPE=3.997%
+
+  Метрика: total_bytes
+    expression_index: y = 9.388803e+04 + 1.138864e+08·(N/1e6); модель=linear; R^2=1.00000; RMSE=64317.7; MAPE=16.597%
+    function_index: y = 1.213844e+05 + 1.138854e+08·(N/1e6); модель=linear; R^2=1.00000; RMSE=98665.6; MAPE=29.549%
+    no_extra_index: y = 5.150227e+04 + 1.069352e+08·(N/1e6); модель=linear; R^2=1.00000; RMSE=9066.81; MAPE=8.718%
+    simple_btree: y = 1.213844e+05 + 1.138854e+08·(N/1e6); модель=linear; R^2=1.00000; RMSE=98665.6; MAPE=29.549%
+    unique_btree: y = 6.946142e+04 + 1.293971e+08·(N/1e6); модель=linear; R^2=1.00000; RMSE=11640.1; MAPE=6.056%
+
+
+[update]
+  Метрика: avg_elapsed_ms_per_operation
+    expression_index: y = 0.017111 + 0.002366·(N/1e6); модель=linear; R^2=0.96725; RMSE=0.00754338; MAPE=27.699%
+    function_index: y = 0.016266 + 1.192591e-04·(N/1e6)·ln(N); модель=n_log_n; R^2=0.97407; RMSE=0.00594609; MAPE=24.010%
+    no_extra_index: y = 0.01356 + 0.006366·sqrt(N/1e6); модель=sqrt; R^2=0.77360; RMSE=0.00888303; MAPE=37.761%
+    simple_btree: y = 0.016856 + 0.004744·sqrt(N/1e6); модель=sqrt; R^2=0.71291; RMSE=0.00776434; MAPE=35.739%
+    unique_btree: y = 0.012781 + 0.013337·sqrt(N/1e6); модель=sqrt; R^2=0.92889; RMSE=0.00951766; MAPE=34.930%
+
+  Метрика: avg_total_elapsed_ms
+    expression_index: y = 5.203556 + 17.155688·sqrt(N/1e6); модель=sqrt; R^2=0.98637; RMSE=5.20162; MAPE=254.166%
+    function_index: y = -1.336951 + 1.294231·ln(N) + 1.975893·(N/1e6); модель=log_plus_linear; R^2=0.99309; RMSE=3.29674; MAPE=101.052%
+    no_extra_index: y = 6.922265 + 3.11306·(N/1e6) + -0.044327·(N/1e6)^2; модель=quadratic; R^2=0.96529; RMSE=3.8641; MAPE=344.812%
+    simple_btree: y = -6.159768 + 2.108735·ln(N) + 0.395778·(N/1e6); модель=log_plus_linear; R^2=0.95920; RMSE=3.47051; MAPE=102.828%
+    unique_btree: y = 7.293097 + 4.733803·(N/1e6) + -0.056891·(N/1e6)^2; модель=quadratic; R^2=0.98823; RMSE=4.16268; MAPE=354.001%
+

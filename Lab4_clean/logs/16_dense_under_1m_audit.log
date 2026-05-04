@@ -1,0 +1,45 @@
+=== DENSE AUDIT: measurement counts ===
+ operation_name | raw_measurements | tested_table_sizes | min_rows | max_rows 
+----------------+------------------+--------------------+----------+----------
+ insert         |              375 |                 15 |       10 |   500000
+ select         |              180 |                 15 |       10 |   500000
+ update         |              375 |                 15 |       10 |   500000
+(3 rows)
+
+
+=== DENSE AUDIT: expected checks ===
+                  check_name                  | actual_value | check_result 
+----------------------------------------------+--------------+--------------
+ insert_affected_rows_equal_batch             |          375 | OK
+ insert_raw_rows_expected_375                 |          375 | OK
+ select_found_rows_equal_probes               |          180 | OK
+ select_raw_rows_expected_180                 |          180 | OK
+ update_affected_and_trigger_rows_equal_batch |          375 | OK
+ update_raw_rows_expected_375                 |          375 | OK
+(6 rows)
+
+
+=== DENSE AUDIT: expected CSV files ===
+OK: report/12_dense_under_1m_raw.csv
+OK: report/12_dense_under_1m_aggregated.csv
+OK: report/12_dense_under_1m_sizes.csv
+OK: report/12_dense_under_1m_checks.csv
+
+=== DENSE AUDIT: expected chart files ===
+OK: charts/12_dense_select_avg_ms.png
+OK: charts/12_dense_select_avg_ms_logx.png
+OK: charts/12_dense_select_total_seconds.png
+OK: charts/12_dense_select_total_seconds_logx.png
+OK: charts/12_dense_insert_total_ms.png
+OK: charts/12_dense_insert_total_ms_logx.png
+OK: charts/12_dense_insert_per_row_ms.png
+OK: charts/12_dense_insert_per_row_ms_logx.png
+OK: charts/12_dense_update_total_ms.png
+OK: charts/12_dense_update_total_ms_logx.png
+OK: charts/12_dense_update_per_row_ms.png
+OK: charts/12_dense_update_per_row_ms_logx.png
+OK: charts/12_dense_relation_bytes.png
+OK: charts/12_dense_indexes_bytes.png
+OK: charts/12_dense_total_bytes.png
+
+=== DENSE AUDIT DONE ===

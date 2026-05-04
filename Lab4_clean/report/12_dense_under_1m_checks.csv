@@ -1,0 +1,10 @@
+check_name,actual_value,check_result
+dense_table_sizes_expected_15_insert,15,OK
+dense_table_sizes_expected_15_select,15,OK
+dense_table_sizes_expected_15_update,15,OK
+insert_affected_rows_equal_batch,375,OK
+insert_raw_rows_expected_375,375,OK
+select_found_rows_equal_probes,180,OK
+select_raw_rows_expected_180,180,OK
+update_affected_and_trigger_rows_equal_batch,375,OK
+update_raw_rows_expected_375,375,OK

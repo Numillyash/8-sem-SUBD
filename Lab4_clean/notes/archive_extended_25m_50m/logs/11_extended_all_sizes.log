@@ -1,0 +1,489 @@
+Pager usage is off.
+Timing is on.
+=== ЛР-4. Расширенный transient-прогон: SELECT / INSERT / UPDATE на 10..50 000 000 строк ===
+SET
+Time: 8.655 ms
+psql:sql/07_extended_all_sizes_transient.sql:8: NOTICE:  table "extended_all_sizes_measurements" does not exist, skipping
+DROP TABLE
+Time: 3.988 ms
+psql:sql/07_extended_all_sizes_transient.sql:9: NOTICE:  table "extended_all_sizes_sizes" does not exist, skipping
+DROP TABLE
+Time: 0.685 ms
+psql:sql/07_extended_all_sizes_transient.sql:10: NOTICE:  table "extended_update_trigger_audit" does not exist, skipping
+DROP TABLE
+Time: 0.692 ms
+psql:sql/07_extended_all_sizes_transient.sql:12: NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+Time: 0.638 ms
+psql:sql/07_extended_all_sizes_transient.sql:13: NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+Time: 0.676 ms
+psql:sql/07_extended_all_sizes_transient.sql:14: NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+Time: 0.905 ms
+psql:sql/07_extended_all_sizes_transient.sql:16: NOTICE:  function lab4.ext_permutation_key(pg_catalog.int8,pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 2.581 ms
+psql:sql/07_extended_all_sizes_transient.sql:17: NOTICE:  function lab4.ext_insert_function_key(text,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.747 ms
+psql:sql/07_extended_all_sizes_transient.sql:18: NOTICE:  function lab4.ext_update_function_key(pg_catalog.int4,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.817 ms
+psql:sql/07_extended_all_sizes_transient.sql:19: NOTICE:  function lab4.ext_record_size(text,text,pg_catalog.int8,text) does not exist, skipping
+DROP FUNCTION
+Time: 0.679 ms
+psql:sql/07_extended_all_sizes_transient.sql:20: NOTICE:  function lab4.ext_prepare_select(pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.717 ms
+psql:sql/07_extended_all_sizes_transient.sql:21: NOTICE:  function lab4.ext_measure_select(text,pg_catalog.int8,pg_catalog.int4,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.748 ms
+psql:sql/07_extended_all_sizes_transient.sql:22: NOTICE:  function lab4.ext_prepare_insert_table(pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.708 ms
+psql:sql/07_extended_all_sizes_transient.sql:23: NOTICE:  function lab4.ext_apply_insert_index(text,pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.677 ms
+psql:sql/07_extended_all_sizes_transient.sql:24: NOTICE:  function lab4.ext_measure_insert_table(text,pg_catalog.int8,pg_catalog.int4,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.650 ms
+psql:sql/07_extended_all_sizes_transient.sql:25: NOTICE:  function lab4.ext_update_trigger_fn() does not exist, skipping
+DROP FUNCTION
+Time: 0.716 ms
+psql:sql/07_extended_all_sizes_transient.sql:26: NOTICE:  function lab4.ext_prepare_update_table(pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.662 ms
+psql:sql/07_extended_all_sizes_transient.sql:27: NOTICE:  function lab4.ext_apply_update_index(text,pg_catalog.int8) does not exist, skipping
+DROP FUNCTION
+Time: 0.705 ms
+psql:sql/07_extended_all_sizes_transient.sql:28: NOTICE:  function lab4.ext_measure_update_table(text,pg_catalog.int8,pg_catalog.int4,pg_catalog.int4) does not exist, skipping
+DROP FUNCTION
+Time: 0.716 ms
+CREATE TABLE
+Time: 53.089 ms
+CREATE TABLE
+Time: 13.497 ms
+CREATE TABLE
+Time: 10.505 ms
+CREATE FUNCTION
+Time: 7.071 ms
+CREATE FUNCTION
+Time: 4.710 ms
+CREATE FUNCTION
+Time: 2.627 ms
+CREATE FUNCTION
+Time: 5.521 ms
+CREATE FUNCTION
+Time: 2.639 ms
+CREATE FUNCTION
+Time: 2.241 ms
+CREATE FUNCTION
+Time: 2.606 ms
+CREATE FUNCTION
+Time: 5.775 ms
+CREATE FUNCTION
+Time: 2.131 ms
+CREATE FUNCTION
+Time: 2.541 ms
+CREATE FUNCTION
+Time: 2.050 ms
+CREATE FUNCTION
+Time: 1.880 ms
+CREATE FUNCTION
+Time: 2.538 ms
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 10, probes 200
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10, batch 10
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10, batch 10
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10, index no_extra_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 100, probes 200
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100, batch 100
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100, batch 100
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100, index no_extra_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 1000, probes 200
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000, index no_extra_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 10000, probes 200
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10000, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 10000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10000, index no_extra_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 10000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 100000, probes 200
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100000, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 100000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100000, index no_extra_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 100000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 1000000, probes 200
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000000, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 1000000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000000, index no_extra_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000000, index unique_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000000, index expression_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT UPDATE size 1000000, index function_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_update_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_update_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT SELECT size 25000000, probes 10
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_select_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 25000000, batch 1000
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 25000000, index no_index
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  EXT INSERT size 25000000, index simple_btree
+psql:sql/07_extended_all_sizes_transient.sql:652: NOTICE:  table "ext_insert_work" does not exist, skipping

@@ -1,0 +1,364 @@
+Подбор эмпирических зависимостей по dense under 1M данным
+Точки с rows_base < 50 исключены из подбора формул.
+Исключенные точки остаются экспериментальными измерениями, но не используются в регрессии.
+
+[insert | expression_index | avg_elapsed_ms_per_operation]
+model: sqrt
+formula: y = 0.00653173 + 0.00961319·sqrt(N/1e6)
+R2: 0.441671, RMSE: 0.002259, MAPE: 26.372%
+points used: 13, min rows for fit: 50
+
+[insert | function_index | avg_elapsed_ms_per_operation]
+model: log_plus_linear
+formula: y = 0.00917946 + -6.662196e-04·ln(N) + 0.0106507·(N/1e6)
+R2: 0.462427, RMSE: 0.001464, MAPE: 22.988%
+points used: 13, min rows for fit: 50
+
+[insert | no_index | avg_elapsed_ms_per_operation]
+model: power
+formula: y = 0.00704975·N^-0.136972
+R2: 0.497915, RMSE: 0.001360, MAPE: 23.178%
+points used: 13, min rows for fit: 50
+
+[insert | simple_btree | avg_elapsed_ms_per_operation]
+model: log_plus_linear
+formula: y = 0.00904776 + -6.989623e-04·ln(N) + 0.0223217·(N/1e6)
+R2: 0.835525, RMSE: 0.000986, MAPE: 18.801%
+points used: 13, min rows for fit: 50
+
+[insert | unique_btree | avg_elapsed_ms_per_operation]
+model: power
+formula: y = 0.00781958·N^-0.065527
+R2: 0.326486, RMSE: 0.001760, MAPE: 20.375%
+points used: 13, min rows for fit: 50
+
+[insert | expression_index | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = -5.28059 + 1.33953·ln(N)
+R2: 0.837889, RMSE: 1.696037, MAPE: 26.663%
+points used: 13, min rows for fit: 50
+
+[insert | function_index | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = -0.755798 + 0.415821·ln(N)
+R2: 0.716931, RMSE: 0.752116, MAPE: 38.531%
+points used: 13, min rows for fit: 50
+
+[insert | no_index | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = 0.444484 + 0.113·ln(N)
+R2: 0.333036, RMSE: 0.460312, MAPE: 37.584%
+points used: 13, min rows for fit: 50
+
+[insert | simple_btree | avg_total_elapsed_ms]
+model: log_plus_linear
+formula: y = -0.112594 + 0.287685·ln(N) + 13.1907·(N/1e6)
+R2: 0.914485, RMSE: 0.768092, MAPE: 36.737%
+points used: 13, min rows for fit: 50
+
+[insert | unique_btree | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = -0.271684 + 0.390386·ln(N)
+R2: 0.688456, RMSE: 0.755938, MAPE: 35.842%
+points used: 13, min rows for fit: 50
+
+[select | btree_index_nonclustered | avg_elapsed_ms_per_operation]
+model: sqrt
+formula: y = 0.0345474 + 0.101342·sqrt(N/1e6)
+R2: 0.670236, RMSE: 0.014856, MAPE: 25.380%
+points used: 13, min rows for fit: 50
+
+[select | without_index_nonclustered | avg_elapsed_ms_per_operation]
+model: quadratic
+formula: y = -0.15011 + 65.2381·(N/1e6) + -57.3533·(N/1e6)^2
+R2: 0.995426, RMSE: 0.377225, MAPE: 189.980%
+points used: 13, min rows for fit: 50
+
+[select | btree_index_nonclustered | avg_total_elapsed_ms]
+model: sqrt
+formula: y = 6.90948 + 20.2684·sqrt(N/1e6)
+R2: 0.670236, RMSE: 2.971222, MAPE: 25.380%
+points used: 13, min rows for fit: 50
+
+[select | without_index_nonclustered | avg_total_elapsed_ms]
+model: quadratic
+formula: y = -30.022 + 1.304762e+04·(N/1e6) + -1.147065e+04·(N/1e6)^2
+R2: 0.995426, RMSE: 75.444941, MAPE: 189.980%
+points used: 13, min rows for fit: 50
+
+[size_insert | expression_index | indexes_bytes]
+model: quadratic
+formula: y = 4.280168e+04 + 3.156190e+07·(N/1e6) + -3.637539e+07·(N/1e6)^2
+R2: 0.997037, RMSE: 119240.036420, MAPE: 57.776%
+points used: 13, min rows for fit: 50
+
+[size_insert | function_index | indexes_bytes]
+model: quadratic
+formula: y = 2.888143e+04 + 7.091821e+06·(N/1e6) + 4.928869e+05·(N/1e6)^2
+R2: 0.999794, RMSE: 14780.518355, MAPE: 25.624%
+points used: 13, min rows for fit: 50
+
+[size_insert | no_index | indexes_bytes]
+model: constant
+formula: y = -0
+R2: 1.000000, RMSE: 0.000000, MAPE: nan%
+points used: 13, min rows for fit: 50
+
+[size_insert | simple_btree | indexes_bytes]
+model: quadratic
+formula: y = 2.916511e+04 + 7.032351e+06·(N/1e6) + 5.785332e+05·(N/1e6)^2
+R2: 0.999773, RMSE: 15456.144101, MAPE: 25.953%
+points used: 13, min rows for fit: 50
+
+[size_insert | unique_btree | indexes_bytes]
+model: linear
+formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+points used: 13, min rows for fit: 50
+
+[size_insert | expression_index | relation_bytes]
+model: log_plus_linear
+formula: y = 3.767038e+04 + -7310.65·ln(N) + 8.302191e+07·(N/1e6)
+R2: 0.999998, RMSE: 14806.627622, MAPE: 13.932%
+points used: 13, min rows for fit: 50
+
+[size_insert | function_index | relation_bytes]
+model: log_plus_linear
+formula: y = 3.767038e+04 + -7310.65·ln(N) + 8.302191e+07·(N/1e6)
+R2: 0.999998, RMSE: 14806.627622, MAPE: 13.932%
+points used: 13, min rows for fit: 50
+
+[size_insert | no_index | relation_bytes]
+model: log_plus_linear
+formula: y = 3.767038e+04 + -7310.65·ln(N) + 8.302191e+07·(N/1e6)
+R2: 0.999998, RMSE: 14806.627622, MAPE: 13.932%
+points used: 13, min rows for fit: 50
+
+[size_insert | simple_btree | relation_bytes]
+model: log_plus_linear
+formula: y = 3.767038e+04 + -7310.65·ln(N) + 8.302191e+07·(N/1e6)
+R2: 0.999998, RMSE: 14806.627622, MAPE: 13.932%
+points used: 13, min rows for fit: 50
+
+[size_insert | unique_btree | relation_bytes]
+model: log_plus_linear
+formula: y = 3.767038e+04 + -7310.65·ln(N) + 8.302191e+07·(N/1e6)
+R2: 0.999998, RMSE: 14806.627622, MAPE: 13.932%
+points used: 13, min rows for fit: 50
+
+[size_insert | expression_index | total_bytes]
+model: quadratic
+formula: y = 5.630786e+04 + 1.143522e+08·(N/1e6) + -3.604258e+07·(N/1e6)^2
+R2: 0.999915, RMSE: 126683.367382, MAPE: 18.650%
+points used: 13, min rows for fit: 50
+
+[size_insert | function_index | total_bytes]
+model: quadratic
+formula: y = 4.238761e+04 + 8.988213e+07·(N/1e6) + 8.256978e+05·(N/1e6)^2
+R2: 0.999998, RMSE: 17148.136249, MAPE: 12.299%
+points used: 13, min rows for fit: 50
+
+[size_insert | no_index | total_bytes]
+model: linear
+formula: y = 1.074186e+04 + 8.294316e+07·(N/1e6)
+R2: 0.999997, RMSE: 19565.948034, MAPE: 10.103%
+points used: 13, min rows for fit: 50
+
+[size_insert | simple_btree | total_bytes]
+model: quadratic
+formula: y = 4.267129e+04 + 8.982266e+07·(N/1e6) + 9.113440e+05·(N/1e6)^2
+R2: 0.999998, RMSE: 16945.330549, MAPE: 12.362%
+points used: 13, min rows for fit: 50
+
+[size_insert | unique_btree | total_bytes]
+model: linear
+formula: y = 2.787243e+04 + 1.054253e+08·(N/1e6)
+R2: 0.999999, RMSE: 18023.876949, MAPE: 7.165%
+points used: 13, min rows for fit: 50
+
+[size_select | btree_index_nonclustered | indexes_bytes]
+model: linear
+formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+points used: 13, min rows for fit: 50
+
+[size_select | without_index_nonclustered | indexes_bytes]
+model: constant
+formula: y = -0
+R2: 1.000000, RMSE: 0.000000, MAPE: nan%
+points used: 13, min rows for fit: 50
+
+[size_select | btree_index_nonclustered | relation_bytes]
+model: linear
+formula: y = -1038.07 + 6.819421e+07·(N/1e6)
+R2: 1.000000, RMSE: 3086.311104, MAPE: 8.539%
+points used: 13, min rows for fit: 50
+
+[size_select | without_index_nonclustered | relation_bytes]
+model: linear
+formula: y = -1038.07 + 6.819421e+07·(N/1e6)
+R2: 1.000000, RMSE: 3086.311104, MAPE: 8.539%
+points used: 13, min rows for fit: 50
+
+[size_select | btree_index_nonclustered | total_bytes]
+model: log_plus_linear
+formula: y = 2.096576e+04 + 3078.03·ln(N) + 9.066478e+07·(N/1e6)
+R2: 1.000000, RMSE: 6474.155287, MAPE: 5.835%
+points used: 13, min rows for fit: 50
+
+[size_select | without_index_nonclustered | total_bytes]
+model: log_plus_linear
+formula: y = 9239.62 + 2324.28·ln(N) + 6.818793e+07·(N/1e6)
+R2: 1.000000, RMSE: 5310.412337, MAPE: 10.341%
+points used: 13, min rows for fit: 50
+
+[size_update | expression_index | indexes_bytes]
+model: log_plus_linear
+formula: y = -9.696345e+04 + 2.546916e+04·ln(N) + 2.896025e+07·(N/1e6)
+R2: 0.999975, RMSE: 20831.496652, MAPE: 19.593%
+points used: 13, min rows for fit: 50
+
+[size_update | function_index | indexes_bytes]
+model: log_plus_linear
+formula: y = -1.985928e+05 + 4.330140e+04·ln(N) + 2.897114e+07·(N/1e6)
+R2: 0.999900, RMSE: 41656.089972, MAPE: 37.037%
+points used: 13, min rows for fit: 50
+
+[size_update | no_extra_index | indexes_bytes]
+model: linear
+formula: y = 1.713057e+04 + 2.248216e+07·(N/1e6)
+R2: 0.999999, RMSE: 3639.185311, MAPE: 6.884%
+points used: 13, min rows for fit: 50
+
+[size_update | simple_btree | indexes_bytes]
+model: log_plus_linear
+formula: y = -1.985928e+05 + 4.330140e+04·ln(N) + 2.897114e+07·(N/1e6)
+R2: 0.999900, RMSE: 41656.089972, MAPE: 37.037%
+points used: 13, min rows for fit: 50
+
+[size_update | unique_btree | indexes_bytes]
+model: linear
+formula: y = 3.426114e+04 + 4.496432e+07·(N/1e6)
+R2: 0.999999, RMSE: 7278.370623, MAPE: 6.884%
+points used: 13, min rows for fit: 50
+
+[size_update | expression_index | relation_bytes]
+model: linear
+formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+points used: 13, min rows for fit: 50
+
+[size_update | function_index | relation_bytes]
+model: linear
+formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+points used: 13, min rows for fit: 50
+
+[size_update | no_extra_index | relation_bytes]
+model: linear
+formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+points used: 13, min rows for fit: 50
+
+[size_update | simple_btree | relation_bytes]
+model: linear
+formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+points used: 13, min rows for fit: 50
+
+[size_update | unique_btree | relation_bytes]
+model: linear
+formula: y = 4586.01 + 8.445048e+07·(N/1e6)
+R2: 1.000000, RMSE: 2111.643417, MAPE: 3.115%
+points used: 13, min rows for fit: 50
+
+[size_update | expression_index | total_bytes]
+model: log_plus_linear
+formula: y = -7.014473e+04 + 2.651210e+04·ln(N) + 1.134161e+08·(N/1e6)
+R2: 0.999998, RMSE: 20081.731034, MAPE: 6.535%
+points used: 13, min rows for fit: 50
+
+[size_update | function_index | total_bytes]
+model: log_plus_linear
+formula: y = -1.717741e+05 + 4.434433e+04·ln(N) + 1.134270e+08·(N/1e6)
+R2: 0.999994, RMSE: 39140.668947, MAPE: 15.491%
+points used: 13, min rows for fit: 50
+
+[size_update | no_extra_index | total_bytes]
+model: linear
+formula: y = 5.173124e+04 + 1.069532e+08·(N/1e6)
+R2: 1.000000, RMSE: 8483.398705, MAPE: 7.575%
+points used: 13, min rows for fit: 50
+
+[size_update | simple_btree | total_bytes]
+model: log_plus_linear
+formula: y = -1.717741e+05 + 4.434433e+04·ln(N) + 1.134270e+08·(N/1e6)
+R2: 0.999994, RMSE: 39140.668947, MAPE: 15.491%
+points used: 13, min rows for fit: 50
+
+[size_update | unique_btree | total_bytes]
+model: linear
+formula: y = 6.886181e+04 + 1.294354e+08·(N/1e6)
+R2: 1.000000, RMSE: 11047.215511, MAPE: 6.190%
+points used: 13, min rows for fit: 50
+
+[update | expression_index | avg_elapsed_ms_per_operation]
+model: constant
+formula: y = 0.0169456
+R2: 0.000000, RMSE: 0.003832, MAPE: 16.836%
+points used: 13, min rows for fit: 50
+
+[update | function_index | avg_elapsed_ms_per_operation]
+model: constant
+formula: y = 0.0182804
+R2: 0.000000, RMSE: 0.003913, MAPE: 17.716%
+points used: 13, min rows for fit: 50
+
+[update | no_extra_index | avg_elapsed_ms_per_operation]
+model: constant
+formula: y = 0.014864
+R2: 0.000000, RMSE: 0.002830, MAPE: 14.775%
+points used: 13, min rows for fit: 50
+
+[update | simple_btree | avg_elapsed_ms_per_operation]
+model: constant
+formula: y = 0.017115
+R2: -0.000000, RMSE: 0.004024, MAPE: 16.078%
+points used: 13, min rows for fit: 50
+
+[update | unique_btree | avg_elapsed_ms_per_operation]
+model: constant
+formula: y = 0.0163687
+R2: 0.000000, RMSE: 0.002869, MAPE: 15.700%
+points used: 13, min rows for fit: 50
+
+[update | expression_index | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = -0.45133 + 1.55808·ln(N)
+R2: 0.429808, RMSE: 5.165765, MAPE: 95.506%
+points used: 13, min rows for fit: 50
+
+[update | function_index | avg_total_elapsed_ms]
+model: log_plus_linear
+formula: y = -6.53688 + 2.54455·ln(N) + -22.8503·(N/1e6)
+R2: 0.683592, RMSE: 3.760560, MAPE: 58.666%
+points used: 13, min rows for fit: 50
+
+[update | no_extra_index | avg_total_elapsed_ms]
+model: log_plus_linear
+formula: y = -5.95231 + 2.18179·ln(N) + -21.7822·(N/1e6)
+R2: 0.613351, RMSE: 3.682196, MAPE: 48.549%
+points used: 13, min rows for fit: 50
+
+[update | simple_btree | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = -3.28813 + 1.82282·ln(N)
+R2: 0.744200, RMSE: 3.076234, MAPE: 47.334%
+points used: 13, min rows for fit: 50
+
+[update | unique_btree | avg_total_elapsed_ms]
+model: logarithmic
+formula: y = -0.538934 + 1.51364·ln(N)
+R2: 0.487206, RMSE: 4.469997, MAPE: 92.433%
+points used: 13, min rows for fit: 50
+

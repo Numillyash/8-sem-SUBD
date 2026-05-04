@@ -1,0 +1,4108 @@
+=== Backing up old extended DB tables if backup does not exist ===
+DO
+=== Resetting current extended tables for dense under 1M run ===
+TRUNCATE TABLE
+
+============================================================
+DENSE SIZE: 10
+============================================================
+SELECT size 10: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 10, batch 10
+INSERT size 10, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 10, batch 10
+UPDATE size 10, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 25
+============================================================
+SELECT size 25: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 25, batch 25
+INSERT size 25, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 25, batch 25
+UPDATE size 25, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 50
+============================================================
+SELECT size 50: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 50, batch 50
+INSERT size 50, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 50, batch 50
+UPDATE size 50, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 100
+============================================================
+SELECT size 100: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 100, batch 100
+INSERT size 100, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 100, batch 100
+UPDATE size 100, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 250
+============================================================
+SELECT size 250: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 250, batch 250
+INSERT size 250, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 250, batch 250
+UPDATE size 250, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 500
+============================================================
+SELECT size 500: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 500, batch 500
+INSERT size 500, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 500, batch 500
+UPDATE size 500, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 1000
+============================================================
+SELECT size 1000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 1000, batch 1000
+INSERT size 1000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 1000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 1000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 1000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 1000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 1000, batch 1000
+UPDATE size 1000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 1000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 1000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 1000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 1000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 2500
+============================================================
+SELECT size 2500: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 2500, batch 1000
+INSERT size 2500, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 2500, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 2500, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 2500, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 2500, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 2500, batch 1000
+UPDATE size 2500, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 2500, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 2500, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 2500, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 2500, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 5000
+============================================================
+SELECT size 5000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 5000, batch 1000
+INSERT size 5000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 5000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 5000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 5000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 5000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 5000, batch 1000
+UPDATE size 5000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 5000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 5000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 5000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 5000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 10000
+============================================================
+SELECT size 10000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 10000, batch 1000
+INSERT size 10000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 10000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 10000, batch 1000
+UPDATE size 10000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 10000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 25000
+============================================================
+SELECT size 25000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 25000, batch 1000
+INSERT size 25000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 25000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 25000, batch 1000
+UPDATE size 25000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 25000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 50000
+============================================================
+SELECT size 50000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 50000, batch 1000
+INSERT size 50000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 50000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 50000, batch 1000
+UPDATE size 50000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 50000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 100000
+============================================================
+SELECT size 100000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 100000, batch 1000
+INSERT size 100000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 100000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 100000, batch 1000
+UPDATE size 100000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 100000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 250000
+============================================================
+SELECT size 250000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 250000, batch 1000
+INSERT size 250000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 250000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 250000, batch 1000
+UPDATE size 250000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 250000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+============================================================
+DENSE SIZE: 500000
+============================================================
+SELECT size 500000: running from scratch
+NOTICE:  table "ext_select_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_select_work" does not exist, skipping
+ ext_prepare_select 
+--------------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+ ext_record_size 
+-----------------
+ 
+(1 row)
+
+ ext_measure_select 
+--------------------
+ 
+(1 row)
+
+DROP TABLE
+
+INSERT size 500000, batch 1000
+INSERT size 500000, index no_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500000, index simple_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500000, index unique_btree: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500000, index expression_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+INSERT size 500000, index function_index: running
+NOTICE:  table "ext_insert_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_insert_work" does not exist, skipping
+ ext_prepare_insert_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_insert_simple" does not exist, skipping
+NOTICE:  index "idx_ext_insert_unique" does not exist, skipping
+NOTICE:  index "idx_ext_insert_expression" does not exist, skipping
+NOTICE:  index "idx_ext_insert_function" does not exist, skipping
+ ext_apply_insert_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_insert_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+UPDATE size 500000, batch 1000
+UPDATE size 500000, index no_extra_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500000, index simple_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500000, index unique_btree: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500000, index expression_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+UPDATE size 500000, index function_index: running
+NOTICE:  table "ext_update_work" does not exist, skipping
+DROP TABLE
+NOTICE:  table "ext_update_work" does not exist, skipping
+ ext_prepare_update_table 
+--------------------------
+ 
+(1 row)
+
+NOTICE:  index "idx_ext_update_simple" does not exist, skipping
+NOTICE:  index "idx_ext_update_unique" does not exist, skipping
+NOTICE:  index "idx_ext_update_expression" does not exist, skipping
+NOTICE:  index "idx_ext_update_function" does not exist, skipping
+ ext_apply_update_index 
+------------------------
+ 
+(1 row)
+
+ ext_measure_update_table 
+--------------------------
+ 
+(1 row)
+
+DROP TABLE
+
+=== DENSE UNDER 1M RUN DONE ===
+ operation_name | raw_measurements | tested_table_sizes | min_rows | max_rows 
+----------------+------------------+--------------------+----------+----------
+ insert         |              375 |                 15 |       10 |   500000
+ select         |              180 |                 15 |       10 |   500000
+ update         |              375 |                 15 |       10 |   500000
+(3 rows)
+
