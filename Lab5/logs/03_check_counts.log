@@ -1,0 +1,59 @@
+Pager usage is off.
+Timing is on.
+    relation_name    | row_count 
+---------------------+-----------
+ documents           |    100000
+ document_operations |    300000
+(2 rows)
+
+Time: 39.003 ms
+    relation_name    | table_size | total_size_with_indexes 
+---------------------+------------+-------------------------
+ document_operations | 34 MB      | 58 MB
+ documents           | 33 MB      | 54 MB
+(2 rows)
+
+Time: 1.595 ms
+ schemaname |      tablename      |          indexname           |                                                                          indexdef                                                                           
+------------+---------------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ public     | document_operations | pk_document_operations       | CREATE UNIQUE INDEX pk_document_operations ON public.document_operations USING btree (employee_name, document_number, change_date)
+ public     | documents           | documents_pkey               | CREATE UNIQUE INDEX documents_pkey ON public.documents USING btree (document_number)
+ public     | documents           | uq_documents_alternative_key | CREATE UNIQUE INDEX uq_documents_alternative_key ON public.documents USING btree (document_type, responsible_employee, internal_department, effective_from)
+(3 rows)
+
+Time: 2.319 ms
+ internal_department | secrecy_level | count_documents 
+---------------------+---------------+-----------------
+ Подразделение_1     |               |            2955
+ Подразделение_1     | ДСП           |            1476
+ Подразделение_1     | секретно      |             740
+ Подразделение_10    |               |            2758
+ Подразделение_10    | ДСП           |            1380
+ Подразделение_10    | секретно      |             690
+ Подразделение_11    |               |            2956
+ Подразделение_11    | ДСП           |            1477
+ Подразделение_11    | секретно      |             740
+ Подразделение_12    |               |            2758
+ Подразделение_12    | ДСП           |            1379
+ Подразделение_12    | секретно      |             691
+ Подразделение_13    |               |            2956
+ Подразделение_13    | ДСП           |            1479
+ Подразделение_13    | секретно      |             738
+ Подразделение_14    |               |            2759
+ Подразделение_14    | ДСП           |            1380
+ Подразделение_14    | секретно      |             688
+ Подразделение_15    |               |            2956
+ Подразделение_15    | ДСП           |            1477
+ Подразделение_15    | секретно      |             739
+ Подразделение_16    |               |            2759
+ Подразделение_16    | ДСП           |            1378
+ Подразделение_16    | секретно      |             690
+ Подразделение_17    |               |            2956
+ Подразделение_17    | ДСП           |            1477
+ Подразделение_17    | секретно      |             740
+ Подразделение_18    |               |            2759
+ Подразделение_18    | ДСП           |            1380
+ Подразделение_18    | секретно      |             689
+(30 rows)
+
+Time: 22.948 ms

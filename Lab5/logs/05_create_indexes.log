@@ -1,0 +1,29 @@
+Pager usage is off.
+Timing is on.
+CREATE INDEX
+Time: 144.348 ms
+CREATE INDEX
+Time: 439.309 ms
+CREATE INDEX
+Time: 583.199 ms
+CREATE INDEX
+Time: 201.419 ms
+CREATE INDEX
+Time: 70.575 ms
+ANALYZE
+Time: 552.623 ms
+ANALYZE
+Time: 147.645 ms
+ schemaname |      tablename      |                      indexname                       |                                                                                                                                     indexdef                                                                                                                                     
+------------+---------------------+------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ public     | document_operations | idx_operations_q2_employee_date_document             | CREATE INDEX idx_operations_q2_employee_date_document ON public.document_operations USING btree (employee_name, change_date, document_number)
+ public     | document_operations | idx_operations_q3_operation_date_document            | CREATE INDEX idx_operations_q3_operation_date_document ON public.document_operations USING btree (operation_description, change_date, document_number)
+ public     | document_operations | pk_document_operations                               | CREATE UNIQUE INDEX pk_document_operations ON public.document_operations USING btree (employee_name, document_number, change_date)
+ public     | documents           | documents_pkey                                       | CREATE UNIQUE INDEX documents_pkey ON public.documents USING btree (document_number)
+ public     | documents           | idx_documents_q1_secret_department_until             | CREATE INDEX idx_documents_q1_secret_department_until ON public.documents USING btree (secrecy_level, internal_department, effective_until, document_number) INCLUDE (document_type, responsible_employee) WHERE ((secrecy_level IS NOT NULL) AND (effective_until IS NOT NULL))
+ public     | documents           | idx_documents_q2_secret_document_employee_department | CREATE INDEX idx_documents_q2_secret_document_employee_department ON public.documents USING btree (document_number, responsible_employee, internal_department) WHERE (secrecy_level IS NOT NULL)
+ public     | documents           | idx_documents_q3_public_document_department          | CREATE INDEX idx_documents_q3_public_document_department ON public.documents USING btree (document_number, internal_department) WHERE (secrecy_level IS NULL)
+ public     | documents           | uq_documents_alternative_key                         | CREATE UNIQUE INDEX uq_documents_alternative_key ON public.documents USING btree (document_type, responsible_employee, internal_department, effective_from)
+(8 rows)
+
+Time: 3.941 ms

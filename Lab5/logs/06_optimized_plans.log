@@ -1,0 +1,116 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.526 ms
+                                        query_name                                         
+-------------------------------------------------------------------------------------------
+ Q1 optimized. Выборка секретных действующих документов по подразделениям и сроку действия
+(1 row)
+
+Time: 0.730 ms
+                                                                                                               QUERY PLAN                                                                                                                
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=3858.81..3863.73 rows=1969 width=107) (actual time=8.334..8.535 rows=2060 loops=1)
+   Output: document_number, document_type, responsible_employee, internal_department, effective_from, effective_until, secrecy_level
+   Sort Key: documents.effective_until, documents.document_number
+   Sort Method: quicksort  Memory: 387kB
+   Buffers: shared hit=2011 read=42
+   ->  Bitmap Heap Scan on public.documents  (cost=171.91..3751.07 rows=1969 width=107) (actual time=1.219..7.335 rows=2060 loops=1)
+         Output: document_number, document_type, responsible_employee, internal_department, effective_from, effective_until, secrecy_level
+         Recheck Cond: ((documents.secrecy_level = 'секретно'::text) AND (documents.internal_department = ANY ('{Подразделение_3,Подразделение_7,Подразделение_13}'::text[])) AND (documents.effective_until >= '2024-01-01'::date))
+         Heap Blocks: exact=2002
+         Buffers: shared hit=2005 read=42
+         ->  Bitmap Index Scan on idx_documents_q1_secret_department_until  (cost=0.00..171.42 rows=2093 width=0) (actual time=0.997..0.998 rows=2060 loops=1)
+               Index Cond: ((documents.secrecy_level = 'секретно'::text) AND (documents.internal_department = ANY ('{Подразделение_3,Подразделение_7,Подразделение_13}'::text[])) AND (documents.effective_until >= '2024-01-01'::date))
+               Buffers: shared hit=3 read=42
+ Planning:
+   Buffers: shared hit=182 read=3
+ Planning Time: 1.027 ms
+ Execution Time: 8.878 ms
+(17 rows)
+
+Time: 18.583 ms
+                                   query_name                                   
+--------------------------------------------------------------------------------
+ Q2 optimized. Агрегация операций сотрудника за период с соединением документов
+(1 row)
+
+Time: 0.685 ms
+                                                                                                             QUERY PLAN                                                                                                             
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=3300.54..3300.79 rows=100 width=59) (actual time=28.890..28.896 rows=100 loops=1)
+   Output: d.responsible_employee, d.internal_department, (count(*))
+   Sort Key: (count(*)) DESC, d.responsible_employee, d.internal_department
+   Sort Method: quicksort  Memory: 33kB
+   Buffers: shared hit=5 read=514
+   ->  HashAggregate  (cost=3296.22..3297.22 rows=100 width=59) (actual time=28.759..28.770 rows=100 loops=1)
+         Output: d.responsible_employee, d.internal_department, count(*)
+         Group Key: d.responsible_employee, d.internal_department
+         Batches: 1  Memory Usage: 48kB
+         Buffers: shared hit=2 read=514
+         ->  Hash Join  (cost=523.78..3271.79 rows=3257 width=51) (actual time=4.399..27.513 rows=3241 loops=1)
+               Output: d.responsible_employee, d.internal_department
+               Hash Cond: (d.document_number = o.document_number)
+               Buffers: shared hit=2 read=514
+               ->  Index Only Scan using idx_documents_q2_secret_document_employee_department on public.documents d  (cost=0.41..2448.96 rows=42703 width=63) (actual time=0.068..15.119 rows=42856 loops=1)
+                     Output: d.document_number, d.responsible_employee, d.internal_department
+                     Heap Fetches: 0
+                     Buffers: shared hit=1 read=449
+               ->  Hash  (cost=428.03..428.03 rows=7627 width=12) (actual time=4.312..4.313 rows=7565 loops=1)
+                     Output: o.document_number
+                     Buckets: 8192  Batches: 1  Memory Usage: 390kB
+                     Buffers: shared hit=1 read=65
+                     ->  Index Only Scan using idx_operations_q2_employee_date_document on public.document_operations o  (cost=0.42..428.03 rows=7627 width=12) (actual time=0.084..2.749 rows=7565 loops=1)
+                           Output: o.document_number
+                           Index Cond: ((o.employee_name = 'Сотрудник_В'::text) AND (o.change_date >= '2024-06-01 00:00:00'::timestamp without time zone) AND (o.change_date < '2024-09-01 00:00:00'::timestamp without time zone))
+                           Heap Fetches: 0
+                           Buffers: shared hit=1 read=65
+ Planning:
+   Buffers: shared hit=133 read=2
+ Planning Time: 1.686 ms
+ Execution Time: 28.945 ms
+(31 rows)
+
+Time: 32.992 ms
+                                      query_name                                      
+--------------------------------------------------------------------------------------
+ Q3 optimized. Поиск несекретных документов, по которым были изменения срока действия
+(1 row)
+
+Time: 0.667 ms
+                                                                                                                       QUERY PLAN                                                                                                                        
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=5508.53..5508.58 rows=20 width=37) (actual time=38.919..38.923 rows=20 loops=1)
+   Output: d.internal_department, (count(*))
+   Sort Key: (count(*)) DESC, d.internal_department
+   Sort Method: quicksort  Memory: 26kB
+   Buffers: shared hit=2 read=807
+   ->  HashAggregate  (cost=5507.90..5508.10 rows=20 width=37) (actual time=38.903..38.907 rows=20 loops=1)
+         Output: d.internal_department, count(*)
+         Group Key: d.internal_department
+         Batches: 1  Memory Usage: 24kB
+         Buffers: shared hit=2 read=807
+         ->  Hash Semi Join  (cost=2292.40..5424.77 rows=16625 width=29) (actual time=13.765..36.016 rows=16592 loops=1)
+               Output: d.internal_department
+               Hash Cond: (d.document_number = o.document_number)
+               Buffers: shared hit=2 read=807
+               ->  Index Only Scan using idx_documents_q3_public_document_department on public.documents d  (cost=0.41..2755.87 rows=57297 width=41) (actual time=0.053..11.409 rows=57144 loops=1)
+                     Output: d.document_number, d.internal_department
+                     Heap Fetches: 0
+                     Buffers: shared hit=1 read=471
+               ->  Hash  (cost=1929.28..1929.28 rows=29016 width=12) (actual time=13.692..13.694 rows=29034 loops=1)
+                     Output: o.document_number
+                     Buckets: 32768  Batches: 1  Memory Usage: 1504kB
+                     Buffers: shared hit=1 read=336
+                     ->  Index Only Scan using idx_operations_q3_operation_date_document on public.document_operations o  (cost=0.42..1929.28 rows=29016 width=12) (actual time=0.068..8.929 rows=29034 loops=1)
+                           Output: o.document_number
+                           Index Cond: ((o.operation_description = 'Изменение срока действия'::text) AND (o.change_date >= '2024-01-01 00:00:00'::timestamp without time zone) AND (o.change_date < '2025-01-01 00:00:00'::timestamp without time zone))
+                           Heap Fetches: 0
+                           Buffers: shared hit=1 read=336
+ Planning:
+   Buffers: shared hit=8
+ Planning Time: 0.286 ms
+ Execution Time: 39.098 ms
+(31 rows)
+
+Time: 40.433 ms

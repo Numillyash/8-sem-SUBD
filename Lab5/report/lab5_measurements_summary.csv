@@ -1,0 +1,4 @@
+query_name,baseline_avg_ms,optimized_avg_ms,speedup_ratio,improvement_percent,baseline_min_ms,baseline_max_ms,optimized_min_ms,optimized_max_ms,baseline_stddev_ms,optimized_stddev_ms
+Q1,11.494,2.335,4.923,79.69,10.642,12.791,1.926,3.337,0.865,0.601
+Q2,21.446,10.519,2.039,50.95,19.170,24.745,9.471,12.157,2.556,1.065
+Q3,40.708,19.614,2.075,51.82,35.672,45.099,18.557,20.921,3.840,0.954

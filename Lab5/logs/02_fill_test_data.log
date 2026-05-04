@@ -1,0 +1,24 @@
+Pager usage is off.
+Timing is on.
+TRUNCATE TABLE
+Time: 51.509 ms
+BEGIN
+Time: 0.705 ms
+SET
+Time: 0.740 ms
+INSERT 0 100000
+Time: 1906.298 ms (00:01.906)
+INSERT 0 300000
+Time: 5058.028 ms (00:05.058)
+COMMIT
+Time: 0.699 ms
+ANALYZE
+Time: 543.938 ms
+ANALYZE
+Time: 144.059 ms
+                           result                           
+------------------------------------------------------------
+ ЛР5: тестовые данные добавлены с улучшенным распределением
+(1 row)
+
+Time: 0.707 ms
