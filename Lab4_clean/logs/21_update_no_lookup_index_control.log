@@ -1,0 +1,77 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 8.591 ms
+SET
+Time: 0.763 ms
+SET
+Time: 1.910 ms
+psql:sql/09_update_no_lookup_index_control.sql:8: NOTICE:  table "update_no_lookup_index_measurements" does not exist, skipping
+DROP TABLE
+Time: 2.198 ms
+psql:sql/09_update_no_lookup_index_control.sql:9: NOTICE:  table "update_no_lookup_index_work" does not exist, skipping
+DROP TABLE
+Time: 0.647 ms
+CREATE TABLE
+Time: 14.749 ms
+CREATE FUNCTION
+Time: 11.555 ms
+CREATE FUNCTION
+Time: 2.484 ms
+=== UPDATE without lookup index: dense sizes under 1M ===
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 10
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  table "update_no_lookup_index_work" does not exist, skipping
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 25
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 50
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 100
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 250
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 500
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 1000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 2500
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 5000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 10000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 25000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 50000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 100000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 250000
+psql:sql/09_update_no_lookup_index_control.sql:137: NOTICE:  UPDATE no lookup index size 500000
+DO
+Time: 5488.135 ms (00:05.488)
+=== UPDATE no lookup index summary ===
+ rows_base | runs | batch_size_min | batch_size_max | affected_rows_min | affected_rows_max | avg_total_elapsed_ms | min_total_elapsed_ms | max_total_elapsed_ms | stddev_total_elapsed_ms | avg_elapsed_ms_per_row 
+-----------+------+----------------+----------------+-------------------+-------------------+----------------------+----------------------+----------------------+-------------------------+------------------------
+        10 |    5 |             10 |             10 |                 0 |                10 |             0.221200 |             0.015000 |             1.020000 |                0.446635 |            0.102000000
+        25 |    5 |             25 |             25 |                 0 |                25 |             0.172000 |             0.007000 |             0.820000 |                0.362260 |            0.032800000
+        50 |    5 |             50 |             50 |                 0 |                50 |             0.289600 |             0.011000 |             1.399000 |                0.620177 |            0.027980000
+       100 |    5 |            100 |            100 |                 0 |               100 |             0.361600 |             0.010000 |             1.763000 |                0.783409 |            0.017630000
+       250 |    5 |            250 |            250 |                 0 |               250 |             0.855200 |             0.035000 |             3.977000 |                1.745979 |            0.015908000
+       500 |    5 |            500 |            500 |                 0 |               500 |             1.221000 |             0.069000 |             5.688000 |                2.497502 |            0.011376000
+      1000 |    5 |           1000 |           1000 |                 0 |              1000 |             3.040400 |             0.104000 |            14.581000 |                6.451553 |            0.014581000
+      2500 |    5 |           1000 |           1000 |                 0 |              1000 |             4.776200 |             0.342000 |             8.657000 |                4.126063 |            0.009785667
+      5000 |    5 |           1000 |           1000 |              1000 |              1000 |             8.295600 |             6.826000 |             9.558000 |                1.123832 |            0.008295600
+     10000 |    5 |           1000 |           1000 |              1000 |              1000 |             7.050400 |             4.216000 |            13.683000 |                3.877416 |            0.007050400
+     25000 |    5 |           1000 |           1000 |              1000 |              1000 |             7.525000 |             6.465000 |             8.436000 |                0.901552 |            0.007525000
+     50000 |    5 |           1000 |           1000 |              1000 |              1000 |             7.236400 |             6.706000 |             8.622000 |                0.801172 |            0.007236400
+    100000 |    5 |           1000 |           1000 |              1000 |              1000 |            15.865200 |             9.594000 |            35.964000 |               11.259517 |            0.015865200
+    250000 |    5 |           1000 |           1000 |              1000 |              1000 |            26.834600 |            18.921000 |            37.926000 |                7.158975 |            0.026834600
+    500000 |    5 |           1000 |           1000 |              1000 |              1000 |            32.127800 |            29.586000 |            37.615000 |                3.166087 |            0.032127800
+(15 rows)
+
+Time: 18.078 ms
+=== EXPLAIN control: UPDATE without lookup index, max size ===
+                                                               QUERY PLAN                                                               
+----------------------------------------------------------------------------------------------------------------------------------------
+ Update on update_no_lookup_index_work  (cost=0.00..16800.93 rows=0 width=0) (actual time=41.216..41.217 rows=0 loops=1)
+   Buffers: shared hit=12244 dirtied=22 written=22
+   ->  Seq Scan on update_no_lookup_index_work  (cost=0.00..16800.93 rows=1106 width=38) (actual time=38.420..39.649 rows=1000 loops=1)
+         Filter: ((lookup_id >= 499001) AND (lookup_id <= 500000))
+         Rows Removed by Filter: 499000
+         Buffers: shared hit=9203
+ Planning:
+   Buffers: shared hit=16
+ Planning Time: 0.148 ms
+ Execution Time: 41.244 ms
+(10 rows)
+
+Time: 44.690 ms
+=== UPDATE without lookup index done ===

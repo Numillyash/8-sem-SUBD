@@ -1,0 +1,91 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 9.558 ms
+SET
+Time: 0.676 ms
+SET
+Time: 1.803 ms
+SET
+Time: 0.686 ms
+=== PURE SCAN Q1: plain table, no aggregate ===
+                                                      QUERY PLAN                                                      
+----------------------------------------------------------------------------------------------------------------------
+ Seq Scan on orders_plain  (cost=0.00..26364.00 rows=248574 width=4) (actual time=0.833..267.346 rows=248700 loops=1)
+   Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-04-01'::date))
+   Rows Removed by Filter: 751300
+   Buffers: shared read=11364
+ Planning:
+   Buffers: shared hit=32 read=1 dirtied=1
+ Planning Time: 6.163 ms
+ Execution Time: 277.532 ms
+(8 rows)
+
+Time: 294.561 ms
+=== PURE SCAN Q1: partitioned table, no aggregate ===
+                                                                      QUERY PLAN                                                                       
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on orders_partitioned_2024_q1 orders_partitioned  (cost=0.00..6557.50 rows=248700 width=4) (actual time=0.181..1049.265 rows=248700 loops=1)
+   Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-04-01'::date))
+   Buffers: shared hit=2827
+ Planning:
+   Buffers: shared hit=74 read=7
+ Planning Time: 5.291 ms
+ Execution Time: 1058.089 ms
+(7 rows)
+
+Time: 1064.667 ms (00:01.065)
+=== PURE SCAN Q2: plain table, no aggregate ===
+                                                      QUERY PLAN                                                      
+----------------------------------------------------------------------------------------------------------------------
+ Seq Scan on orders_plain  (cost=0.00..26364.00 rows=248290 width=4) (actual time=0.252..115.805 rows=248612 loops=1)
+   Filter: ((order_date >= '2024-04-01'::date) AND (order_date < '2024-07-01'::date))
+   Rows Removed by Filter: 751388
+   Buffers: shared hit=32 read=11332
+ Planning Time: 0.054 ms
+ Execution Time: 124.173 ms
+(6 rows)
+
+Time: 125.151 ms
+=== PURE SCAN Q2: partitioned table, no aggregate ===
+                                                                      QUERY PLAN                                                                      
+------------------------------------------------------------------------------------------------------------------------------------------------------
+ Seq Scan on orders_partitioned_2024_q2 orders_partitioned  (cost=0.00..6556.18 rows=248612 width=4) (actual time=0.081..955.596 rows=248612 loops=1)
+   Filter: ((order_date >= '2024-04-01'::date) AND (order_date < '2024-07-01'::date))
+   Buffers: shared hit=2827
+ Planning:
+   Buffers: shared hit=10 read=1
+ Planning Time: 0.641 ms
+ Execution Time: 964.192 ms
+(7 rows)
+
+Time: 966.052 ms
+=== PURE SCAN Q1+Q2: plain table, no aggregate ===
+                                                      QUERY PLAN                                                      
+----------------------------------------------------------------------------------------------------------------------
+ Seq Scan on orders_plain  (cost=0.00..26364.00 rows=496864 width=4) (actual time=0.139..105.629 rows=497312 loops=1)
+   Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-07-01'::date))
+   Rows Removed by Filter: 502688
+   Buffers: shared hit=64 read=11300
+ Planning Time: 0.048 ms
+ Execution Time: 121.618 ms
+(6 rows)
+
+Time: 122.594 ms
+=== PURE SCAN Q1+Q2: partitioned table, no aggregate ===
+                                                                         QUERY PLAN                                                                          
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Append  (cost=0.00..15600.24 rows=497312 width=4) (actual time=0.025..74.089 rows=497312 loops=1)
+   Buffers: shared hit=5654
+   ->  Seq Scan on orders_partitioned_2024_q1 orders_partitioned_1  (cost=0.00..6557.50 rows=248700 width=4) (actual time=0.007..24.069 rows=248700 loops=1)
+         Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-07-01'::date))
+         Buffers: shared hit=2827
+   ->  Seq Scan on orders_partitioned_2024_q2 orders_partitioned_2  (cost=0.00..6556.18 rows=248612 width=4) (actual time=0.012..22.339 rows=248612 loops=1)
+         Filter: ((order_date >= '2024-01-01'::date) AND (order_date < '2024-07-01'::date))
+         Buffers: shared hit=2827
+ Planning Time: 0.098 ms
+ Execution Time: 89.283 ms
+(10 rows)
+
+Time: 90.382 ms
+=== PURE SCAN DONE ===

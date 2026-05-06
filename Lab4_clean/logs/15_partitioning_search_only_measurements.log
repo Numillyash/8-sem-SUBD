@@ -1,0 +1,78 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 6.124 ms
+SET
+Time: 0.786 ms
+SET
+Time: 2.135 ms
+SET
+Time: 0.652 ms
+psql:sql/08_partitioning_search_only_measurements.sql:9: NOTICE:  table "partition_search_only_measurements" does not exist, skipping
+DROP TABLE
+Time: 5.825 ms
+CREATE TABLE
+Time: 32.257 ms
+CREATE FUNCTION
+Time: 17.722 ms
+=== Search-only measurements: Q1 ===
+ measure_partition_search_only 
+-------------------------------
+ 
+(1 row)
+
+Time: 2000.374 ms (00:02.000)
+ measure_partition_search_only 
+-------------------------------
+ 
+(1 row)
+
+Time: 420.256 ms
+=== Search-only measurements: Q2 ===
+ measure_partition_search_only 
+-------------------------------
+ 
+(1 row)
+
+Time: 1635.540 ms (00:01.636)
+ measure_partition_search_only 
+-------------------------------
+ 
+(1 row)
+
+Time: 469.834 ms
+=== Search-only measurements: Q1+Q2 ===
+ measure_partition_search_only 
+-------------------------------
+ 
+(1 row)
+
+Time: 1868.896 ms (00:01.869)
+ measure_partition_search_only 
+-------------------------------
+ 
+(1 row)
+
+Time: 890.892 ms
+=== Search-only summary ===
+     test_name     |     table_name     | runs | rows_found_min | rows_found_max | avg_elapsed_ms | min_elapsed_ms | max_elapsed_ms | stddev_elapsed_ms 
+-------------------+--------------------+------+----------------+----------------+----------------+----------------+----------------+-------------------
+ q1_q2_search_only | orders_partitioned |   20 |         497312 |         497312 |         44.372 |         35.177 |         66.600 |             8.567
+ q1_q2_search_only | orders_plain       |   20 |         497312 |         497312 |         93.310 |         72.579 |        127.631 |            14.070
+ q1_search_only    | orders_partitioned |   20 |         248700 |         248700 |         20.852 |         16.188 |         36.009 |             5.503
+ q1_search_only    | orders_plain       |   20 |         248700 |         248700 |         99.463 |         70.166 |        224.777 |            34.976
+ q2_search_only    | orders_partitioned |   20 |         248612 |         248612 |         23.332 |         18.862 |         37.504 |             4.884
+ q2_search_only    | orders_plain       |   20 |         248612 |         248612 |         81.634 |         68.796 |        115.057 |            13.408
+(6 rows)
+
+Time: 4.354 ms
+=== Search-only speedup ===
+     test_name     | plain_avg_ms | partitioned_avg_ms | speedup 
+-------------------+--------------+--------------------+---------
+ q1_q2_search_only |       93.310 |             44.372 |   2.103
+ q1_search_only    |       99.463 |             20.852 |   4.770
+ q2_search_only    |       81.634 |             23.332 |   3.499
+(3 rows)
+
+Time: 1.969 ms
+=== Search-only measurements done ===
