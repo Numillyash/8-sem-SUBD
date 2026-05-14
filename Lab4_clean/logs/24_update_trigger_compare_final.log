@@ -1,0 +1,544 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 6.514 ms
+SET
+Time: 0.581 ms
+SET
+Time: 0.542 ms
+SET
+Time: 0.499 ms
+psql:sql/11_update_trigger_compare_final.sql:9: NOTICE:  schema "lab4" already exists, skipping
+CREATE SCHEMA
+Time: 3.524 ms
+psql:sql/11_update_trigger_compare_final.sql:11: NOTICE:  table "update_trigger_compare_measurements" does not exist, skipping
+DROP TABLE
+Time: 2.918 ms
+CREATE TABLE
+Time: 51.951 ms
+CREATE FUNCTION
+Time: 28.176 ms
+CREATE FUNCTION
+Time: 12.607 ms
+CREATE FUNCTION
+Time: 1.467 ms
+CREATE FUNCTION
+Time: 1.183 ms
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  table "update_trigger_compare_work" does not exist, skipping
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  table "update_trigger_compare_audit" does not exist, skipping
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=1000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=2500, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=5000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=10000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=25000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=50000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=100000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=250000, index_type=function_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=no_lookup_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=no_extra_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=simple_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=simple_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=unique_btree, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=unique_btree, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=expression_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=expression_index, trigger=t
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=function_index, trigger=f
+psql:sql/11_update_trigger_compare_final.sql:322: NOTICE:  UPDATE trigger compare: rows=500000, index_type=function_index, trigger=t
+DO
+Time: 101976.510 ms (01:41.977)
+=== UPDATE trigger compare summary ===
+    index_type    |  trigger_mode   | rows_base | runs | chunk_count_min | chunk_count_max | chunk_size_min | chunk_size_max | affected_min | affected_max | trigger_rows_min | trigger_rows_max | avg_total_elapsed_ms | avg_elapsed_ms_per_row 
+------------------+-----------------+-----------+------+-----------------+-----------------+----------------+----------------+--------------+--------------+------------------+------------------+----------------------+------------------------
+ expression_index | without_trigger |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            94.955200 |            0.094955200
+ expression_index | with_trigger    |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |           154.736200 |            0.154736200
+ function_index   | without_trigger |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            90.730200 |            0.090730200
+ function_index   | with_trigger    |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            95.640200 |            0.095640200
+ no_extra_index   | without_trigger |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.755400 |            0.012755400
+ no_lookup_index  | without_trigger |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            11.494800 |            0.011494800
+ simple_btree     | without_trigger |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            61.235800 |            0.061235800
+ simple_btree     | with_trigger    |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            73.927600 |            0.073927600
+ unique_btree     | without_trigger |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            57.096800 |            0.057096800
+ unique_btree     | with_trigger    |        10 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            74.766800 |            0.074766800
+ expression_index | without_trigger |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            63.292400 |            0.063292400
+ expression_index | with_trigger    |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            85.197400 |            0.085197400
+ function_index   | without_trigger |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            52.813000 |            0.052813000
+ function_index   | with_trigger    |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            61.625600 |            0.061625600
+ no_extra_index   | without_trigger |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            18.105400 |            0.018105400
+ no_lookup_index  | without_trigger |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.384400 |            0.014384400
+ simple_btree     | without_trigger |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            40.110800 |            0.040110800
+ simple_btree     | with_trigger    |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            51.602000 |            0.051602000
+ unique_btree     | without_trigger |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            36.345800 |            0.036345800
+ unique_btree     | with_trigger    |        25 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            40.946800 |            0.040946800
+ expression_index | without_trigger |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            46.630200 |            0.046630200
+ expression_index | with_trigger    |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            49.645200 |            0.049645200
+ function_index   | without_trigger |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            45.958600 |            0.045958600
+ function_index   | with_trigger    |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            41.316400 |            0.041316400
+ no_extra_index   | without_trigger |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            20.424800 |            0.020424800
+ no_lookup_index  | without_trigger |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            18.944600 |            0.018944600
+ simple_btree     | without_trigger |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            27.848000 |            0.027848000
+ simple_btree     | with_trigger    |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            29.836000 |            0.029836000
+ unique_btree     | without_trigger |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            35.248400 |            0.035248400
+ unique_btree     | with_trigger    |        50 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            33.780000 |            0.033780000
+ expression_index | without_trigger |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            26.939800 |            0.026939800
+ expression_index | with_trigger    |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            47.725400 |            0.047725400
+ function_index   | without_trigger |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            20.614000 |            0.020614000
+ function_index   | with_trigger    |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            31.190400 |            0.031190400
+ no_extra_index   | without_trigger |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            20.602000 |            0.020602000
+ no_lookup_index  | without_trigger |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            46.171200 |            0.046171200
+ simple_btree     | without_trigger |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            19.649600 |            0.019649600
+ simple_btree     | with_trigger    |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            28.122400 |            0.028122400
+ unique_btree     | without_trigger |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            19.361000 |            0.019361000
+ unique_btree     | with_trigger    |       100 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            27.273200 |            0.027273200
+ expression_index | without_trigger |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            27.671200 |            0.027671200
+ expression_index | with_trigger    |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            32.994600 |            0.032994600
+ function_index   | without_trigger |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.836200 |            0.014836200
+ function_index   | with_trigger    |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            26.298600 |            0.026298600
+ no_extra_index   | without_trigger |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            15.810800 |            0.015810800
+ no_lookup_index  | without_trigger |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            17.787400 |            0.017787400
+ simple_btree     | without_trigger |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            15.773000 |            0.015773000
+ simple_btree     | with_trigger    |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            25.802200 |            0.025802200
+ unique_btree     | without_trigger |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            24.134800 |            0.024134800
+ unique_btree     | with_trigger    |       250 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            44.974800 |            0.044974800
+ expression_index | without_trigger |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            40.728200 |            0.040728200
+ expression_index | with_trigger    |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            40.423600 |            0.040423600
+ function_index   | without_trigger |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            24.931800 |            0.024931800
+ function_index   | with_trigger    |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            34.127800 |            0.034127800
+ no_extra_index   | without_trigger |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            20.109000 |            0.020109000
+ no_lookup_index  | without_trigger |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            19.544200 |            0.019544200
+ simple_btree     | without_trigger |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            22.469200 |            0.022469200
+ simple_btree     | with_trigger    |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |           115.136200 |            0.115136200
+ unique_btree     | without_trigger |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            19.120400 |            0.019120400
+ unique_btree     | with_trigger    |       500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            27.733000 |            0.027733000
+ expression_index | without_trigger |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            21.715000 |            0.021715000
+ expression_index | with_trigger    |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            28.525200 |            0.028525200
+ function_index   | without_trigger |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            28.568000 |            0.028568000
+ function_index   | with_trigger    |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            23.597200 |            0.023597200
+ no_extra_index   | without_trigger |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            17.490200 |            0.017490200
+ no_lookup_index  | without_trigger |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            37.174800 |            0.037174800
+ simple_btree     | without_trigger |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            17.563600 |            0.017563600
+ simple_btree     | with_trigger    |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            25.299000 |            0.025299000
+ unique_btree     | without_trigger |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            16.814800 |            0.016814800
+ unique_btree     | with_trigger    |      1000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            26.588400 |            0.026588400
+ expression_index | without_trigger |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            23.894600 |            0.023894600
+ expression_index | with_trigger    |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            27.825000 |            0.027825000
+ function_index   | without_trigger |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.567800 |            0.014567800
+ function_index   | with_trigger    |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            21.034200 |            0.021034200
+ no_extra_index   | without_trigger |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.181800 |            0.014181800
+ no_lookup_index  | without_trigger |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            28.196000 |            0.028196000
+ simple_btree     | without_trigger |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            18.144800 |            0.018144800
+ simple_btree     | with_trigger    |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            30.607000 |            0.030607000
+ unique_btree     | without_trigger |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            31.609000 |            0.031609000
+ unique_btree     | with_trigger    |      2500 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            27.813400 |            0.027813400
+ expression_index | without_trigger |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            18.437200 |            0.018437200
+ expression_index | with_trigger    |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            24.674400 |            0.024674400
+ function_index   | without_trigger |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            10.321400 |            0.010321400
+ function_index   | with_trigger    |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            18.965600 |            0.018965600
+ no_extra_index   | without_trigger |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            11.750400 |            0.011750400
+ no_lookup_index  | without_trigger |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            51.352000 |            0.051352000
+ simple_btree     | without_trigger |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            15.690600 |            0.015690600
+ simple_btree     | with_trigger    |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            20.055600 |            0.020055600
+ unique_btree     | without_trigger |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.718800 |            0.012718800
+ unique_btree     | with_trigger    |      5000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            47.714800 |            0.047714800
+ expression_index | without_trigger |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            21.426200 |            0.021426200
+ expression_index | with_trigger    |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            27.134200 |            0.027134200
+ function_index   | without_trigger |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.129600 |            0.014129600
+ function_index   | with_trigger    |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            22.043600 |            0.022043600
+ no_extra_index   | without_trigger |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            13.629200 |            0.013629200
+ no_lookup_index  | without_trigger |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            87.414600 |            0.087414600
+ simple_btree     | without_trigger |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.275000 |            0.014275000
+ simple_btree     | with_trigger    |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            20.852800 |            0.020852800
+ unique_btree     | without_trigger |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            13.483600 |            0.013483600
+ unique_btree     | with_trigger    |     10000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            20.334200 |            0.020334200
+ expression_index | without_trigger |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            20.128400 |            0.020128400
+ expression_index | with_trigger    |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            26.287600 |            0.026287600
+ function_index   | without_trigger |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            19.437600 |            0.019437600
+ function_index   | with_trigger    |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            32.164200 |            0.032164200
+ no_extra_index   | without_trigger |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            17.791000 |            0.017791000
+ no_lookup_index  | without_trigger |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |           190.020400 |            0.190020400
+ simple_btree     | without_trigger |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            11.460200 |            0.011460200
+ simple_btree     | with_trigger    |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            20.501200 |            0.020501200
+ unique_btree     | without_trigger |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            16.693600 |            0.016693600
+ unique_btree     | with_trigger    |     25000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            32.867200 |            0.032867200
+ expression_index | without_trigger |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            17.999800 |            0.017999800
+ expression_index | with_trigger    |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            30.095600 |            0.030095600
+ function_index   | without_trigger |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            13.963800 |            0.013963800
+ function_index   | with_trigger    |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            19.227600 |            0.019227600
+ no_extra_index   | without_trigger |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            20.740200 |            0.020740200
+ no_lookup_index  | without_trigger |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |           379.436600 |            0.379436600
+ simple_btree     | without_trigger |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            15.002600 |            0.015002600
+ simple_btree     | with_trigger    |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            18.435000 |            0.018435000
+ unique_btree     | without_trigger |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.713000 |            0.012713000
+ unique_btree     | with_trigger    |     50000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            19.334000 |            0.019334000
+ expression_index | without_trigger |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            24.818000 |            0.024818000
+ expression_index | with_trigger    |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            28.043800 |            0.028043800
+ function_index   | without_trigger |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.013000 |            0.014013000
+ function_index   | with_trigger    |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            22.428600 |            0.022428600
+ no_extra_index   | without_trigger |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            11.444800 |            0.011444800
+ no_lookup_index  | without_trigger |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |           720.323400 |            0.720323400
+ simple_btree     | without_trigger |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            13.765000 |            0.013765000
+ simple_btree     | with_trigger    |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            22.627800 |            0.022627800
+ unique_btree     | without_trigger |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.718000 |            0.012718000
+ unique_btree     | with_trigger    |    100000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            20.757800 |            0.020757800
+ expression_index | without_trigger |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            21.862800 |            0.021862800
+ expression_index | with_trigger    |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            28.665800 |            0.028665800
+ function_index   | without_trigger |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            13.320600 |            0.013320600
+ function_index   | with_trigger    |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            26.696200 |            0.026696200
+ no_extra_index   | without_trigger |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.826400 |            0.012826400
+ no_lookup_index  | without_trigger |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |          1637.495800 |            1.637495800
+ simple_btree     | without_trigger |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            21.466800 |            0.021466800
+ simple_btree     | with_trigger    |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            34.182600 |            0.034182600
+ unique_btree     | without_trigger |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            14.356000 |            0.014356000
+ unique_btree     | with_trigger    |    250000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            22.859200 |            0.022859200
+ expression_index | without_trigger |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            34.938000 |            0.034938000
+ expression_index | with_trigger    |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            38.782800 |            0.038782800
+ function_index   | without_trigger |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            13.938400 |            0.013938400
+ function_index   | with_trigger    |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            26.348600 |            0.026348600
+ no_extra_index   | without_trigger |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.562600 |            0.012562600
+ no_lookup_index  | without_trigger |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |          3403.310800 |            3.403310800
+ simple_btree     | without_trigger |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.812200 |            0.012812200
+ simple_btree     | with_trigger    |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            20.809200 |            0.020809200
+ unique_btree     | without_trigger |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |                0 |                0 |            12.654600 |            0.012654600
+ unique_btree     | with_trigger    |    500000 |    5 |             100 |             100 |             10 |             10 |         1000 |         1000 |             1000 |             1000 |            37.834200 |            0.037834200
+(150 rows)
+
+Time: 5.114 ms
+=== UPDATE trigger compare checks ===
+    index_type    |  trigger_mode   | rows_base | affected_min | affected_max | trigger_rows_min | trigger_rows_max | check_result 
+------------------+-----------------+-----------+--------------+--------------+------------------+------------------+--------------
+ expression_index | without_trigger |        10 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |        10 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |        10 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |        10 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |        10 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |        10 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |        10 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |        10 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |        10 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |        10 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |        25 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |        25 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |        25 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |        25 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |        25 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |        25 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |        25 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |        25 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |        25 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |        25 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |        50 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |        50 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |        50 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |        50 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |        50 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |        50 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |        50 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |        50 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |        50 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |        50 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |       100 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |       100 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |       100 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |       100 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |       100 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |       100 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |       100 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |       100 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |       100 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |       100 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |       250 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |       250 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |       250 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |       250 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |       250 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |       250 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |       250 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |       250 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |       250 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |       250 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |       500 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |       500 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |       500 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |       500 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |       500 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |       500 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |       500 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |       500 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |       500 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |       500 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |      1000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |      1000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |      1000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |      1000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |      1000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |      1000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |      1000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |      1000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |      1000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |      1000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |      2500 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |      2500 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |      2500 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |      2500 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |      2500 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |      2500 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |      2500 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |      2500 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |      2500 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |      2500 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |      5000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |      5000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |      5000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |      5000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |      5000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |      5000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |      5000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |      5000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |      5000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |      5000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |     10000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |     10000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |     10000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |     10000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |     10000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |     10000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |     10000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |     10000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |     10000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |     10000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |     25000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |     25000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |     25000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |     25000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |     25000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |     25000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |     25000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |     25000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |     25000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |     25000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |     50000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |     50000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |     50000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |     50000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |     50000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |     50000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |     50000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |     50000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |     50000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |     50000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |    100000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |    100000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |    100000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |    100000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |    100000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |    100000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |    100000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |    100000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |    100000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |    100000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |    250000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |    250000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |    250000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |    250000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |    250000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |    250000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |    250000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |    250000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |    250000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |    250000 |         1000 |         1000 |             1000 |             1000 | OK
+ expression_index | without_trigger |    500000 |         1000 |         1000 |                0 |                0 | OK
+ expression_index | with_trigger    |    500000 |         1000 |         1000 |             1000 |             1000 | OK
+ function_index   | without_trigger |    500000 |         1000 |         1000 |                0 |                0 | OK
+ function_index   | with_trigger    |    500000 |         1000 |         1000 |             1000 |             1000 | OK
+ no_extra_index   | without_trigger |    500000 |         1000 |         1000 |                0 |                0 | OK
+ no_lookup_index  | without_trigger |    500000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | without_trigger |    500000 |         1000 |         1000 |                0 |                0 | OK
+ simple_btree     | with_trigger    |    500000 |         1000 |         1000 |             1000 |             1000 | OK
+ unique_btree     | without_trigger |    500000 |         1000 |         1000 |                0 |                0 | OK
+ unique_btree     | with_trigger    |    500000 |         1000 |         1000 |             1000 |             1000 | OK
+(150 rows)
+
+Time: 1.533 ms
+=== EXPLAIN control: true no lookup index ===
+ update_trigger_compare_fill 
+-----------------------------
+ 
+(1 row)
+
+Time: 1786.307 ms (00:01.786)
+                                                            QUERY PLAN                                                            
+----------------------------------------------------------------------------------------------------------------------------------
+ Update on update_trigger_compare_work  (cost=0.00..15193.00 rows=0 width=0) (actual time=35.862..35.862 rows=0 loops=1)
+   Buffers: shared hit=7764
+   ->  Seq Scan on update_trigger_compare_work  (cost=0.00..15193.00 rows=1 width=10) (actual time=4.347..35.657 rows=10 loops=1)
+         Filter: ((lookup_id >= 499991) AND (lookup_id <= 500000))
+         Rows Removed by Filter: 499990
+         Buffers: shared hit=7693
+ Planning:
+   Buffers: shared hit=33
+ Planning Time: 0.106 ms
+ Execution Time: 35.883 ms
+(10 rows)
+
+Time: 38.324 ms
+=== EXPLAIN control: indexed lookup ===
+ update_trigger_compare_fill 
+-----------------------------
+ 
+(1 row)
+
+Time: 2180.560 ms (00:02.181)
+                                                                QUERY PLAN                                                                
+------------------------------------------------------------------------------------------------------------------------------------------
+ Update on update_trigger_compare_work  (cost=4.53..43.62 rows=0 width=0) (actual time=0.296..0.297 rows=0 loops=1)
+   Buffers: shared hit=108 read=3 dirtied=2
+   ->  Bitmap Heap Scan on update_trigger_compare_work  (cost=4.53..43.62 rows=10 width=14) (actual time=0.041..0.070 rows=10 loops=1)
+         Recheck Cond: ((lookup_id >= 499991) AND (lookup_id <= 500000))
+         Heap Blocks: exact=10
+         Buffers: shared hit=16
+         ->  Bitmap Index Scan on idx_update_trigger_lookup  (cost=0.00..4.52 rows=10 width=0) (actual time=0.032..0.033 rows=10 loops=1)
+               Index Cond: ((lookup_id >= 499991) AND (lookup_id <= 500000))
+               Buffers: shared hit=6
+ Planning:
+   Buffers: shared hit=53 read=5
+ Planning Time: 0.702 ms
+ Execution Time: 0.369 ms
+(13 rows)
+
+Time: 2.993 ms
+DROP TABLE
+Time: 28.589 ms
+DROP TABLE
+Time: 2.667 ms
+=== UPDATE trigger compare done ===

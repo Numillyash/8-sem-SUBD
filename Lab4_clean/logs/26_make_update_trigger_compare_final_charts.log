@@ -1,0 +1,16 @@
+saved charts:
+  charts/21_update_true_no_index_vs_all_per_row_logx.png
+  charts/21_update_true_no_index_vs_all_total_logx.png
+  charts/22_trigger_all_indexed_per_row_logx.png
+  charts/22_trigger_all_indexed_total_logx.png
+  charts/22_trigger_expression_index_per_row_logx.png
+  charts/22_trigger_expression_index_total_logx.png
+  charts/22_trigger_function_index_per_row_logx.png
+  charts/22_trigger_function_index_total_logx.png
+  charts/22_trigger_overhead_total_ms_logx.png
+  charts/22_trigger_simple_btree_per_row_logx.png
+  charts/22_trigger_simple_btree_total_logx.png
+  charts/22_trigger_slowdown_ratio_per_row_logx.png
+  charts/22_trigger_slowdown_ratio_total_logx.png
+  charts/22_trigger_unique_btree_per_row_logx.png
+  charts/22_trigger_unique_btree_total_logx.png
