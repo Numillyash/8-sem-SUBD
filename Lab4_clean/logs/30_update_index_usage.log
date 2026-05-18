@@ -1,0 +1,240 @@
+=== RUN sql/30a_update_index_usage_setup.sql ===
+Pager usage is off.
+Timing is on.
+psql:sql/30a_update_index_usage_setup.sql:4: NOTICE:  schema "lab4" already exists, skipping
+CREATE SCHEMA
+Time: 5.248 ms
+DROP VIEW
+Time: 4.316 ms
+DROP VIEW
+Time: 1.605 ms
+DROP VIEW
+Time: 1.453 ms
+DROP VIEW
+Time: 1.300 ms
+DROP TABLE
+Time: 9.056 ms
+DROP TABLE
+Time: 3.693 ms
+DROP TABLE
+Time: 8.902 ms
+CREATE TABLE
+Time: 13.045 ms
+CREATE TABLE
+Time: 6.300 ms
+CREATE FUNCTION
+Time: 4.184 ms
+CREATE FUNCTION
+Time: 4.726 ms
+CREATE FUNCTION
+Time: 1.416 ms
+CREATE FUNCTION
+Time: 1.465 ms
+=== 30a setup done ===
+=== RUN sql/30b_update_no_index.sql ===
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.561 ms
+=== 30b UPDATE no_index: real Seq Scan search ===
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 5000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  table "update_index_usage_work" does not exist, skipping
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 10000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 25000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 50000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 100000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 250000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 500000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 1000000
+psql:sql/30b_update_no_index.sql:54: NOTICE:  no_index size 2000000
+DO
+Time: 10374.857 ms (00:10.375)
+=== 30b no_index done ===
+=== RUN sql/30c_update_simple_btree.sql ===
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.629 ms
+=== 30c UPDATE simple_btree: lookup_only vs lookup_and_update ===
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 5000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 10000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 25000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 50000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 100000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 250000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 500000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 1000000
+psql:sql/30c_update_simple_btree.sql:88: NOTICE:  simple_btree size 2000000
+DO
+Time: 10098.054 ms (00:10.098)
+=== 30c simple_btree done ===
+=== RUN sql/30d_update_unique_btree.sql ===
+Pager usage is off.
+Timing is on.
+SET
+Time: 1.006 ms
+=== 30d UPDATE unique_btree: lookup_only vs lookup_and_update ===
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 5000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 10000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 25000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 50000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 100000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 250000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 500000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 1000000
+psql:sql/30d_update_unique_btree.sql:88: NOTICE:  unique_btree size 2000000
+DO
+Time: 9925.447 ms (00:09.925)
+=== 30d unique_btree done ===
+=== RUN sql/30e_update_expression_index.sql ===
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.536 ms
+=== 30e UPDATE expression_index: math expression lookup_only vs lookup_and_update ===
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 5000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 10000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 25000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 50000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 100000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 250000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 500000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 1000000
+psql:sql/30e_update_expression_index.sql:90: NOTICE:  expression_index size 2000000
+DO
+Time: 9988.447 ms (00:09.988)
+=== 30e expression_index done ===
+=== RUN sql/30f_update_function_index.sql ===
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.577 ms
+=== 30f UPDATE function_index: immutable function lookup_only vs lookup_and_update ===
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 5000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 10000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 25000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 50000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 100000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 250000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 500000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 1000000
+psql:sql/30f_update_function_index.sql:90: NOTICE:  function_index size 2000000
+DO
+Time: 10140.082 ms (00:10.140)
+=== 30f function_index done ===
+=== RUN sql/30g_update_index_usage_export.sql ===
+Pager usage is off.
+Timing is on.
+=== 30g export update index usage ===
+psql:sql/30g_update_index_usage_export.sql:6: NOTICE:  view "v_30_update_index_usage_raw" does not exist, skipping
+DROP VIEW
+Time: 1.023 ms
+psql:sql/30g_update_index_usage_export.sql:7: NOTICE:  view "v_30_update_index_usage_aggregated" does not exist, skipping
+DROP VIEW
+Time: 0.668 ms
+psql:sql/30g_update_index_usage_export.sql:8: NOTICE:  view "v_30_update_index_usage_checks" does not exist, skipping
+DROP VIEW
+Time: 0.571 ms
+psql:sql/30g_update_index_usage_export.sql:9: NOTICE:  view "v_30_update_index_usage_explains" does not exist, skipping
+DROP VIEW
+Time: 0.495 ms
+CREATE VIEW
+Time: 3.038 ms
+CREATE VIEW
+Time: 3.136 ms
+CREATE VIEW
+Time: 1.598 ms
+CREATE VIEW
+Time: 1.368 ms
+COPY 405
+Time: 3.869 ms
+COPY 81
+Time: 3.073 ms
+COPY 81
+Time: 1.402 ms
+COPY 81
+Time: 2.310 ms
+exported:
+  report/30_update_index_usage_raw.csv
+  report/30_update_index_usage_aggregated.csv
+  report/30_update_index_usage_checks.csv
+  report/30_update_index_usage_explains.csv
+=== BUILD CHARTS ===
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_index_search_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_index_search_per_row_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_lookup_vs_maintenance_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_lookup_vs_maintenance_per_row_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_expression_index_lookup_vs_maintenance_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_expression_index_lookup_vs_maintenance_per_row_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_function_index_lookup_vs_maintenance_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_function_index_lookup_vs_maintenance_per_row_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_simple_btree_lookup_vs_maintenance_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_simple_btree_lookup_vs_maintenance_per_row_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_unique_btree_lookup_vs_maintenance_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_unique_btree_lookup_vs_maintenance_per_row_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_maintenance_overhead_total_linear.png
+saved: /mnt/c/Users/Georgul/Documents/8_sem/SUBD/Lab4_clean/charts/30_update_maintenance_overhead_per_row_linear.png
+DONE: update index usage charts saved
+=== AUDIT ===
+=== 30 audit: expected CSV files ===
+OK: report/30_update_index_usage_raw.csv
+OK: report/30_update_index_usage_aggregated.csv
+OK: report/30_update_index_usage_checks.csv
+OK: report/30_update_index_usage_explains.csv
+
+=== 30 audit: expected chart files ===
+OK: charts/30_update_index_search_total_linear.png
+OK: charts/30_update_index_search_per_row_linear.png
+OK: charts/30_update_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_lookup_vs_maintenance_per_row_linear.png
+OK: charts/30_update_maintenance_overhead_total_linear.png
+OK: charts/30_update_maintenance_overhead_per_row_linear.png
+OK: charts/30_update_simple_btree_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_unique_btree_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_expression_index_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_function_index_lookup_vs_maintenance_total_linear.png
+
+=== 30 audit: measurement counts and affected rows ===
+    index_type    |       mode        | tested_sizes | min_rows | max_rows | runs_min | runs_max | affected_min | affected_max | check_result 
+------------------+-------------------+--------------+----------+----------+----------+----------+--------------+--------------+--------------
+ expression_index | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ expression_index | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ function_index   | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ function_index   | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ no_index         | no_index          |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ simple_btree     | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ simple_btree     | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ unique_btree     | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ unique_btree     | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+(9 rows)
+
+
+=== 30 audit: total row counts ===
+    check_name     | actual_value | check_result 
+-------------------+--------------+--------------
+ raw_measurements  |          405 | OK
+ aggregated_groups |           81 | OK
+ explain_rows      |           81 | OK
+(3 rows)
+
+
+=== 30 audit: plan checks ===
+    index_type    |       mode        | checked_rows |              plan_check               
+------------------+-------------------+--------------+---------------------------------------
+ expression_index | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ expression_index | lookup_only       |      2000000 | OK: indexed variant uses index access
+ function_index   | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ function_index   | lookup_only       |      2000000 | OK: indexed variant uses index access
+ no_index         | no_index          |      2000000 | OK: no_index uses Seq Scan
+ simple_btree     | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ simple_btree     | lookup_only       |      2000000 | OK: indexed variant uses index access
+ unique_btree     | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ unique_btree     | lookup_only       |      2000000 | OK: indexed variant uses index access
+(9 rows)
+
+
+=== 30 audit: CSV FAIL grep ===
+OK: no FAIL in checks CSV
+
+=== 30 audit done ===
+=== DONE ===

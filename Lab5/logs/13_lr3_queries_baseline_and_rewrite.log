@@ -1,0 +1,339 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.562 ms
+BEGIN
+Time: 0.459 ms
+DROP INDEX
+Time: 1.769 ms
+DROP INDEX
+Time: 0.556 ms
+DROP INDEX
+Time: 0.514 ms
+DROP INDEX
+Time: 0.544 ms
+DROP INDEX
+Time: 0.492 ms
+psql:sql/13_lr3_queries_baseline_and_rewrite.sql:15: NOTICE:  index "idx_lr3_q1_documents_secrecy_employee" does not exist, skipping
+DROP INDEX
+Time: 1.015 ms
+psql:sql/13_lr3_queries_baseline_and_rewrite.sql:16: NOTICE:  index "idx_lr3_q1_secret_employee_partial" does not exist, skipping
+DROP INDEX
+Time: 0.631 ms
+psql:sql/13_lr3_queries_baseline_and_rewrite.sql:17: NOTICE:  index "idx_lr3_q2_documents_effective_until" does not exist, skipping
+DROP INDEX
+Time: 0.567 ms
+psql:sql/13_lr3_queries_baseline_and_rewrite.sql:18: NOTICE:  index "idx_lr3_q3_operations_operation_employee_document" does not exist, skipping
+DROP INDEX
+Time: 0.516 ms
+psql:sql/13_lr3_queries_baseline_and_rewrite.sql:19: NOTICE:  index "idx_lr3_q3_operations_document_employee" does not exist, skipping
+DROP INDEX
+Time: 0.499 ms
+psql:sql/13_lr3_queries_baseline_and_rewrite.sql:20: NOTICE:  index "idx_lr3_q3_documents_responsible_document" does not exist, skipping
+DROP INDEX
+Time: 0.494 ms
+ANALYZE
+Time: 510.718 ms
+ANALYZE
+Time: 180.244 ms
+                                test_name                                 
+--------------------------------------------------------------------------
+ LR3 Q1 baseline: employees responsible for more than one secret document
+(1 row)
+
+Time: 3.560 ms
+                                                                            QUERY PLAN                                                                             
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=5546.69..5546.69 rows=2 width=30) (actual time=17.183..17.213 rows=5 loops=1)
+   Output: responsible_employee, (count(*))
+   Sort Key: d.responsible_employee
+   Sort Method: quicksort  Memory: 25kB
+   Buffers: shared hit=320 read=3906
+   ->  HashAggregate  (cost=5546.61..5546.68 rows=2 width=30) (actual time=17.170..17.200 rows=5 loops=1)
+         Output: responsible_employee, count(*)
+         Group Key: d.responsible_employee
+         Filter: (count(*) > 1)
+         Batches: 1  Memory Usage: 24kB
+         Buffers: shared hit=320 read=3906
+         ->  Seq Scan on public.documents d  (cost=0.00..5476.00 rows=14123 width=22) (actual time=0.028..15.417 rows=14285 loops=1)
+               Output: document_number, document_type, responsible_employee, document_content, internal_department, effective_from, effective_until, secrecy_level
+               Filter: (d.secrecy_level = 'секретно'::text)
+               Rows Removed by Filter: 85715
+               Buffers: shared hit=320 read=3906
+ Planning:
+   Buffers: shared hit=24
+ Planning Time: 0.206 ms
+ Execution Time: 17.239 ms
+(20 rows)
+
+Time: 19.799 ms
+                          test_name                           
+--------------------------------------------------------------
+ LR3 Q2 baseline: EXTRACT year and month from effective_until
+(1 row)
+
+Time: 0.547 ms
+                                                                                                QUERY PLAN                                                                                                 
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Gather Merge  (cost=6328.07..6373.10 rows=386 width=42) (actual time=12.553..14.473 rows=256 loops=1)
+   Output: document_number, responsible_employee, effective_until, ((EXTRACT(month FROM effective_until))::integer)
+   Workers Planned: 2
+   Workers Launched: 2
+   Buffers: shared hit=442 read=3874
+   ->  Sort  (cost=5328.04..5328.52 rows=193 width=42) (actual time=8.875..8.878 rows=85 loops=3)
+         Output: document_number, responsible_employee, effective_until, ((EXTRACT(month FROM effective_until))::integer)
+         Sort Key: d.effective_until, d.document_number
+         Sort Method: quicksort  Memory: 43kB
+         Buffers: shared hit=442 read=3874
+         Worker 0:  actual time=7.090..7.091 rows=0 loops=1
+           Sort Method: quicksort  Memory: 25kB
+           Buffers: shared hit=124 read=1044
+         Worker 1:  actual time=8.266..8.266 rows=0 loops=1
+           Sort Method: quicksort  Memory: 25kB
+           Buffers: shared hit=140 read=1322
+         ->  Parallel Seq Scan on public.documents d  (cost=0.00..5320.72 rows=193 width=42) (actual time=5.362..8.795 rows=85 loops=3)
+               Output: document_number, responsible_employee, effective_until, (EXTRACT(month FROM effective_until))::integer
+               Filter: ((d.effective_until IS NOT NULL) AND ((EXTRACT(year FROM d.effective_until))::integer = 2025) AND ((EXTRACT(month FROM d.effective_until))::integer <> ALL ('{5,6,7}'::integer[])))
+               Rows Removed by Filter: 33248
+               Buffers: shared hit=352 read=3874
+               Worker 0:  actual time=7.019..7.020 rows=0 loops=1
+                 Buffers: shared hit=79 read=1044
+               Worker 1:  actual time=8.164..8.165 rows=0 loops=1
+                 Buffers: shared hit=95 read=1322
+ Planning:
+   Buffers: shared hit=61 read=1
+ Planning Time: 0.392 ms
+ Execution Time: 14.495 ms
+(29 rows)
+
+Time: 17.330 ms
+                         test_name                         
+-----------------------------------------------------------
+ LR3 Q2 rewritten: date ranges instead of EXTRACT in WHERE
+(1 row)
+
+Time: 0.630 ms
+                                                                                                 QUERY PLAN                                                                                                 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Gather Merge  (cost=6064.34..6093.50 rows=250 width=42) (actual time=8.258..9.964 rows=256 loops=1)
+   Output: document_number, responsible_employee, effective_until, ((EXTRACT(month FROM effective_until))::integer)
+   Workers Planned: 2
+   Workers Launched: 2
+   Buffers: shared hit=538 read=3778
+   ->  Sort  (cost=5064.31..5064.62 rows=125 width=42) (actual time=6.005..6.010 rows=85 loops=3)
+         Output: document_number, responsible_employee, effective_until, ((EXTRACT(month FROM effective_until))::integer)
+         Sort Key: d.effective_until, d.document_number
+         Sort Method: quicksort  Memory: 43kB
+         Buffers: shared hit=538 read=3778
+         Worker 0:  actual time=4.748..4.749 rows=0 loops=1
+           Sort Method: quicksort  Memory: 25kB
+           Buffers: shared hit=170 read=1148
+         Worker 1:  actual time=5.189..5.190 rows=0 loops=1
+           Sort Method: quicksort  Memory: 25kB
+           Buffers: shared hit=167 read=1076
+         ->  Parallel Seq Scan on public.documents d  (cost=0.00..5059.96 rows=125 width=42) (actual time=3.436..5.911 rows=85 loops=3)
+               Output: document_number, responsible_employee, effective_until, (EXTRACT(month FROM effective_until))::integer
+               Filter: ((d.effective_until >= '2025-01-01'::date) AND (d.effective_until < '2026-01-01'::date) AND ((d.effective_until < '2025-05-01'::date) OR (d.effective_until >= '2025-08-01'::date)))
+               Rows Removed by Filter: 33248
+               Buffers: shared hit=448 read=3778
+               Worker 0:  actual time=4.677..4.678 rows=0 loops=1
+                 Buffers: shared hit=125 read=1148
+               Worker 1:  actual time=5.077..5.077 rows=0 loops=1
+                 Buffers: shared hit=122 read=1076
+ Planning:
+   Buffers: shared hit=3
+ Planning Time: 0.064 ms
+ Execution Time: 9.986 ms
+(29 rows)
+
+Time: 10.964 ms
+                       test_name                        
+--------------------------------------------------------
+ LR3 Q3 baseline: double NOT EXISTS relational division
+(1 row)
+
+Time: 0.553 ms
+                                                                                                   QUERY PLAN                                                                                                   
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Unique  (cost=5745362.25..5745372.16 rows=200 width=32) (actual time=2316.723..2318.486 rows=5 loops=1)
+   Output: op.employee_name
+   Buffers: shared hit=1432566 read=10827
+   ->  Sort  (cost=5745362.25..5745367.21 rows=1982 width=32) (actual time=2316.721..2318.482 rows=5 loops=1)
+         Output: op.employee_name
+         Sort Key: op.employee_name
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=1432566 read=10827
+         ->  HashAggregate  (cost=5745233.89..5745253.71 rows=1982 width=32) (actual time=2316.705..2318.471 rows=5 loops=1)
+               Output: op.employee_name
+               Group Key: op.employee_name
+               Batches: 1  Memory Usage: 121kB
+               Buffers: shared hit=1432566 read=10827
+               ->  Append  (cost=0.42..5745228.94 rows=1982 width=32) (actual time=2302.640..2314.641 rows=40000 loops=1)
+                     Buffers: shared hit=1432566 read=10827
+                     ->  Unique  (cost=0.42..5730934.42 rows=5 width=22) (actual time=2253.749..2253.752 rows=0 loops=1)
+                           Output: op.employee_name
+                           Buffers: shared hit=1427996 read=6601
+                           ->  Nested Loop Anti Join  (cost=0.42..5730559.42 rows=150000 width=22) (actual time=2253.749..2253.751 rows=0 loops=1)
+                                 Output: op.employee_name
+                                 Join Filter: (NOT (SubPlan 1))
+                                 Rows Removed by Join Filter: 57895
+                                 Buffers: shared hit=1427996 read=6601
+                                 ->  Index Only Scan using pk_document_operations on public.document_operations op  (cost=0.42..16684.42 rows=300000 width=34) (actual time=0.573..589.170 rows=300000 loops=1)
+                                       Output: op.employee_name, op.document_number, op.change_date
+                                       Heap Fetches: 0
+                                       Buffers: shared hit=591 read=2426
+                                 ->  Function Scan on pg_catalog.unnest possible_operation  (cost=0.00..0.03 rows=3 width=32) (actual time=0.000..0.000 rows=1 loops=300000)
+                                       Output: possible_operation.operation_description
+                                       Function Call: unnest('{"Создание документа","Проверка документа","Согласование документа"}'::text[])
+                                 SubPlan 1
+                                   ->  Index Scan using pk_document_operations on public.document_operations op_check  (cost=0.42..8.44 rows=1 width=0) (actual time=0.004..0.004 rows=0 loops=357895)
+                                         Index Cond: ((op_check.employee_name = op.employee_name) AND (op_check.document_number = op.document_number))
+                                         Filter: (op_check.operation_description = possible_operation.operation_description)
+                                         Rows Removed by Filter: 1
+                                         Buffers: shared hit=1427405 read=4175
+                     ->  Gather  (cost=6267.67..14284.60 rows=1977 width=22) (actual time=48.888..58.969 rows=40000 loops=1)
+                           Output: d.responsible_employee
+                           Workers Planned: 2
+                           Workers Launched: 2
+                           Buffers: shared hit=4570 read=4226
+                           ->  Parallel Hash Right Anti Join  (cost=5267.67..13086.90 rows=824 width=22) (actual time=46.355..48.278 rows=13333 loops=3)
+                                 Output: d.responsible_employee
+                                 Inner Unique: true
+                                 Hash Cond: ((op_1.document_number = d.document_number) AND (op_1.employee_name = d.responsible_employee))
+                                 Buffers: shared hit=4570 read=4226
+                                 Worker 0:  actual time=44.770..44.772 rows=0 loops=1
+                                   Buffers: shared hit=1414 read=1311
+                                 Worker 1:  actual time=45.711..45.712 rows=0 loops=1
+                                   Buffers: shared hit=1556 read=1486
+                                 ->  Parallel Seq Scan on public.document_operations op_1  (cost=0.00..5662.00 rows=125000 width=34) (actual time=0.007..5.741 rows=100000 loops=3)
+                                       Output: op_1.employee_name, op_1.document_number, op_1.change_date, op_1.operation_description
+                                       Buffers: shared hit=4412
+                                       Worker 0:  actual time=0.011..6.212 rows=90780 loops=1
+                                         Buffers: shared hit=1335
+                                       Worker 1:  actual time=0.007..6.121 rows=100436 loops=1
+                                         Buffers: shared hit=1477
+                                 ->  Parallel Hash  (cost=4642.67..4642.67 rows=41667 width=34) (actual time=22.870..22.870 rows=33333 loops=3)
+                                       Output: d.responsible_employee, d.document_number
+                                       Buckets: 131072  Batches: 1  Memory Usage: 8128kB
+                                       Buffers: shared read=4226
+                                       Worker 0:  actual time=22.165..22.165 rows=31007 loops=1
+                                         Buffers: shared read=1311
+                                       Worker 1:  actual time=23.171..23.172 rows=35182 loops=1
+                                         Buffers: shared read=1486
+                                       ->  Parallel Seq Scan on public.documents d  (cost=0.00..4642.67 rows=41667 width=34) (actual time=0.023..11.110 rows=33333 loops=3)
+                                             Output: d.responsible_employee, d.document_number
+                                             Buffers: shared read=4226
+                                             Worker 0:  actual time=0.028..10.749 rows=31007 loops=1
+                                               Buffers: shared read=1311
+                                             Worker 1:  actual time=0.024..11.273 rows=35182 loops=1
+                                               Buffers: shared read=1486
+ Planning:
+   Buffers: shared hit=43
+ Planning Time: 0.440 ms
+ Execution Time: 2318.659 ms
+(76 rows)
+
+Time: 2322.013 ms (00:02.322)
+                           test_name                            
+----------------------------------------------------------------
+ LR3 Q3 rewritten: GROUP BY HAVING instead of double NOT EXISTS
+(1 row)
+
+Time: 0.533 ms
+                                                                                      QUERY PLAN                                                                                      
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Unique  (cost=51547.04..51559.38 rows=200 width=32) (actual time=717.922..720.510 rows=5 loops=1)
+   Output: completed_operation_sets.employee_name
+   Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+   CTE required_operations
+     ->  Function Scan on pg_catalog.unnest r_1  (cost=0.00..0.03 rows=3 width=32) (actual time=0.003..0.003 rows=3 loops=1)
+           Output: r_1.operation_description
+           Function Call: unnest('{"Создание документа","Проверка документа","Согласование документа"}'::text[])
+   ->  Sort  (cost=51547.01..51553.18 rows=2467 width=32) (actual time=717.921..720.507 rows=5 loops=1)
+         Output: completed_operation_sets.employee_name
+         Sort Key: completed_operation_sets.employee_name
+         Sort Method: quicksort  Memory: 25kB
+         Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+         ->  HashAggregate  (cost=51383.34..51408.01 rows=2467 width=32) (actual time=717.905..720.496 rows=5 loops=1)
+               Output: completed_operation_sets.employee_name
+               Group Key: completed_operation_sets.employee_name
+               Batches: 1  Memory Usage: 121kB
+               Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+               ->  Append  (cost=34050.05..51377.17 rows=2467 width=32) (actual time=706.945..715.908 rows=40000 loops=1)
+                     Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+                     ->  Subquery Scan on completed_operation_sets  (cost=34050.05..37080.24 rows=490 width=22) (actual time=662.623..662.627 rows=0 loops=1)
+                           Output: completed_operation_sets.employee_name
+                           Buffers: shared hit=4412, temp read=1810 written=1815
+                           ->  GroupAggregate  (cost=34050.05..37075.34 rows=490 width=34) (actual time=662.622..662.625 rows=0 loops=1)
+                                 Output: op.employee_name, op.document_number
+                                 Group Key: op.employee_name, op.document_number
+                                 Filter: (count(DISTINCT op.operation_description) = $1)
+                                 Rows Removed by Filter: 178948
+                                 Buffers: shared hit=4412, temp read=1810 written=1815
+                                 InitPlan 2 (returns $1)
+                                   ->  Aggregate  (cost=0.07..0.08 rows=1 width=8) (actual time=0.004..0.005 rows=1 loops=1)
+                                         Output: count(*)
+                                         ->  CTE Scan on required_operations  (cost=0.00..0.06 rows=3 width=0) (actual time=0.002..0.002 rows=3 loops=1)
+                                               Output: required_operations.operation_description
+                                 ->  Sort  (cost=34049.97..34499.97 rows=180000 width=74) (actual time=526.558..618.640 rows=178948 loops=1)
+                                       Output: op.employee_name, op.document_number, op.operation_description
+                                       Sort Key: op.employee_name, op.document_number, op.operation_description
+                                       Sort Method: external merge  Disk: 14480kB
+                                       Buffers: shared hit=4412, temp read=1810 written=1815
+                                       ->  Hash Join  (cost=0.10..10337.10 rows=180000 width=74) (actual time=0.014..52.859 rows=178948 loops=1)
+                                             Output: op.employee_name, op.document_number, op.operation_description
+                                             Hash Cond: (op.operation_description = r.operation_description)
+                                             Buffers: shared hit=4412
+                                             ->  Seq Scan on public.document_operations op  (cost=0.00..7412.00 rows=300000 width=74) (actual time=0.005..13.151 rows=300000 loops=1)
+                                                   Output: op.employee_name, op.document_number, op.change_date, op.operation_description
+                                                   Buffers: shared hit=4412
+                                             ->  Hash  (cost=0.06..0.06 rows=3 width=32) (actual time=0.005..0.005 rows=3 loops=1)
+                                                   Output: r.operation_description
+                                                   Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                                                   ->  CTE Scan on required_operations r  (cost=0.00..0.06 rows=3 width=32) (actual time=0.003..0.004 rows=3 loops=1)
+                                                         Output: r.operation_description
+                     ->  Gather  (cost=6267.67..14284.60 rows=1977 width=22) (actual time=44.320..51.228 rows=40000 loops=1)
+                           Output: d.responsible_employee
+                           Workers Planned: 2
+                           Workers Launched: 2
+                           Buffers: shared hit=4636 read=4130
+                           ->  Parallel Hash Right Anti Join  (cost=5267.67..13086.90 rows=824 width=22) (actual time=41.455..43.592 rows=13333 loops=3)
+                                 Output: d.responsible_employee
+                                 Inner Unique: true
+                                 Hash Cond: ((op_1.document_number = d.document_number) AND (op_1.employee_name = d.responsible_employee))
+                                 Buffers: shared hit=4636 read=4130
+                                 Worker 0:  actual time=40.231..46.641 rows=40000 loops=1
+                                   Buffers: shared hit=1497 read=1341
+                                 Worker 1:  actual time=40.364..40.366 rows=0 loops=1
+                                   Buffers: shared hit=1479 read=1336
+                                 ->  Parallel Seq Scan on public.document_operations op_1  (cost=0.00..5662.00 rows=125000 width=34) (actual time=0.004..5.544 rows=100000 loops=3)
+                                       Output: op_1.employee_name, op_1.document_number, op_1.change_date, op_1.operation_description
+                                       Buffers: shared hit=4412
+                                       Worker 0:  actual time=0.004..5.841 rows=95268 loops=1
+                                         Buffers: shared hit=1401
+                                       Worker 1:  actual time=0.004..5.998 rows=94112 loops=1
+                                         Buffers: shared hit=1384
+                                 ->  Parallel Hash  (cost=4642.67..4642.67 rows=41667 width=34) (actual time=18.320..18.320 rows=33333 loops=3)
+                                       Output: d.responsible_employee, d.document_number
+                                       Buckets: 131072  Batches: 1  Memory Usage: 8128kB
+                                       Buffers: shared hit=96 read=4130
+                                       Worker 0:  actual time=18.138..18.138 rows=32480 loops=1
+                                         Buffers: shared hit=32 read=1341
+                                       Worker 1:  actual time=18.303..18.304 rows=32326 loops=1
+                                         Buffers: shared hit=31 read=1336
+                                       ->  Parallel Seq Scan on public.documents d  (cost=0.00..4642.67 rows=41667 width=34) (actual time=0.021..5.748 rows=33333 loops=3)
+                                             Output: d.responsible_employee, d.document_number
+                                             Buffers: shared hit=96 read=4130
+                                             Worker 0:  actual time=0.024..5.759 rows=32480 loops=1
+                                               Buffers: shared hit=32 read=1341
+                                             Worker 1:  actual time=0.027..5.725 rows=32326 loops=1
+                                               Buffers: shared hit=31 read=1336
+ Planning:
+   Buffers: shared hit=12 read=1
+ Planning Time: 0.231 ms
+ Execution Time: 723.539 ms
+(90 rows)
+
+Time: 724.953 ms
+ROLLBACK
+Time: 0.578 ms

@@ -1,0 +1,22 @@
+=== 30 audit: expected CSV files ===
+OK: report/30_update_index_usage_raw.csv
+OK: report/30_update_index_usage_aggregated.csv
+OK: report/30_update_index_usage_checks.csv
+OK: report/30_update_index_usage_explains.csv
+
+=== 30 audit: expected chart files ===
+OK: charts/30_update_index_search_total_linear.png
+OK: charts/30_update_index_search_per_row_linear.png
+OK: charts/30_update_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_lookup_vs_maintenance_per_row_linear.png
+OK: charts/30_update_maintenance_overhead_total_linear.png
+OK: charts/30_update_maintenance_overhead_per_row_linear.png
+OK: charts/30_update_simple_btree_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_unique_btree_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_expression_index_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_function_index_lookup_vs_maintenance_total_linear.png
+
+=== 30 audit: measurement checks from DB ===
+ERROR:  relation "plan_checks" does not exist
+LINE 60: FROM plan_checks
+              ^

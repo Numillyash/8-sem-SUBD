@@ -1,0 +1,195 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.573 ms
+psql:sql/15_lr3_final_measurements.sql:7: NOTICE:  table "lr3_optimization_measurements" does not exist, skipping
+DROP TABLE
+Time: 1.856 ms
+psql:sql/15_lr3_final_measurements.sql:8: NOTICE:  table "lr3_optimization_summary" does not exist, skipping
+DROP TABLE
+Time: 0.539 ms
+CREATE TABLE
+Time: 11.816 ms
+CREATE FUNCTION
+Time: 11.182 ms
+DROP INDEX
+Time: 3.150 ms
+DROP INDEX
+Time: 1.942 ms
+DROP INDEX
+Time: 1.956 ms
+DROP INDEX
+Time: 1.262 ms
+DROP INDEX
+Time: 1.529 ms
+psql:sql/15_lr3_final_measurements.sql:77: NOTICE:  index "idx_lr3_q1_secret_employee_partial" does not exist, skipping
+DROP INDEX
+Time: 0.502 ms
+psql:sql/15_lr3_final_measurements.sql:78: NOTICE:  index "idx_lr3_q2_documents_effective_until" does not exist, skipping
+DROP INDEX
+Time: 0.571 ms
+psql:sql/15_lr3_final_measurements.sql:79: NOTICE:  index "idx_lr3_q3_operations_operation_employee_document" does not exist, skipping
+DROP INDEX
+Time: 0.525 ms
+psql:sql/15_lr3_final_measurements.sql:80: NOTICE:  index "idx_lr3_q3_operations_document_employee" does not exist, skipping
+DROP INDEX
+Time: 0.902 ms
+psql:sql/15_lr3_final_measurements.sql:81: NOTICE:  index "idx_lr3_q3_documents_responsible_document" does not exist, skipping
+DROP INDEX
+Time: 0.593 ms
+ANALYZE
+Time: 535.324 ms
+ANALYZE
+Time: 139.757 ms
+                                stage                                
+---------------------------------------------------------------------
+ STAGE 1: baseline and logical rewrites without optimization indexes
+(1 row)
+
+Time: 1.539 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 100.185 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 75.074 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 63.293 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 9967.874 ms (00:09.968)
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 4141.932 ms (00:04.142)
+CREATE INDEX
+Time: 21.373 ms
+CREATE INDEX
+Time: 58.918 ms
+CREATE INDEX
+Time: 876.216 ms
+CREATE INDEX
+Time: 583.793 ms
+CREATE INDEX
+Time: 290.500 ms
+ANALYZE
+Time: 356.253 ms
+ANALYZE
+Time: 113.479 ms
+              stage              
+---------------------------------
+ STAGE 2: optimized with indexes
+(1 row)
+
+Time: 0.545 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 10.445 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 2.829 ms
+ lr3_measure_query 
+-------------------
+ 
+(1 row)
+
+Time: 4094.914 ms (00:04.095)
+ query_name |              stage              | run_number | planning_ms | execution_ms 
+------------+---------------------------------+------------+-------------+--------------
+ Q1         | baseline_original               |          1 |       0.054 |       16.916
+ Q1         | baseline_original               |          2 |       0.050 |       14.415
+ Q1         | baseline_original               |          3 |       0.048 |       13.931
+ Q1         | baseline_original               |          4 |       0.050 |       13.739
+ Q1         | baseline_original               |          5 |       0.046 |       13.704
+ Q1         | optimized_index                 |          1 |       0.038 |        1.329
+ Q1         | optimized_index                 |          2 |       0.032 |        1.475
+ Q1         | optimized_index                 |          3 |       0.035 |        1.318
+ Q1         | optimized_index                 |          4 |       0.029 |        1.315
+ Q1         | optimized_index                 |          5 |       0.028 |        1.356
+ Q2         | baseline_extract                |          1 |       0.055 |       11.880
+ Q2         | baseline_extract                |          2 |       0.051 |       11.273
+ Q2         | baseline_extract                |          3 |       0.060 |       11.299
+ Q2         | baseline_extract                |          4 |       0.067 |       11.044
+ Q2         | baseline_extract                |          5 |       0.052 |       13.059
+ Q2         | logical_rewrite_plus_index      |          1 |       0.044 |        0.067
+ Q2         | logical_rewrite_plus_index      |          2 |       0.047 |        0.087
+ Q2         | logical_rewrite_plus_index      |          3 |       0.043 |        0.066
+ Q2         | logical_rewrite_plus_index      |          4 |       0.059 |        0.082
+ Q2         | logical_rewrite_plus_index      |          5 |       0.058 |        0.098
+ Q2         | logical_rewrite_ranges          |          1 |       0.064 |       12.383
+ Q2         | logical_rewrite_ranges          |          2 |       0.055 |        9.751
+ Q2         | logical_rewrite_ranges          |          3 |       0.056 |        8.967
+ Q2         | logical_rewrite_ranges          |          4 |       0.054 |        8.440
+ Q2         | logical_rewrite_ranges          |          5 |       0.057 |        9.634
+ Q3         | baseline_double_not_exists      |          1 |       0.237 |     1566.635
+ Q3         | baseline_double_not_exists      |          2 |       0.204 |     1843.012
+ Q3         | baseline_double_not_exists      |          3 |       0.224 |     1634.579
+ Q3         | baseline_double_not_exists      |          4 |       0.218 |     1568.950
+ Q3         | baseline_double_not_exists      |          5 |       0.219 |     1638.020
+ Q3         | logical_rewrite_group_by_having |          1 |       0.366 |      642.926
+ Q3         | logical_rewrite_group_by_having |          2 |       0.264 |      676.508
+ Q3         | logical_rewrite_group_by_having |          3 |       0.259 |      689.941
+ Q3         | logical_rewrite_group_by_having |          4 |       0.226 |      693.398
+ Q3         | logical_rewrite_group_by_having |          5 |       0.226 |      700.448
+ Q3         | logical_rewrite_plus_indexes    |          1 |       0.268 |      710.399
+ Q3         | logical_rewrite_plus_indexes    |          2 |       0.268 |      624.777
+ Q3         | logical_rewrite_plus_indexes    |          3 |       0.271 |      698.355
+ Q3         | logical_rewrite_plus_indexes    |          4 |       0.271 |      683.123
+ Q3         | logical_rewrite_plus_indexes    |          5 |       0.270 |      660.975
+(40 rows)
+
+Time: 0.726 ms
+SELECT 8
+Time: 6.206 ms
+ query_name |              stage              | avg_execution_ms | min_execution_ms | max_execution_ms | stddev_execution_ms 
+------------+---------------------------------+------------------+------------------+------------------+---------------------
+ Q1         | baseline_original               |           14.541 |           13.704 |           16.916 |               1.358
+ Q1         | optimized_index                 |            1.359 |            1.315 |            1.475 |               0.067
+ Q2         | baseline_extract                |           11.711 |           11.044 |           13.059 |               0.814
+ Q2         | logical_rewrite_plus_index      |            0.080 |            0.066 |            0.098 |               0.014
+ Q2         | logical_rewrite_ranges          |            9.835 |            8.440 |           12.383 |               1.520
+ Q3         | baseline_double_not_exists      |         1650.239 |         1566.635 |         1843.012 |             113.086
+ Q3         | logical_rewrite_group_by_having |          680.644 |          642.926 |          700.448 |              22.809
+ Q3         | logical_rewrite_plus_indexes    |          675.526 |          624.777 |          710.399 |              33.846
+(8 rows)
+
+Time: 0.720 ms
+SELECT 5
+Time: 4.616 ms
+ query_name |         from_stage         |            to_stage             | from_avg_ms | to_avg_ms | speedup_ratio | improvement_percent 
+------------+----------------------------+---------------------------------+-------------+-----------+---------------+---------------------
+ Q1         | baseline_original          | optimized_index                 |      14.541 |     1.359 |        10.700 |               90.65
+ Q2         | baseline_extract           | logical_rewrite_plus_index      |      11.711 |     0.080 |       146.388 |               99.32
+ Q2         | baseline_extract           | logical_rewrite_ranges          |      11.711 |     9.835 |         1.191 |               16.02
+ Q3         | baseline_double_not_exists | logical_rewrite_group_by_having |    1650.239 |   680.644 |         2.425 |               58.75
+ Q3         | baseline_double_not_exists | logical_rewrite_plus_indexes    |    1650.239 |   675.526 |         2.443 |               59.06
+(5 rows)
+
+Time: 0.815 ms
+COPY 40
+Time: 1.014 ms
+COPY 8
+Time: 0.850 ms
+COPY 5
+Time: 0.867 ms

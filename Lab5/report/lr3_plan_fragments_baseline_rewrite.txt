@@ -1,0 +1,94 @@
+51:   Buffers: shared hit=320 read=3906
+52:   ->  HashAggregate  (cost=5546.61..5546.68 rows=2 width=30) (actual time=17.170..17.200 rows=5 loops=1)
+57:         Buffers: shared hit=320 read=3906
+58:         ->  Seq Scan on public.documents d  (cost=0.00..5476.00 rows=14123 width=22) (actual time=0.028..15.417 rows=14285 loops=1)
+61:               Rows Removed by Filter: 85715
+62:               Buffers: shared hit=320 read=3906
+64:   Buffers: shared hit=24
+66: Execution Time: 17.239 ms
+82:   Buffers: shared hit=442 read=3874
+87:         Buffers: shared hit=442 read=3874
+90:           Buffers: shared hit=124 read=1044
+93:           Buffers: shared hit=140 read=1322
+94:         ->  Parallel Seq Scan on public.documents d  (cost=0.00..5320.72 rows=193 width=42) (actual time=5.362..8.795 rows=85 loops=3)
+97:               Rows Removed by Filter: 33248
+98:               Buffers: shared hit=352 read=3874
+100:                 Buffers: shared hit=79 read=1044
+102:                 Buffers: shared hit=95 read=1322
+104:   Buffers: shared hit=61 read=1
+106: Execution Time: 14.495 ms
+122:   Buffers: shared hit=538 read=3778
+127:         Buffers: shared hit=538 read=3778
+130:           Buffers: shared hit=170 read=1148
+133:           Buffers: shared hit=167 read=1076
+134:         ->  Parallel Seq Scan on public.documents d  (cost=0.00..5059.96 rows=125 width=42) (actual time=3.436..5.911 rows=85 loops=3)
+137:               Rows Removed by Filter: 33248
+138:               Buffers: shared hit=448 read=3778
+140:                 Buffers: shared hit=125 read=1148
+142:                 Buffers: shared hit=122 read=1076
+144:   Buffers: shared hit=3
+146: Execution Time: 9.986 ms
+160:   Buffers: shared hit=1432566 read=10827
+165:         Buffers: shared hit=1432566 read=10827
+166:         ->  HashAggregate  (cost=5745233.89..5745253.71 rows=1982 width=32) (actual time=2316.705..2318.471 rows=5 loops=1)
+170:               Buffers: shared hit=1432566 read=10827
+172:                     Buffers: shared hit=1432566 read=10827
+175:                           Buffers: shared hit=1427996 read=6601
+176:                           ->  Nested Loop Anti Join  (cost=0.42..5730559.42 rows=150000 width=22) (actual time=2253.749..2253.751 rows=0 loops=1)
+178:                                 Join Filter: (NOT (SubPlan 1))
+179:                                 Rows Removed by Join Filter: 57895
+180:                                 Buffers: shared hit=1427996 read=6601
+181:                                 ->  Index Only Scan using pk_document_operations on public.document_operations op  (cost=0.42..16684.42 rows=300000 width=34) (actual time=0.573..589.170 rows=300000 loops=1)
+184:                                       Buffers: shared hit=591 read=2426
+188:                                 SubPlan 1
+189:                                   ->  Index Scan using pk_document_operations on public.document_operations op_check  (cost=0.42..8.44 rows=1 width=0) (actual time=0.004..0.004 rows=0 loops=357895)
+192:                                         Rows Removed by Filter: 1
+193:                                         Buffers: shared hit=1427405 read=4175
+198:                           Buffers: shared hit=4570 read=4226
+203:                                 Buffers: shared hit=4570 read=4226
+205:                                   Buffers: shared hit=1414 read=1311
+207:                                   Buffers: shared hit=1556 read=1486
+208:                                 ->  Parallel Seq Scan on public.document_operations op_1  (cost=0.00..5662.00 rows=125000 width=34) (actual time=0.007..5.741 rows=100000 loops=3)
+210:                                       Buffers: shared hit=4412
+212:                                         Buffers: shared hit=1335
+214:                                         Buffers: shared hit=1477
+218:                                       Buffers: shared read=4226
+220:                                         Buffers: shared read=1311
+222:                                         Buffers: shared read=1486
+223:                                       ->  Parallel Seq Scan on public.documents d  (cost=0.00..4642.67 rows=41667 width=34) (actual time=0.023..11.110 rows=33333 loops=3)
+225:                                             Buffers: shared read=4226
+227:                                               Buffers: shared read=1311
+229:                                               Buffers: shared read=1486
+231:   Buffers: shared hit=43
+233: Execution Time: 2318.659 ms
+247:   Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+256:         Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+257:         ->  HashAggregate  (cost=51383.34..51408.01 rows=2467 width=32) (actual time=717.905..720.496 rows=5 loops=1)
+261:               Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+263:                     Buffers: shared hit=9048 read=4130, temp read=1810 written=1815
+266:                           Buffers: shared hit=4412, temp read=1810 written=1815
+267:                           ->  GroupAggregate  (cost=34050.05..37075.34 rows=490 width=34) (actual time=662.622..662.625 rows=0 loops=1)
+271:                                 Rows Removed by Filter: 178948
+272:                                 Buffers: shared hit=4412, temp read=1810 written=1815
+282:                                       Buffers: shared hit=4412, temp read=1810 written=1815
+283:                                       ->  Hash Join  (cost=0.10..10337.10 rows=180000 width=74) (actual time=0.014..52.859 rows=178948 loops=1)
+286:                                             Buffers: shared hit=4412
+287:                                             ->  Seq Scan on public.document_operations op  (cost=0.00..7412.00 rows=300000 width=74) (actual time=0.005..13.151 rows=300000 loops=1)
+289:                                                   Buffers: shared hit=4412
+299:                           Buffers: shared hit=4636 read=4130
+304:                                 Buffers: shared hit=4636 read=4130
+306:                                   Buffers: shared hit=1497 read=1341
+308:                                   Buffers: shared hit=1479 read=1336
+309:                                 ->  Parallel Seq Scan on public.document_operations op_1  (cost=0.00..5662.00 rows=125000 width=34) (actual time=0.004..5.544 rows=100000 loops=3)
+311:                                       Buffers: shared hit=4412
+313:                                         Buffers: shared hit=1401
+315:                                         Buffers: shared hit=1384
+319:                                       Buffers: shared hit=96 read=4130
+321:                                         Buffers: shared hit=32 read=1341
+323:                                         Buffers: shared hit=31 read=1336
+324:                                       ->  Parallel Seq Scan on public.documents d  (cost=0.00..4642.67 rows=41667 width=34) (actual time=0.021..5.748 rows=33333 loops=3)
+326:                                             Buffers: shared hit=96 read=4130
+328:                                               Buffers: shared hit=32 read=1341
+330:                                               Buffers: shared hit=31 read=1336
+332:   Buffers: shared hit=12 read=1
+334: Execution Time: 723.539 ms

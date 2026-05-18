@@ -1,0 +1,5 @@
+44:                                stage                                
+94:              stage              
+118: query_name |              stage              | run_number | planning_ms | execution_ms 
+165: query_name |              stage              | avg_execution_ms | min_execution_ms | max_execution_ms | stddev_execution_ms 
+180: query_name |         from_stage         |            to_stage             | from_avg_ms | to_avg_ms | speedup_ratio | improvement_percent 

@@ -1,0 +1,325 @@
+index_type,mode,rows_base,explain_plan
+expression_index,lookup_and_update,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '4001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '5000'::bigint))
+"
+expression_index,lookup_and_update,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '9001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '10000'::bigint))
+"
+expression_index,lookup_and_update,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '24001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '25000'::bigint))
+"
+expression_index,lookup_and_update,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '49001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '50000'::bigint))
+"
+expression_index,lookup_and_update,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '99001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '100000'::bigint))
+"
+expression_index,lookup_and_update,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '249001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '250000'::bigint))
+"
+expression_index,lookup_and_update,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '499001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '500000'::bigint))
+"
+expression_index,lookup_and_update,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '1000000'::bigint))
+"
+expression_index,lookup_and_update,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '1999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '2000000'::bigint))
+"
+expression_index,lookup_only,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '4001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '5000'::bigint))
+"
+expression_index,lookup_only,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '9001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '10000'::bigint))
+"
+expression_index,lookup_only,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '24001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '25000'::bigint))
+"
+expression_index,lookup_only,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '49001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '50000'::bigint))
+"
+expression_index,lookup_only,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '99001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '100000'::bigint))
+"
+expression_index,lookup_only,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '249001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '250000'::bigint))
+"
+expression_index,lookup_only,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '499001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '500000'::bigint))
+"
+expression_index,lookup_only,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '1000000'::bigint))
+"
+expression_index,lookup_only,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_expression_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '1999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '2000000'::bigint))
+"
+function_index,lookup_and_update,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '4001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '5000'::bigint))
+"
+function_index,lookup_and_update,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '9001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '10000'::bigint))
+"
+function_index,lookup_and_update,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '24001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '25000'::bigint))
+"
+function_index,lookup_and_update,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '49001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '50000'::bigint))
+"
+function_index,lookup_and_update,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '99001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '100000'::bigint))
+"
+function_index,lookup_and_update,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '249001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '250000'::bigint))
+"
+function_index,lookup_and_update,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '499001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '500000'::bigint))
+"
+function_index,lookup_and_update,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '1000000'::bigint))
+"
+function_index,lookup_and_update,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '1999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '2000000'::bigint))
+"
+function_index,lookup_only,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '4001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '5000'::bigint))
+"
+function_index,lookup_only,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '9001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '10000'::bigint))
+"
+function_index,lookup_only,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '24001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '25000'::bigint))
+"
+function_index,lookup_only,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '49001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '50000'::bigint))
+"
+function_index,lookup_only,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '99001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '100000'::bigint))
+"
+function_index,lookup_only,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '249001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '250000'::bigint))
+"
+function_index,lookup_only,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '499001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '500000'::bigint))
+"
+function_index,lookup_only,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '1000000'::bigint))
+"
+function_index,lookup_only,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_function_math on update_index_usage_work
+        Index Cond: (((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) >= '1999001'::bigint) AND ((((customer_id)::bigint * '1000000'::bigint) + (amount_cents)::bigint) <= '2000000'::bigint))
+"
+no_index,no_index,5000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '4001'::bigint) AND (search_key <= '5000'::bigint))
+"
+no_index,no_index,10000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '9001'::bigint) AND (search_key <= '10000'::bigint))
+"
+no_index,no_index,25000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '24001'::bigint) AND (search_key <= '25000'::bigint))
+"
+no_index,no_index,50000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '49001'::bigint) AND (search_key <= '50000'::bigint))
+"
+no_index,no_index,100000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '99001'::bigint) AND (search_key <= '100000'::bigint))
+"
+no_index,no_index,250000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '249001'::bigint) AND (search_key <= '250000'::bigint))
+"
+no_index,no_index,500000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '499001'::bigint) AND (search_key <= '500000'::bigint))
+"
+no_index,no_index,1000000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '999001'::bigint) AND (search_key <= '1000000'::bigint))
+"
+no_index,no_index,2000000,"Update on update_index_usage_work
+  ->  Seq Scan on update_index_usage_work
+        Filter: ((search_key >= '1999001'::bigint) AND (search_key <= '2000000'::bigint))
+"
+simple_btree,lookup_and_update,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '4001'::bigint) AND (simple_key <= '5000'::bigint))
+"
+simple_btree,lookup_and_update,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '9001'::bigint) AND (simple_key <= '10000'::bigint))
+"
+simple_btree,lookup_and_update,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '24001'::bigint) AND (simple_key <= '25000'::bigint))
+"
+simple_btree,lookup_and_update,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '49001'::bigint) AND (simple_key <= '50000'::bigint))
+"
+simple_btree,lookup_and_update,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '99001'::bigint) AND (simple_key <= '100000'::bigint))
+"
+simple_btree,lookup_and_update,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '249001'::bigint) AND (simple_key <= '250000'::bigint))
+"
+simple_btree,lookup_and_update,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '499001'::bigint) AND (simple_key <= '500000'::bigint))
+"
+simple_btree,lookup_and_update,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '999001'::bigint) AND (simple_key <= '1000000'::bigint))
+"
+simple_btree,lookup_and_update,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '1999001'::bigint) AND (simple_key <= '2000000'::bigint))
+"
+simple_btree,lookup_only,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '4001'::bigint) AND (simple_key <= '5000'::bigint))
+"
+simple_btree,lookup_only,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '9001'::bigint) AND (simple_key <= '10000'::bigint))
+"
+simple_btree,lookup_only,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '24001'::bigint) AND (simple_key <= '25000'::bigint))
+"
+simple_btree,lookup_only,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '49001'::bigint) AND (simple_key <= '50000'::bigint))
+"
+simple_btree,lookup_only,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '99001'::bigint) AND (simple_key <= '100000'::bigint))
+"
+simple_btree,lookup_only,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '249001'::bigint) AND (simple_key <= '250000'::bigint))
+"
+simple_btree,lookup_only,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '499001'::bigint) AND (simple_key <= '500000'::bigint))
+"
+simple_btree,lookup_only,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '999001'::bigint) AND (simple_key <= '1000000'::bigint))
+"
+simple_btree,lookup_only,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_simple_btree on update_index_usage_work
+        Index Cond: ((simple_key >= '1999001'::bigint) AND (simple_key <= '2000000'::bigint))
+"
+unique_btree,lookup_and_update,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '4001'::bigint) AND (unique_key <= '5000'::bigint))
+"
+unique_btree,lookup_and_update,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '9001'::bigint) AND (unique_key <= '10000'::bigint))
+"
+unique_btree,lookup_and_update,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '24001'::bigint) AND (unique_key <= '25000'::bigint))
+"
+unique_btree,lookup_and_update,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '49001'::bigint) AND (unique_key <= '50000'::bigint))
+"
+unique_btree,lookup_and_update,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '99001'::bigint) AND (unique_key <= '100000'::bigint))
+"
+unique_btree,lookup_and_update,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '249001'::bigint) AND (unique_key <= '250000'::bigint))
+"
+unique_btree,lookup_and_update,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '499001'::bigint) AND (unique_key <= '500000'::bigint))
+"
+unique_btree,lookup_and_update,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '999001'::bigint) AND (unique_key <= '1000000'::bigint))
+"
+unique_btree,lookup_and_update,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '1999001'::bigint) AND (unique_key <= '2000000'::bigint))
+"
+unique_btree,lookup_only,5000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '4001'::bigint) AND (unique_key <= '5000'::bigint))
+"
+unique_btree,lookup_only,10000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '9001'::bigint) AND (unique_key <= '10000'::bigint))
+"
+unique_btree,lookup_only,25000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '24001'::bigint) AND (unique_key <= '25000'::bigint))
+"
+unique_btree,lookup_only,50000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '49001'::bigint) AND (unique_key <= '50000'::bigint))
+"
+unique_btree,lookup_only,100000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '99001'::bigint) AND (unique_key <= '100000'::bigint))
+"
+unique_btree,lookup_only,250000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '249001'::bigint) AND (unique_key <= '250000'::bigint))
+"
+unique_btree,lookup_only,500000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '499001'::bigint) AND (unique_key <= '500000'::bigint))
+"
+unique_btree,lookup_only,1000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '999001'::bigint) AND (unique_key <= '1000000'::bigint))
+"
+unique_btree,lookup_only,2000000,"Update on update_index_usage_work
+  ->  Index Scan using idx_30_update_unique_btree on update_index_usage_work
+        Index Cond: ((unique_key >= '1999001'::bigint) AND (unique_key <= '2000000'::bigint))
+"

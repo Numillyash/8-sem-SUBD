@@ -1,0 +1,32 @@
+Pager usage is off.
+Timing is on.
+=== 30g export update index usage ===
+DROP VIEW
+Time: 11.075 ms
+DROP VIEW
+Time: 1.857 ms
+DROP VIEW
+Time: 1.361 ms
+DROP VIEW
+Time: 1.377 ms
+CREATE VIEW
+Time: 5.873 ms
+CREATE VIEW
+Time: 3.751 ms
+CREATE VIEW
+Time: 2.212 ms
+CREATE VIEW
+Time: 1.894 ms
+COPY 405
+Time: 8.355 ms
+COPY 81
+Time: 5.296 ms
+COPY 81
+Time: 1.576 ms
+COPY 81
+Time: 2.420 ms
+exported:
+  report/30_update_index_usage_raw.csv
+  report/30_update_index_usage_aggregated.csv
+  report/30_update_index_usage_checks.csv
+  report/30_update_index_usage_explains.csv

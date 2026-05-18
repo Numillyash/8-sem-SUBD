@@ -1,0 +1,9 @@
+query_name,stage,avg_execution_ms,min_execution_ms,max_execution_ms,stddev_execution_ms
+Q1,baseline_original,14.541,13.704,16.916,1.358
+Q1,optimized_index,1.359,1.315,1.475,0.067
+Q2,baseline_extract,11.711,11.044,13.059,0.814
+Q2,logical_rewrite_plus_index,0.080,0.066,0.098,0.014
+Q2,logical_rewrite_ranges,9.835,8.440,12.383,1.520
+Q3,baseline_double_not_exists,1650.239,1566.635,1843.012,113.086
+Q3,logical_rewrite_group_by_having,680.644,642.926,700.448,22.809
+Q3,logical_rewrite_plus_indexes,675.526,624.777,710.399,33.846

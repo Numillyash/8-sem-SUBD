@@ -1,0 +1,268 @@
+Pager usage is off.
+Timing is on.
+SET
+Time: 0.555 ms
+BEGIN
+Time: 0.482 ms
+DROP INDEX
+Time: 13.761 ms
+DROP INDEX
+Time: 1.116 ms
+DROP INDEX
+Time: 0.659 ms
+DROP INDEX
+Time: 0.672 ms
+DROP INDEX
+Time: 0.682 ms
+ANALYZE
+Time: 635.694 ms
+ANALYZE
+Time: 186.387 ms
+                test_name                 
+------------------------------------------
+ Q2 original without optimization indexes
+(1 row)
+
+Time: 4.554 ms
+                                                                                                             QUERY PLAN                                                                                                             
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=8831.78..8832.03 rows=100 width=59) (actual time=174.537..174.575 rows=100 loops=1)
+   Output: d.responsible_employee, d.internal_department, (count(*))
+   Sort Key: (count(*)) DESC, d.responsible_employee, d.internal_department
+   Sort Method: quicksort  Memory: 33kB
+   Buffers: shared hit=36 read=4785
+   ->  HashAggregate  (cost=8827.46..8828.46 rows=100 width=59) (actual time=174.253..174.295 rows=100 loops=1)
+         Output: d.responsible_employee, d.internal_department, count(*)
+         Group Key: d.responsible_employee, d.internal_department
+         Batches: 1  Memory Usage: 48kB
+         Buffers: shared hit=33 read=4785
+         ->  Hash Join  (cost=3280.46..8804.29 rows=3090 width=51) (actual time=155.213..173.577 rows=3241 loops=1)
+               Output: d.responsible_employee, d.internal_department
+               Hash Cond: (d.document_number = o.document_number)
+               Buffers: shared hit=33 read=4785
+               ->  Seq Scan on public.documents d  (cost=0.00..5226.00 rows=42780 width=63) (actual time=0.139..14.580 rows=42856 loops=1)
+                     Output: d.document_number, d.document_type, d.responsible_employee, d.document_content, d.internal_department, d.effective_from, d.effective_until, d.secrecy_level
+                     Filter: (d.secrecy_level IS NOT NULL)
+                     Rows Removed by Filter: 57144
+                     Buffers: shared hit=32 read=4194
+               ->  Hash  (cost=3190.16..3190.16 rows=7224 width=12) (actual time=154.988..154.989 rows=7565 loops=1)
+                     Output: o.document_number
+                     Buckets: 8192  Batches: 1  Memory Usage: 390kB
+                     Buffers: shared hit=1 read=591
+                     ->  Index Only Scan using pk_document_operations on public.document_operations o  (cost=0.42..3190.16 rows=7224 width=12) (actual time=0.808..153.121 rows=7565 loops=1)
+                           Output: o.document_number
+                           Index Cond: ((o.employee_name = 'Сотрудник_В'::text) AND (o.change_date >= '2024-06-01 00:00:00'::timestamp without time zone) AND (o.change_date < '2024-09-01 00:00:00'::timestamp without time zone))
+                           Heap Fetches: 0
+                           Buffers: shared hit=1 read=591
+ Planning:
+   Buffers: shared hit=76 read=13
+ Planning Time: 4.069 ms
+ Execution Time: 174.793 ms
+(32 rows)
+
+Time: 188.215 ms
+                         test_name                         
+-----------------------------------------------------------
+ Q2 rewritten: filter and aggregate operations before join
+(1 row)
+
+Time: 0.512 ms
+                                                                                                                   QUERY PLAN                                                                                                                   
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=8821.07..8821.32 rows=100 width=83) (actual time=26.154..26.161 rows=100 loops=1)
+   Output: d.responsible_employee, d.internal_department, (sum(fo.operation_count))
+   Sort Key: (sum(fo.operation_count)) DESC, d.responsible_employee, d.internal_department
+   Sort Method: quicksort  Memory: 33kB
+   Buffers: shared hit=659 read=4162
+   ->  HashAggregate  (cost=8816.50..8817.75 rows=100 width=83) (actual time=25.672..25.692 rows=100 loops=1)
+         Output: d.responsible_employee, d.internal_department, sum(fo.operation_count)
+         Group Key: d.responsible_employee, d.internal_department
+         Batches: 1  Memory Usage: 48kB
+         Buffers: shared hit=656 read=4162
+         ->  Hash Join  (cost=3455.57..8793.87 rows=3018 width=59) (actual time=6.961..24.545 rows=3241 loops=1)
+               Output: d.responsible_employee, d.internal_department, fo.operation_count
+               Inner Unique: true
+               Hash Cond: (d.document_number = fo.document_number)
+               Buffers: shared hit=656 read=4162
+               ->  Seq Scan on public.documents d  (cost=0.00..5226.00 rows=42780 width=63) (actual time=0.018..13.184 rows=42856 loops=1)
+                     Output: d.document_number, d.document_type, d.responsible_employee, d.document_content, d.internal_department, d.effective_from, d.effective_until, d.secrecy_level
+                     Filter: (d.secrecy_level IS NOT NULL)
+                     Rows Removed by Filter: 57144
+                     Buffers: shared hit=64 read=4162
+               ->  Hash  (cost=3367.38..3367.38 rows=7055 width=20) (actual time=6.929..6.931 rows=7565 loops=1)
+                     Output: fo.operation_count, fo.document_number
+                     Buckets: 8192  Batches: 1  Memory Usage: 449kB
+                     Buffers: shared hit=592
+                     ->  Subquery Scan on fo  (cost=0.42..3367.38 rows=7055 width=20) (actual time=0.017..6.091 rows=7565 loops=1)
+                           Output: fo.operation_count, fo.document_number
+                           Buffers: shared hit=592
+                           ->  GroupAggregate  (cost=0.42..3296.83 rows=7055 width=20) (actual time=0.017..5.634 rows=7565 loops=1)
+                                 Output: o.document_number, count(*)
+                                 Group Key: o.document_number
+                                 Buffers: shared hit=592
+                                 ->  Index Only Scan using pk_document_operations on public.document_operations o  (cost=0.42..3190.16 rows=7224 width=12) (actual time=0.014..3.821 rows=7565 loops=1)
+                                       Output: o.employee_name, o.document_number, o.change_date
+                                       Index Cond: ((o.employee_name = 'Сотрудник_В'::text) AND (o.change_date >= '2024-06-01 00:00:00'::timestamp without time zone) AND (o.change_date < '2024-09-01 00:00:00'::timestamp without time zone))
+                                       Heap Fetches: 0
+                                       Buffers: shared hit=592
+ Planning:
+   Buffers: shared hit=29 read=4
+ Planning Time: 0.918 ms
+ Execution Time: 26.267 ms
+(40 rows)
+
+Time: 28.853 ms
+                test_name                 
+------------------------------------------
+ Q3 original without optimization indexes
+(1 row)
+
+Time: 0.520 ms
+                                                                                                                              QUERY PLAN                                                                                                                               
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=12571.97..12572.02 rows=20 width=37) (actual time=42.876..44.712 rows=20 loops=1)
+   Output: d.internal_department, (count(*))
+   Sort Key: (count(*)) DESC, d.internal_department
+   Sort Method: quicksort  Memory: 26kB
+   Buffers: shared hit=150 read=8510
+   ->  Finalize GroupAggregate  (cost=12566.47..12571.54 rows=20 width=37) (actual time=42.849..44.703 rows=20 loops=1)
+         Output: d.internal_department, count(*)
+         Group Key: d.internal_department
+         Buffers: shared hit=150 read=8510
+         ->  Gather Merge  (cost=12566.47..12571.14 rows=40 width=37) (actual time=42.844..44.693 rows=60 loops=1)
+               Output: d.internal_department, (PARTIAL count(*))
+               Workers Planned: 2
+               Workers Launched: 2
+               Buffers: shared hit=150 read=8510
+               ->  Sort  (cost=11566.45..11566.50 rows=20 width=37) (actual time=20.019..20.022 rows=20 loops=3)
+                     Output: d.internal_department, (PARTIAL count(*))
+                     Sort Key: d.internal_department
+                     Sort Method: quicksort  Memory: 26kB
+                     Buffers: shared hit=150 read=8510
+                     Worker 0:  actual time=9.450..9.452 rows=20 loops=1
+                       Sort Method: quicksort  Memory: 26kB
+                       Buffers: shared hit=49 read=1325
+                     Worker 1:  actual time=10.055..10.057 rows=20 loops=1
+                       Sort Method: quicksort  Memory: 26kB
+                       Buffers: shared hit=49 read=1548
+                     ->  Partial HashAggregate  (cost=11565.81..11566.01 rows=20 width=37) (actual time=19.971..19.974 rows=20 loops=3)
+                           Output: d.internal_department, PARTIAL count(*)
+                           Group Key: d.internal_department
+                           Batches: 1  Memory Usage: 24kB
+                           Buffers: shared hit=134 read=8510
+                           Worker 0:  actual time=9.399..9.401 rows=20 loops=1
+                             Batches: 1  Memory Usage: 24kB
+                             Buffers: shared hit=41 read=1325
+                           Worker 1:  actual time=9.998..10.001 rows=20 loops=1
+                             Batches: 1  Memory Usage: 24kB
+                             Buffers: shared hit=41 read=1548
+                           ->  Parallel Hash Semi Join  (cost=6750.64..11531.73 rows=6817 width=29) (actual time=10.949..19.240 rows=5531 loops=3)
+                                 Output: d.internal_department
+                                 Hash Cond: (d.document_number = o.document_number)
+                                 Buffers: shared hit=134 read=8510
+                                 Worker 0:  actual time=0.377..8.694 rows=5300 loops=1
+                                   Buffers: shared hit=41 read=1325
+                                 Worker 1:  actual time=0.985..9.215 rows=5905 loops=1
+                                   Buffers: shared hit=41 read=1548
+                                 ->  Parallel Seq Scan on public.documents d  (cost=0.00..4642.67 rows=23842 width=41) (actual time=0.024..5.787 rows=19048 loops=3)
+                                       Output: d.document_number, d.document_type, d.responsible_employee, d.document_content, d.internal_department, d.effective_from, d.effective_until, d.secrecy_level
+                                       Filter: (d.secrecy_level IS NULL)
+                                       Rows Removed by Filter: 14285
+                                       Buffers: shared hit=96 read=4130
+                                       Worker 0:  actual time=0.023..5.940 rows=18166 loops=1
+                                         Buffers: shared hit=29 read=1316
+                                       Worker 1:  actual time=0.027..5.463 rows=20421 loops=1
+                                         Buffers: shared hit=28 read=1479
+                                 ->  Parallel Hash  (cost=6599.50..6599.50 rows=12091 width=12) (actual time=10.482..10.483 rows=9678 loops=3)
+                                       Output: o.document_number
+                                       Buckets: 32768  Batches: 1  Memory Usage: 1664kB
+                                       Buffers: shared hit=32 read=4380
+                                       Worker 0:  actual time=0.271..0.271 rows=106 loops=1
+                                         Buffers: shared hit=9 read=9
+                                       Worker 1:  actual time=0.861..0.861 rows=443 loops=1
+                                         Buffers: shared hit=10 read=69
+                                       ->  Parallel Seq Scan on public.document_operations o  (cost=0.00..6599.50 rows=12091 width=12) (actual time=0.022..8.354 rows=9678 loops=3)
+                                             Output: o.document_number
+                                             Filter: ((o.change_date >= '2024-01-01 00:00:00'::timestamp without time zone) AND (o.change_date < '2025-01-01 00:00:00'::timestamp without time zone) AND (o.operation_description = 'Изменение срока действия'::text))
+                                             Rows Removed by Filter: 90322
+                                             Buffers: shared hit=32 read=4380
+                                             Worker 0:  actual time=0.023..0.182 rows=106 loops=1
+                                               Buffers: shared hit=9 read=9
+                                             Worker 1:  actual time=0.019..0.729 rows=443 loops=1
+                                               Buffers: shared hit=10 read=69
+ Planning:
+   Buffers: shared hit=11
+ Planning Time: 0.252 ms
+ Execution Time: 44.828 ms
+(74 rows)
+
+Time: 45.910 ms
+                          test_name                          
+-------------------------------------------------------------
+ Q3 rewritten: explicit set of changed documents before join
+(1 row)
+
+Time: 0.560 ms
+                                                                                                                QUERY PLAN                                                                                                                 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Sort  (cost=16611.77..16611.82 rows=20 width=37) (actual time=65.783..65.786 rows=20 loops=1)
+   Output: d.internal_department, (count(*))
+   Sort Key: (count(*)) DESC, d.internal_department
+   Sort Method: quicksort  Memory: 26kB
+   Buffers: shared hit=297 read=8341
+   CTE changed_documents
+     ->  HashAggregate  (cost=9734.55..9998.12 rows=26358 width=12) (actual time=27.587..30.932 rows=29034 loops=1)
+           Output: o.document_number
+           Group Key: o.document_number
+           Batches: 1  Memory Usage: 2833kB
+           Buffers: shared hit=105 read=4307
+           ->  Seq Scan on public.document_operations o  (cost=0.00..9662.00 rows=29018 width=12) (actual time=0.021..22.586 rows=29034 loops=1)
+                 Output: o.employee_name, o.document_number, o.change_date, o.operation_description
+                 Filter: ((o.change_date >= '2024-01-01 00:00:00'::timestamp without time zone) AND (o.change_date < '2025-01-01 00:00:00'::timestamp without time zone) AND (o.operation_description = 'Изменение срока действия'::text))
+                 Rows Removed by Filter: 270966
+                 Buffers: shared hit=105 read=4307
+   ->  HashAggregate  (cost=6613.01..6613.21 rows=20 width=37) (actual time=65.769..65.772 rows=20 loops=1)
+         Output: d.internal_department, count(*)
+         Group Key: d.internal_department
+         Batches: 1  Memory Usage: 24kB
+         Buffers: shared hit=297 read=8341
+         ->  Hash Join  (cost=5941.25..6537.60 rows=15082 width=29) (actual time=50.711..63.736 rows=16592 loops=1)
+               Output: d.internal_department
+               Inner Unique: true
+               Hash Cond: (c.document_number = d.document_number)
+               Buffers: shared hit=297 read=8341
+               ->  CTE Scan on changed_documents c  (cost=0.00..527.16 rows=26358 width=32) (actual time=27.588..34.333 rows=29034 loops=1)
+                     Output: c.document_number
+                     Buffers: shared hit=105 read=4307
+               ->  Hash  (cost=5226.00..5226.00 rows=57220 width=41) (actual time=23.084..23.085 rows=57144 loops=1)
+                     Output: d.internal_department, d.document_number
+                     Buckets: 65536  Batches: 1  Memory Usage: 4617kB
+                     Buffers: shared hit=192 read=4034
+                     ->  Seq Scan on public.documents d  (cost=0.00..5226.00 rows=57220 width=41) (actual time=0.021..14.844 rows=57144 loops=1)
+                           Output: d.internal_department, d.document_number
+                           Filter: (d.secrecy_level IS NULL)
+                           Rows Removed by Filter: 42856
+                           Buffers: shared hit=192 read=4034
+ Planning Time: 0.099 ms
+ Execution Time: 66.006 ms
+(40 rows)
+
+Time: 66.913 ms
+ROLLBACK
+Time: 0.713 ms
+                              note                               
+-----------------------------------------------------------------
+ После ROLLBACK оптимизационные индексы должны остаться на месте
+(1 row)
+
+Time: 0.531 ms
+      tablename      |                      indexname                       
+---------------------+------------------------------------------------------
+ document_operations | idx_operations_q2_employee_date_document
+ document_operations | idx_operations_q3_operation_date_document
+ documents           | idx_documents_q1_secret_department_until
+ documents           | idx_documents_q2_secret_document_employee_department
+ documents           | idx_documents_q3_public_document_department
+(5 rows)
+
+Time: 9.299 ms

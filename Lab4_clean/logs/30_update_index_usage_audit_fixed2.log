@@ -1,0 +1,61 @@
+=== 30 audit: expected CSV files ===
+OK: report/30_update_index_usage_raw.csv
+OK: report/30_update_index_usage_aggregated.csv
+OK: report/30_update_index_usage_checks.csv
+OK: report/30_update_index_usage_explains.csv
+
+=== 30 audit: expected chart files ===
+OK: charts/30_update_index_search_total_linear.png
+OK: charts/30_update_index_search_per_row_linear.png
+OK: charts/30_update_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_lookup_vs_maintenance_per_row_linear.png
+OK: charts/30_update_maintenance_overhead_total_linear.png
+OK: charts/30_update_maintenance_overhead_per_row_linear.png
+OK: charts/30_update_simple_btree_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_unique_btree_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_expression_index_lookup_vs_maintenance_total_linear.png
+OK: charts/30_update_function_index_lookup_vs_maintenance_total_linear.png
+
+=== 30 audit: measurement counts and affected rows ===
+    index_type    |       mode        | tested_sizes | min_rows | max_rows | runs_min | runs_max | affected_min | affected_max | check_result 
+------------------+-------------------+--------------+----------+----------+----------+----------+--------------+--------------+--------------
+ expression_index | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ expression_index | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ function_index   | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ function_index   | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ no_index         | no_index          |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ simple_btree     | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ simple_btree     | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ unique_btree     | lookup_and_update |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+ unique_btree     | lookup_only       |            9 |     5000 |  2000000 |        5 |        5 |         1000 |         1000 | OK
+(9 rows)
+
+
+=== 30 audit: total row counts ===
+    check_name     | actual_value | check_result 
+-------------------+--------------+--------------
+ raw_measurements  |          405 | OK
+ aggregated_groups |           81 | OK
+ explain_rows      |           81 | OK
+(3 rows)
+
+
+=== 30 audit: plan checks ===
+    index_type    |       mode        | checked_rows |              plan_check               
+------------------+-------------------+--------------+---------------------------------------
+ expression_index | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ expression_index | lookup_only       |      2000000 | OK: indexed variant uses index access
+ function_index   | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ function_index   | lookup_only       |      2000000 | OK: indexed variant uses index access
+ no_index         | no_index          |      2000000 | OK: no_index uses Seq Scan
+ simple_btree     | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ simple_btree     | lookup_only       |      2000000 | OK: indexed variant uses index access
+ unique_btree     | lookup_and_update |      2000000 | OK: indexed variant uses index access
+ unique_btree     | lookup_only       |      2000000 | OK: indexed variant uses index access
+(9 rows)
+
+
+=== 30 audit: CSV FAIL grep ===
+OK: no FAIL in checks CSV
+
+=== 30 audit done ===

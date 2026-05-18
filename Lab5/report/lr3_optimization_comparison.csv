@@ -1,0 +1,6 @@
+query_name,from_stage,to_stage,from_avg_ms,to_avg_ms,speedup_ratio,improvement_percent
+Q1,baseline_original,optimized_index,14.541,1.359,10.700,90.65
+Q2,baseline_extract,logical_rewrite_plus_index,11.711,0.080,146.388,99.32
+Q2,baseline_extract,logical_rewrite_ranges,11.711,9.835,1.191,16.02
+Q3,baseline_double_not_exists,logical_rewrite_group_by_having,1650.239,680.644,2.425,58.75
+Q3,baseline_double_not_exists,logical_rewrite_plus_indexes,1650.239,675.526,2.443,59.06
